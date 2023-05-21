@@ -90,4 +90,8 @@ export class MovieService {
   ];
 
   constructor() { }
+
+  getList(): Movie[] {
+    return this.movieList;
+  }
 }

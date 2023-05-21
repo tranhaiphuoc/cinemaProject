@@ -5,9 +5,10 @@ export class Movie implements IMovie {
     name!: string
     rating!: string
     releaseDate!: Date
-    runtime!: string
+    runtime!: number
     genre!: Genre[]
     anecdote!: string
+    status!: number
 }
 
 export interface IMovie {
@@ -15,7 +16,8 @@ export interface IMovie {
     name: string
     rating: string
     releaseDate: Date
-    runtime: string
+    runtime: number
     genre: Genre[]
     anecdote: string
+    status: number
 }

@@ -1,0 +1,26 @@
+#navbar1 {
+    background-color: antiquewhite;
+
+    border-color: red;
+    border-style: solid;
+    border-width: 5px 0px;
+    height: 8em;
+}
+
+#a1 {
+    position: absolute;
+    right: 150px;
+}
+
+#a2 {
+    position: absolute;
+    right: 10px;
+}
+
+#navbarDropdown {
+    text-transform: uppercase;
+}
+
+.dropdown-item {
+    text-transform: capitalize;
+}

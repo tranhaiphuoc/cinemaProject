@@ -10,12 +10,13 @@ import { Menu } from '../models/menu.model';
 })
 export class NavBarComponent {
   constructor(@Inject(DOCUMENT) private document: Document) { }
+  baseImgUrl = this.document.baseURI + 'assets/Images/nav-bar/';
 
-  navbarBkgImg = this.document.baseURI + 'assets/Images/nav-bar-bkg.png';
-  cgvLogoImg = this.document.baseURI + 'assets/Images/cgv-logo.png';
-  kenhCineImg = this.document.baseURI + 'assets/Images/kenhcine.gif';
-  muaVeNgayImg = this.document.baseURI + 'assets/Images/mua-ve-ngay.png';
-  navbarBorderImg = this.document.baseURI + 'assets/Images/nav-bar-border.png';
+  navbarBkgImg = this.baseImgUrl + 'nav-bar-bkg.png';
+  cgvLogoImg = this.baseImgUrl + 'cgv-logo.png';
+  kenhCineImg = this.baseImgUrl + 'kenhcine.gif';
+  muaVeNgayImg = this.baseImgUrl + 'mua-ve-ngay.png';
+  navbarBorderImg = this.baseImgUrl + 'nav-bar-border.png';
 
   lstMenu: Menu[][] = [
     [

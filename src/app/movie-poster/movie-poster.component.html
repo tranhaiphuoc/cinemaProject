@@ -1,0 +1,27 @@
+<div class="poster-container">
+    <img class="poster-img" [src]="fastAndFuriousX" alt="Fast and furious X">
+    <div id="div-blur" (mouseenter)="isHover = true" (mouseleave)="isHover = false" [ngClass]="{'hover': isHover}">
+        <ng-container *ngIf="isHover">
+            <button class="btn-general" id="btn-play">
+                <img id="arrow-right-img" [src]="arrowRight" alt="right arrow">
+                <div class="text play-text">Play</div>
+            </button>
+            <div id="detail-bar">
+                <div id="movie-name">{{ movieName }}</div>
+
+                <button class="btn-general" id="btn-xem-chi-tiet">
+                    <div class="text detail-text">Xem chi tiết</div>
+                </button>
+                <button class="btn-general" id="btn-mua-ve">
+                    <div>
+                        <img id="landline-icon-img" [src]="landlineIcon" alt="landline icon image">
+                        <span class="text detail-text">Mua vé</span>
+                    </div>
+                </button>
+            </div>
+
+        </ng-container>
+    </div>
+
+
+</div>

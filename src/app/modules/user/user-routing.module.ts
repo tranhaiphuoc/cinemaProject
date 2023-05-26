@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ScheduleComponent } from './schedule/schedule.component';
+
+import { NavBarComponent } from 'src/app/nav-bar/nav-bar.component';
 
 const routes: Routes = [
   {
-    
+    path: '', component: NavBarComponent
   }
 ];
 

@@ -9,6 +9,7 @@ export class Movie implements IMovie {
     genre!: Genre[]
     anecdote!: string
     status!: number
+    urlImage!: string
 }
 
 export interface IMovie {
@@ -20,4 +21,5 @@ export interface IMovie {
     genre: Genre[]
     anecdote: string
     status: number
+    urlImage: string
 }

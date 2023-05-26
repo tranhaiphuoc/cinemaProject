@@ -5,6 +5,13 @@
     text-transform: uppercase;
 }
 
+#T-age {
+    width: 20px;
+    height: 20px;
+    padding: 10px;
+    background-color: antiquewhite;
+}
+
 .text {
     font-weight: bold;
     text-transform: uppercase;
@@ -21,10 +28,14 @@
 }
 
 #btn-xem-chi-tiet {
+    background-color: #E71A0F;
     width: 50%;
 }
 
 #btn-mua-ve {
+    //box-shadow: 0px 0px 10px 1px rgb(227, 227, 227) inset;
+    //border: solid 1px white;
+    background-color: #E71A0F;
     margin-left: 0px;
     width: 40%;
     // Update
@@ -93,8 +104,10 @@
 
 #landline-icon-img {
     width: 20px;
-    height: 100%;
-    margin-right: 2px;
+    height: 30px;
+    margin-right: 1px;
+    margin-top: -5px;
+    //background-color: #ffffff;
 }
 
 #detail-bar {

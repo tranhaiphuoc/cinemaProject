@@ -1,5 +1,7 @@
 <div class="poster-container">
-    <img class="poster-img" [src]="fastAndFuriousX" alt="Fast and furious X">
+    <img class="poster-img" [src]="moviePath" [alt]="movieName">
+    <div id="T-age">{{ ageOutput }}</div>
+
     <div id="div-blur" (mouseenter)="isHover = true" (mouseleave)="isHover = false" [ngClass]="{'hover': isHover}">
         <ng-container *ngIf="isHover">
             <button class="btn-general" id="btn-play">
@@ -8,7 +10,6 @@
             </button>
             <div id="detail-bar">
                 <div id="movie-name">{{ movieName }}</div>
-
                 <button class="btn-general" id="btn-xem-chi-tiet">
                     <div class="text detail-text">Xem chi tiết</div>
                 </button>

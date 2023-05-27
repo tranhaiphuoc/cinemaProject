@@ -1,7 +1,9 @@
 <div class="container">
     <h1>{{ filter }}</h1>
-    <ng-container *ngFor="let movie of lstMovie">
-        <app-poster-infomation [movie]="movie"></app-poster-infomation>
-    </ng-container>
+    <div class="display-list">
+        <ng-container *ngFor="let movie of lstMovie">
+            <app-poster-infomation [movie]="movie"></app-poster-infomation>
+        </ng-container>
+    </div>
 
 </div>

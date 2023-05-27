@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MoviePosterComponent } from './movie-poster/movie-poster.component';
 import { DisplayMovieDetailsComponent } from './display-movie-details/display-movie-details.component';
+import { ZoomImageComponent } from './display-movie-details/zoom-image/zoom-image.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     MoviePosterComponent,
-    DisplayMovieDetailsComponent
+    DisplayMovieDetailsComponent,
+    ZoomImageComponent
   ],
   imports: [
     BrowserModule,

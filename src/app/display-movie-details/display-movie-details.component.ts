@@ -17,10 +17,6 @@ export class DisplayMovieDetailsComponent {
   }
 
   getListGenre() : string {
-    let content: string = "";
-    this.movie.genre.forEach(element => {
-      content = content.concat(', ', element.name);
-    });
-    return content.substring(1);
+    return this.movie.genre.map(genre => genre.name).join(", ");
   }
 }

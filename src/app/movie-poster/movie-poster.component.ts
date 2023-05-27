@@ -6,18 +6,16 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./movie-poster.component.scss']
 })
 export class MoviePosterComponent implements OnInit {
-  // Get data
+  // Get data from parent component
   movieName = 'Fast and furious X';
   movieFileName = 'fast-and-furious.jpg';
-  age = 16;
+  rated = 'T16';
 
   isHover!: boolean;
   ageOutput!: string;
   constructor(@Inject(DOCUMENT) private document: Document) { }
 
-  ngOnInit(): void {
-    this.ageOutput = this.getAgeOutput();
-  }
+  ngOnInit(): void { }
 
   baseImgUrl = this.document.baseURI + 'assets/Images/movie-poster/';
   baseImgUrl2 = this.document.baseURI + 'assets/Images/others/';
@@ -26,13 +24,4 @@ export class MoviePosterComponent implements OnInit {
   landlineIcon = this.baseImgUrl2 + 'landline-icon.png';
 
   moviePath = this.baseImgUrl + this.movieFileName;
-
-  getAgeOutput(): string {
-    if (this.age > 0) {
-      return "T" + this.age.toString();
-    }
-    else {
-      return "P";
-    }
-  }
 }

@@ -7,12 +7,13 @@ import { Menu } from '../models/menu.model';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
+  baseUrl = '../../assets/Images/nav-bar/';
 
-  navbarBkgImg = '../../assets/Images/nav-bar-bkg.png';
-  cgvLogoImg = '../../assets/Images/cgv-logo.png';
-  kenhCineImg = '../../assets/Images/kenhcine.gif';
-  muaVeNgayImg = '../../assets/Images/mua-ve-ngay.png';
-  navbarBorderImg = '../../assets/Images/nav-bar-border.png';
+  navbarBkgImg = this.baseUrl + 'nav-bar-bkg.png';
+  cgvLogoImg = this.baseUrl + 'cgv-logo.png';
+  kenhCineImg = this.baseUrl + 'kenhcine.gif';
+  muaVeNgayImg = this.baseUrl + 'mua-ve-ngay.png';
+  navbarBorderImg = this.baseUrl + 'nav-bar-border.png';
 
   lstMenu: Menu[][] = [
     [

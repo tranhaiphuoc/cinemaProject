@@ -1,22 +1,26 @@
-import { Component, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
+
 @Component({
   selector: 'app-movie-poster',
   templateUrl: './movie-poster.component.html',
   styleUrls: ['./movie-poster.component.scss']
 })
-export class MoviePosterComponent {
-  constructor(@Inject(DOCUMENT) private document: Document) { }
-
-  baseImgUrl = this.document.baseURI + 'assets/Images/movie-poster/';
-  baseImgUrl2 = this.document.baseURI + 'assets/Images/others/';
-
-  fastAndFuriousX = this.baseImgUrl + 'fast-and-furious.jpg';
-
-  arrowRight = this.baseImgUrl2 + 'arrow-right.png';
-  landlineIcon = this.baseImgUrl2 + 'landline-icon.png';
+export class MoviePosterComponent implements OnInit {
+  // Get data from parent component
+  movieName = 'Fast and furious X';
+  movieFileName = 'fast-and-furious.jpg';
+  rated = 'T16';
 
   isHover!: boolean;
+  ageOutput!: string;
 
-  movieName = 'Fast and furious X';
+  ngOnInit(): void { }
+
+  moviePosterImgUrl = '../../assets/Images/movie-poster/';
+  othersImgUrl2 = '../../assets/Images/others/';
+
+  arrowRight = this.othersImgUrl2 + 'arrow-right.png';
+  landlineIcon = this.othersImgUrl2 + 'landline-icon.png';
+
+  moviePath = this.moviePosterImgUrl + this.movieFileName;
 }

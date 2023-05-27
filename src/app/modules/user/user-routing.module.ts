@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { NavBarComponent } from 'src/app/nav-bar/nav-bar.component';
 
 const routes: Routes = [

@@ -1,25 +1,24 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from '../models/movie.model';
+import { MovieService } from '../services/movie.service';
 
 @Component({
   selector: 'app-display-list-poster',
   templateUrl: './display-list-poster.component.html',
   styleUrls: ['./display-list-poster.component.scss']
 })
-export class DisplayListPosterComponent {
-  @Input('lstMovie') lstMovie!: Movie[];
-  @Input('filter') filter!: string;
+export class DisplayListPosterComponent implements OnInit {
+  filter!: string;
+  lstMovie!: Movie[];
 
-  indexLst = -1;
-  getListGenre(movie: Movie): string {
-    let content: string = "";
-    movie.genre.forEach(element => {
-      content = content.concat(', ', element.name);
-    });
-    return content.substring(1);
+  constructor(private movieService: MovieService) { }
+
+  ngOnInit(): void {
+    this.getAll();
   }
 
-  getDisplay(): string {
-    return this.indexLst ? 'display: flex;' : '';
+  getAll() {
+    this.lstMovie = this.movieService.getList();
+    this.filter = 'Tất cả phim';
   }
 }

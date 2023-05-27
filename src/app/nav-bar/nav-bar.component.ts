@@ -7,6 +7,7 @@ import { Menu } from '../models/menu.model';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
+
   navbarBkgImg = '../../assets/Images/nav-bar-bkg.png';
   cgvLogoImg = '../../assets/Images/cgv-logo.png';
   kenhCineImg = '../../assets/Images/kenhcine.gif';

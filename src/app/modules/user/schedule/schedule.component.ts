@@ -20,10 +20,11 @@ export class ScheduleComponent implements OnInit {
     anecdote:
       'Dom Toretto and his family are targeted by the vengeful son of drug kingpin Hernan Reyes',
     status: 1,
+    urlImage: '../../assets/Images/movie-poster/fast-and-furious.jpg'
   };
   cinemaScheduleList: CinemaDto[] = [];
 
-  constructor(private cinemaScheduleService: CinemaScheduleService) {}
+  constructor(private cinemaScheduleService: CinemaScheduleService) { }
 
   ngOnInit(): void {
     this.receive(new Date());

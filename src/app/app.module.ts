@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { MoviePosterComponent } from './movie-poster/movie-poster.component';
 import { DisplayMovieDetailsComponent } from './display-movie-details/display-movie-details.component';
+import { DisplayListPosterComponent } from './display-list-poster/display-list-poster.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     MoviePosterComponent,
-    DisplayMovieDetailsComponent
+    DisplayMovieDetailsComponent,
+    DisplayListPosterComponent
   ],
   imports: [
     BrowserModule,

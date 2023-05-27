@@ -1,6 +1,4 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject } from '@angular/core';
-
+import { Component } from '@angular/core';
 import { Menu } from '../models/menu.model';
 
 @Component({
@@ -9,14 +7,12 @@ import { Menu } from '../models/menu.model';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
-  constructor(@Inject(DOCUMENT) private document: Document) { }
-  baseImgUrl = this.document.baseURI + 'assets/Images/nav-bar/';
 
-  navbarBkgImg = this.baseImgUrl + 'nav-bar-bkg.png';
-  cgvLogoImg = this.baseImgUrl + 'cgv-logo.png';
-  kenhCineImg = this.baseImgUrl + 'kenhcine.gif';
-  muaVeNgayImg = this.baseImgUrl + 'mua-ve-ngay.png';
-  navbarBorderImg = this.baseImgUrl + 'nav-bar-border.png';
+  navbarBkgImg = '../../assets/Images/nav-bar-bkg.png';
+  cgvLogoImg = '../../assets/Images/cgv-logo.png';
+  kenhCineImg = '../../assets/Images/kenhcine.gif';
+  muaVeNgayImg = '../../assets/Images/mua-ve-ngay.png';
+  navbarBorderImg = '../../assets/Images/nav-bar-border.png';
 
   lstMenu: Menu[][] = [
     [

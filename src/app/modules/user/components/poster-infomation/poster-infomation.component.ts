@@ -7,9 +7,13 @@ import { Movie } from '../../../../models/movie.model';
   styleUrls: ['./poster-infomation.component.scss']
 })
 export class PosterInfomationComponent {
-  @Input('movie') movie!: Movie;
+  @Input() movie!: Movie;
 
-  getListGenre(movie: Movie): string {
+  get getListGenre(): string {
+    return this.listGenre(this.movie);
+  }
+
+  listGenre(movie: Movie): string {
     let content: string = "";
     movie.genre.forEach(element => {
       content = content.concat(', ', element.name);

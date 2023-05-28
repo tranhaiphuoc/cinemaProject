@@ -7,6 +7,11 @@ h1 {
 
 .display-list {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.display-list > .list-item {
+    flex-basis: 25%;
 }

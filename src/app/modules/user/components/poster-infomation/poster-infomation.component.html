@@ -1,5 +1,5 @@
 <div class="poster-container">
-    <img class="poster-img" [src]="movie.urlImage" [alt]="movie.name">
+    <img class="poster-img" [routerLink]="['movie', movie.id]" [src]="movie.urlImage" [alt]="movie.name">
     <div class="infomation">
         <h6>{{ movie.name }}</h6>
         <p>

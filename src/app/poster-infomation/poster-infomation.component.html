@@ -8,11 +8,11 @@
         </p>
         <p>
             <span class="bold-text">Thời lượng:</span>
-            {{ movie.runtime }}
+            {{ movie.runtime }} phút
         </p>
         <p>
             <span class="bold-text">Khởi chiếu:</span>
-            {{ movie.releaseDate }}
+            {{ movie.releaseDate | date: 'dd-MM-yyyy' }}
         </p>
     </div>
 </div>

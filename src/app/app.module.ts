@@ -21,7 +21,7 @@ import { ZoomImageComponent } from './display-movie-details/zoom-image/zoom-imag
     DisplayMovieDetailsComponent,
 
     DisplayListPosterComponent,
-    PosterInfomationComponent
+    PosterInfomationComponent,
 
     ZoomImageComponent
 

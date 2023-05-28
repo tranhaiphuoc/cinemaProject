@@ -1,5 +1,5 @@
 <ng-container *ngIf="movie">
-  <div class="overlay"></div>
+  <div (click)="toggle.emit()" class="overlay"></div>
   <div class="schedule">
     <div class="position-relative">
       <div class="divider">
@@ -11,7 +11,7 @@
           </ng-container>
         </div>
       </div>
-      <ng-container *ngIf="cinemaScheduleList">
+      <ng-container *ngIf="cinemaScheduleList.length > 0">
         <div *ngFor="let cs of cinemaScheduleList" class="sub-divider">
           <h3>{{ cs.cinemaCenter }}</h3>
           <app-ss-cinema [cinemaSchedule]="cs.cinemaSchedule"></app-ss-cinema>

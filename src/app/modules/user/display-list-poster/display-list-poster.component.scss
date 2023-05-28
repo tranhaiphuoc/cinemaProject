@@ -8,10 +8,42 @@ h1 {
 .display-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
 }
 
-.display-list > .list-item {
+.display-list > .item {
     flex-basis: 25%;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1em;
+}
+
+.item > :last-child {
+    margin-left: auto;
+    margin-right: 2.8em;
+}
+
+@media (max-width: 1399px) {
+    .item > :last-child {
+        margin-right: 1.5em;
+    }
+}
+
+@media (max-width: 1199px) {
+    .item > :last-child {
+        margin-right: 0em;
+    }
+}
+
+@media (max-width: 991px) {
+    .display-list > .list-item {
+        flex-basis: 33.33%;
+    }
+
+    .item > :last-child {
+        margin-right: 0.2em;
+    }
 }

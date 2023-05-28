@@ -11,6 +11,7 @@ import { DisplayMovieDetailsComponent } from './display-movie-details/display-mo
 import { DisplayListPosterComponent } from './display-list-poster/display-list-poster.component';
 import { PosterInfomationComponent } from './components/poster-infomation/poster-infomation.component';
 import { UserLayoutComponent } from './user-layout/user-layout.component';
+import { ButtonBookingComponent } from './components/button-booking/button-booking.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { UserLayoutComponent } from './user-layout/user-layout.component';
     DisplayMovieDetailsComponent,
     DisplayListPosterComponent,
     PosterInfomationComponent,
-    UserLayoutComponent
+    UserLayoutComponent,
+    ButtonBookingComponent
   ],
   imports: [
     CommonModule,

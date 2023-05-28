@@ -11,6 +11,16 @@ import { MovieService } from 'src/app/services/movie.service';
 export class DisplayMovieDetailsComponent implements OnInit {
   movie!: Movie;
 
+  get getRating(): string {
+    if(this.movie.rating === "T16" || this.movie.rating === "T13" || this.movie.rating === "T18")
+      return `- PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ ${this.movie.rating.substring(1)} TUỔI TRỞ LÊN (${this.movie.rating.substring(1)})`;
+    return "- PHIM ĐƯỢC PHÉP PHỔ BIẾN ĐẾN NGƯỜI XEM Ở MỌI ĐỘ TUỔI";
+  }
+
+  get getListGenre(): string {
+    return this.movie.genre.map(genre => genre.name).join(", ");
+  }
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private movieService: MovieService) {}
@@ -19,16 +29,5 @@ export class DisplayMovieDetailsComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.movie = this.movieService.getById(params['id']);
     });
-  }
-  
-  getRating() : string {
-    if(this.movie?.rating === "T16" || this.movie?.rating === "T13" || this.movie?.rating === "T18")
-      return " - PHIM ĐƯỢC PHỔ BIẾN ĐẾN NGƯỜI XEM TỪ ĐỦ " + this.movie.rating.substring(1) +  " TUỔI TRỞ LÊN (" + this.movie.rating.substring(1) + "+)";
-    else
-      return "- PHIM ĐƯỢC PHÉP PHỔ BIẾN ĐẾN NGƯỜI XEM Ở MỌI ĐỘ TUỔI";
-  }
-
-  getListGenre() : string {
-    return this.movie.genre.map(genre => genre.name).join(", ");
   }
 }

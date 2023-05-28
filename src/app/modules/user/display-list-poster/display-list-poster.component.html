@@ -3,8 +3,9 @@
   <div class="wrapper">
     <div class="display-list">
       <ng-container *ngFor="let movie of lstMovie">
-        <div class="list-item">
+        <div class="item">
           <app-poster-infomation [movie]="movie"></app-poster-infomation>
+          <app-button-booking [movie]="movie"></app-button-booking>
         </div>
       </ng-container>
     </div>

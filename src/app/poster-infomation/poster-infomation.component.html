@@ -1,0 +1,18 @@
+<div class="poster-container">
+    <img class="poster-img" [src]="movie.urlImage" [alt]="movie.name">
+    <div class="infomation">
+        <h6>{{ movie.name }}</h6>
+        <p>
+            <span class="bold-text">Thể loại:</span>
+            {{ getListGenre(movie) }}
+        </p>
+        <p>
+            <span class="bold-text">Thời lượng:</span>
+            {{ movie.runtime }}
+        </p>
+        <p>
+            <span class="bold-text">Khởi chiếu:</span>
+            {{ movie.releaseDate }}
+        </p>
+    </div>
+</div>

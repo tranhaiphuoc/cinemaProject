@@ -1,0 +1,12 @@
+h1 {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid black;
+    margin-bottom: 25px;
+}
+
+.display-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}

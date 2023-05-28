@@ -10,9 +10,13 @@ import { Movie } from './models/movie.model';
 export class AppComponent {
   title = 'cinemaProject';
 
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService) { }
 
-  getMovie(num: number) : Movie {
+  getMovie(num: number): Movie {
     return this.movieService.getList()[num];
+  }
+
+  getListMovie(): Movie[] {
+    return this.movieService.getList();
   }
 }

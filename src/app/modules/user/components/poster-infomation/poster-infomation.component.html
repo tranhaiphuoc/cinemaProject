@@ -1,0 +1,25 @@
+<div class="wrapper">
+  <div class="poster-container">
+    <img
+      class="poster-img"
+      [routerLink]="['movie', movie.id]"
+      [src]="movie.urlImage"
+      [alt]="movie.name"
+    />
+    <div class="infomation">
+      <h6>{{ movie.name }}</h6>
+      <p>
+        <span class="bold-text">Thể loại:</span>
+        {{ getListGenre }}
+      </p>
+      <p>
+        <span class="bold-text">Thời lượng:</span>
+        {{ movie.runtime }}
+      </p>
+      <p>
+        <span class="bold-text">Khởi chiếu:</span>
+        {{ movie.releaseDate | date : "dd/MM/yyyy" }}
+      </p>
+    </div>
+  </div>
+</div>

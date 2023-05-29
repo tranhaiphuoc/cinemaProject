@@ -1,0 +1,4 @@
+<button (click)="toggleBooking()" type="button" class="button">Mua vé</button>
+<ng-container *ngIf="toggle">
+  <app-schedule [movie]="movie" (toggle)="toggleBooking()"></app-schedule>
+</ng-container>

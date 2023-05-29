@@ -1,0 +1,13 @@
+.button {
+  padding: .3em 1em;
+  color: white;
+  font-weight: bold;
+  background-color: red;
+  border: 1px solid white;
+  outline: 2px solid red;
+  border-radius: 5px;
+}
+
+.button:focus {
+  outline: 2px solid red;
+}

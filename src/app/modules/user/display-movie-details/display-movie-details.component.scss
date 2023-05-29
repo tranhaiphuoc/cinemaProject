@@ -29,18 +29,3 @@
 .boldText {
   font-weight: bold;
 }
-
-.btn-outline-primary {
-  margin-top: 15px;
-  color: black;
-  border-color: rgba(255, 0, 187, 0.452);
-}
-
-.btn-outline-primary:hover {
-  background-color: rgba(255, 0, 179, 0.212);
-}
-
-.btn:focus,
-.btn:active {
-  box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.37);
-}

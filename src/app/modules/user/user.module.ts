@@ -12,7 +12,12 @@ import { DisplayListPosterComponent } from './display-list-poster/display-list-p
 import { PosterInfomationComponent } from './components/poster-infomation/poster-infomation.component';
 import { UserLayoutComponent } from './user-layout/user-layout.component';
 import { ButtonBookingComponent } from './components/button-booking/button-booking.component';
-
+import { EmployeeComponent } from './employee/employee.component';
+import { TableComponent } from './components/table/table.component';
+import { ButtonDeleteComponent } from './components/button-delete/button-delete.component';
+import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
+import { ModalEditComponent } from './employee/modal-edit/modal-edit.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,13 @@ import { ButtonBookingComponent } from './components/button-booking/button-booki
     DisplayListPosterComponent,
     PosterInfomationComponent,
     UserLayoutComponent,
-    ButtonBookingComponent
+    ButtonBookingComponent,
+    EmployeeComponent,
+    TableComponent,
+    ButtonDeleteComponent,
+    ModalDeleteComponent,
+    ModalEditComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,

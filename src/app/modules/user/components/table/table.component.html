@@ -1,0 +1,24 @@
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <ng-container *ngFor="let field of fieldList">
+                <th style="text-transform: capitalize;">{{ field }}</th>
+            </ng-container>
+            <th style="width: 9%;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let data of dataList; let i = index">
+            <tr>
+                <td *ngFor="let field of fieldList">{{ data[field] }}</td>
+                <td>
+                    <app-button-delete></app-button-delete>
+                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal">
+                        <img [src]="editIconImg" alt="Edit" width="70%" height="70%">
+                    </button>
+                    <app-modal-edit></app-modal-edit>
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>

@@ -1,0 +1,37 @@
+<form [formGroup]="logInForm">
+  <div class="form-group mb-2">
+    <label class="form-label bold">Username</label>
+    <input
+      formControlName="username"
+      type="text"
+      placeholder="Username"
+      class="form-control"
+    />
+    <small
+      *ngIf="
+        logInForm.get('username')?.invalid && logInForm.get('username')?.touched
+      "
+      class="text-danger"
+      >Username field is required</small
+    >
+  </div>
+  <div class="form-group mb-2">
+    <label class="form-label bold">Password</label>
+    <input
+      formControlName="password"
+      type="password"
+      placeholder="Password"
+      class="form-control"
+    />
+    <small
+      *ngIf="
+        logInForm.get('password')?.invalid && logInForm.get('password')?.touched
+      "
+      class="text-danger"
+      >Password field is required</small
+    >
+  </div>
+  <div (click)="logIn()" class="button mt-4" style="cursor: pointer;">
+    <p>Log In</p>
+  </div>
+</form>

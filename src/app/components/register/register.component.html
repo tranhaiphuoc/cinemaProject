@@ -1,0 +1,39 @@
+<form [formGroup]="registerForm">
+  <ng-container *ngFor="let field of dynamicFormFields">
+    <div class="form-group mb-2">
+      <label
+        *ngIf="field.label"
+        [htmlFor]="field.controlName"
+        class="form-label bold"
+        >{{ field.label }}</label
+      >
+      <ng-container [ngSwitch]="field.controlType">
+        <ng-container *ngSwitchCase="'input'">
+          <input 
+            *ngIf="field.inputType != 'hidden'"
+            [formControlName]="field.controlName"
+            [type]="field.inputType"
+            [id]="field.controlName"
+            class="form-control"
+          />
+        </ng-container>
+
+        <!-- <ng-container ngSwitchCase="'select'"></ng-container> -->
+      </ng-container>
+      <ng-container *ngIf="field.invalidMessage">
+        <small
+          *ngIf="
+            registerForm.get(field.controlName)?.invalid &&
+            registerForm.get(field.controlName)?.touched
+          "
+          class="text-danger"
+          >{{ field.invalidMessage }}</small
+        >
+      </ng-container>
+    </div>
+  </ng-container>
+
+  <div (click)="submit()" class="button mt-4" style="cursor: pointer;">
+    <p>Register</p>
+  </div>
+</form>

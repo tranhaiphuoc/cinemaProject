@@ -1,0 +1,23 @@
+.account-nav {
+  padding-block: 0.3em;
+  background-color: black;
+}
+
+.account {
+  width: fit-content;
+  margin-inline: auto 1em;
+}
+
+.account div {
+  color: white;
+}
+
+.account a {
+  width: fit-content;
+  color: white;
+  text-decoration: none;
+}
+
+.item {
+  cursor: pointer;
+}

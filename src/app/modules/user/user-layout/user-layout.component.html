@@ -1,2 +1,16 @@
-<app-nav-bar></app-nav-bar>
+<div class="account-nav">
+  <div class="account">
+    <div *ngIf="!isLoggedIn">
+      <a class="item" [routerLink]="['/user/logIn']">Log In</a> |
+      <a class="item" [routerLink]="['/user/register']">Register</a>
+    </div>
+    <div *ngIf="isLoggedIn">
+      <a class="item" [routerLink]="">Hello {{ username }}</a> |
+      <a class="item" [routerLink]="" (click)="logOut()">Log out</a>
+    </div>
+  </div>
+</div>
+<div>
+  <app-nav-bar></app-nav-bar>
+</div>
 <router-outlet></router-outlet>

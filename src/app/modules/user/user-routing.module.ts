@@ -7,12 +7,19 @@ import { DisplayMovieDetailsComponent } from './display-movie-details/display-mo
 import { UserAccountComponent } from 'src/app/components/user-account/user-account.component';
 import { LogInComponent } from 'src/app/components/log-in/log-in.component';
 import { RegisterComponent } from 'src/app/components/register/register.component';
+<<<<<<< HEAD
 import { isNotLoggedInGuard } from 'src/app/guards/is-not-logged-in.guard';
+=======
+import { EmployeeComponent } from './employee/employee.component';
+
+>>>>>>> 6500793656664e733430e576806d173266a0b9fd
 
 const routes: Routes = [
   {
+    // path: '',
+    // component: UserLayoutComponent,
     path: '',
-    component: UserLayoutComponent,
+    component: EmployeeComponent,
     children: [
       {
         path: '',
@@ -45,4 +52,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class UserRoutingModule {}
+export class UserRoutingModule { }

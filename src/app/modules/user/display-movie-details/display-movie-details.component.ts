@@ -10,6 +10,7 @@ import { MovieService } from 'src/app/services/movie.service';
 })
 export class DisplayMovieDetailsComponent implements OnInit {
   movie!: Movie;
+  isDetail = true;
 
   get getRating(): string {
     if(this.movie.rating === "T16" || this.movie.rating === "T13" || this.movie.rating === "T18")

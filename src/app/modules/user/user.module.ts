@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { UserRoutingModule } from './user-routing.module';
 import { SsDateComponent } from './components/select-schedule/ss-date/ss-date.component';
@@ -18,6 +19,8 @@ import { ButtonDeleteComponent } from './components/button-delete/button-delete.
 import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
 import { ModalEditComponent } from './employee/modal-edit/modal-edit.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { TrailerComponent } from './display-movie-details/trailer/trailer.component';
+import { ZoomImageComponent } from './display-movie-details/zoom-image/zoom-image.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +38,15 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ButtonDeleteComponent,
     ModalDeleteComponent,
     ModalEditComponent,
-    PaginationComponent
+    PaginationComponent,
+    TrailerComponent,
+    ZoomImageComponent,
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule
   ]
 })
 export class UserModule { }

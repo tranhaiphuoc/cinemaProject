@@ -1,7 +1,7 @@
 import { Component, Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[appZoomImage]'
+  selector: '[appZoomImage]',
 })
 
 export class ZoomImageComponent {

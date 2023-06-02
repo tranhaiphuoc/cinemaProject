@@ -12,7 +12,7 @@
             <tr>
                 <td *ngFor="let field of fieldList">{{ data[field] }}</td>
                 <td>
-                    <app-button-delete></app-button-delete>
+                    <app-button-delete (delete)="DeleteItem(data)"></app-button-delete>
                     <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal">
                         <img [src]="editIconImg" alt="Edit" width="70%" height="70%">
                     </button>

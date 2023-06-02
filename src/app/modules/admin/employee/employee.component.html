@@ -1,2 +1,2 @@
-<app-table [dataList]="employeeList" [fieldList]="fieldList"></app-table>
+<app-table (deleteItem)="deleteItem($event)" [dataList]="employeeList" [fieldList]="fieldList"></app-table>
 <app-pagination></app-pagination>

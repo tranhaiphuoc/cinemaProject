@@ -10,8 +10,6 @@ import { RegisterComponent } from 'src/app/components/register/register.componen
 
 import { isNotLoggedInGuard } from 'src/app/guards/is-not-logged-in.guard';
 
-import { EmployeeComponent } from './employee/employee.component';
-
 const routes: Routes = [
   {
     path: '',

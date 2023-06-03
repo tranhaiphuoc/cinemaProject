@@ -1,5 +1,6 @@
-<button style="margin-right: 3px;" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
+<button (click)="deleteItem()" type="button" style="margin-right: 3px;" class="btn btn-danger" data-bs-toggle="modal"
+    data-bs-target="#deleteModal">
     <img [src]="deleteIconImg" alt="Delete" width="70%" height="70%">
 </button>
 
-<app-modal-delete></app-modal-delete>
+<!-- <app-modal-delete (delete)="deleteItem()"></app-modal-delete> -->

@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalEditComponent } from './modal-edit.component';
+import { TrailerComponent } from './trailer.component';
 
-describe('ModalEditComponent', () => {
-  let component: ModalEditComponent;
-  let fixture: ComponentFixture<ModalEditComponent>;
+describe('TrailerComponent', () => {
+  let component: TrailerComponent;
+  let fixture: ComponentFixture<TrailerComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ModalEditComponent]
+      declarations: [TrailerComponent]
     });
-    fixture = TestBed.createComponent(ModalEditComponent);
+    fixture = TestBed.createComponent(TrailerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

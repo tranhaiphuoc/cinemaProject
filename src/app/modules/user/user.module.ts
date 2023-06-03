@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { UserRoutingModule } from './user-routing.module';
 import { SsDateComponent } from './components/select-schedule/ss-date/ss-date.component';
@@ -12,14 +13,9 @@ import { DisplayListPosterComponent } from './display-list-poster/display-list-p
 import { PosterInfomationComponent } from './components/poster-infomation/poster-infomation.component';
 import { UserLayoutComponent } from './user-layout/user-layout.component';
 import { ButtonBookingComponent } from './components/button-booking/button-booking.component';
-import { EmployeeComponent } from './employee/employee.component';
-import { TableComponent } from './components/table/table.component';
-import { ButtonDeleteComponent } from './components/button-delete/button-delete.component';
-import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
-import { ModalEditComponent } from './employee/modal-edit/modal-edit.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
-import { CinemaSeatComponent } from './components/cinema-seat/cinema-seat.component';
+import { TrailerComponent } from './display-movie-details/trailer/trailer.component';
 import { ZoomImageComponent } from './display-movie-details/zoom-image/zoom-image.component';
+import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
 
 @NgModule({
   declarations: [
@@ -32,19 +28,15 @@ import { ZoomImageComponent } from './display-movie-details/zoom-image/zoom-imag
     PosterInfomationComponent,
     UserLayoutComponent,
     ButtonBookingComponent,
-    EmployeeComponent,
-    TableComponent,
-    ButtonDeleteComponent,
-    ModalDeleteComponent,
-    ModalEditComponent,
-    PaginationComponent,
-    CinemaSeatComponent,
-    ZoomImageComponent
+    TrailerComponent,
+    ZoomImageComponent,
+    ScheduleManagementComponent
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
-    SharedModule
-  ]
+    SharedModule,
+    FormsModule,
+  ],
 })
 export class UserModule { }

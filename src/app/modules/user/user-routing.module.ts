@@ -10,7 +10,9 @@ import { RegisterComponent } from 'src/app/components/register/register.componen
 
 import { isNotLoggedInGuard } from 'src/app/guards/is-not-logged-in.guard';
 
+
 import { EmployeeComponent } from './employee/employee.component';
+import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
 
 const routes: Routes = [
   {
@@ -19,7 +21,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: DisplayListPosterComponent,
+        component: ScheduleManagementComponent,
       },
       {
         path: 'movie/:id',

@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MovieComponent } from './movie/movie.component';
 import { TableMovieComponent } from './movie/table-movie/table-movie.component';
 import { UpdateMovieComponent } from './movie/update-movie/update-movie.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { UpdateMovieComponent } from './movie/update-movie/update-movie.componen
     CommonModule,
     AdminRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class AdminModule { }

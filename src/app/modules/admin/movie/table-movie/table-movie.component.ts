@@ -20,6 +20,7 @@ export class TableMovieComponent {
     private readonly _movieService: MovieService,
   ) { };
 
+  p: number = 1;
   editIconImg = 'assets/Images/others/edit-icon.png';
   seeDetailsIconImg = 'assets/Images/others/see-details-icon.png';
 

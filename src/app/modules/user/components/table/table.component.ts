@@ -13,6 +13,7 @@ export class TableComponent {
   @Input('fieldList') fieldList!: string[];
 
   editIconImg = 'assets/Images/others/edit-icon.png';
+  p: number = 1;
 
   DeleteItem(item: any) {
     this.deleteItem.emit(item);

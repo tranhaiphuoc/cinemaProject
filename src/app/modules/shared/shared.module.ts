@@ -6,6 +6,7 @@ import { TableComponent } from '../user/components/table/table.component';
 import { PaginationComponent } from '../user/components/pagination/pagination.component';
 import { ButtonDeleteComponent } from '../user/components/button-delete/button-delete.component';
 import { ModalDeleteComponent } from '../user/components/modal-delete/modal-delete.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -20,6 +21,7 @@ import { ModalDeleteComponent } from '../user/components/modal-delete/modal-dele
   ],
   imports: [
     CommonModule,
+    NgxPaginationModule
   ],
   exports: [
     BeforeAfterNoonPipe,

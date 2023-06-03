@@ -8,7 +8,7 @@
         </tr>
     </thead>
     <tbody>
-        <ng-container *ngFor="let data of dataList; let i = index">
+        <ng-container *ngFor="let data of dataList | paginate: { itemsPerPage: 2, currentPage: p }">
             <tr>
                 <ng-container *ngFor="let field of fieldList">
                     <td *ngIf="isCheckDate(field)">
@@ -35,5 +35,6 @@
                 </td>
             </tr>
         </ng-container>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </tbody>
 </table>

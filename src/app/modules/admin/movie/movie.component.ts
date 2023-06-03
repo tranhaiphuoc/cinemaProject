@@ -18,10 +18,17 @@ export class MovieComponent implements OnInit {
   dataList!: Movie[];
   fieldList!: string[];
 
+  addIconImg = 'assets/Images/others/add-icon.png';
+  searchIconImg = 'assets/Images/others/search-icon.png';
+
   ngOnInit(): void {
     this.dataList = this._movieService.getList();
     this.fieldList = ['id', 'name', 'rating', 'releaseDate', 'runtime',
       'genre'];
+  }
+
+  addItem() {
+
   }
 
   updateItem(item: Movie | undefined) {

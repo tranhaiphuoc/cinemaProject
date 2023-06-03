@@ -1,6 +1,8 @@
+import { CinemaCenter } from "../models/cinema-center.model";
 import { CinemaScheduleDto } from "./cinema-schedule-dto"
 
 export class CinemaDto {
-    cinemaCenter!: string
+    id!: number;
+    cinemaCenter!: CinemaCenter
     cinemaSchedule!: CinemaScheduleDto[]
 }

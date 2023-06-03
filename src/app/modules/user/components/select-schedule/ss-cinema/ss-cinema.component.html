@@ -3,7 +3,7 @@
   <div *ngFor="let sch of cs.schedule" class="row row-cols-auto">
     <ng-container *ngFor="let dt of sch.dateTime">
       <div *ngFor="let st of dt.time" class="col ps-1 pe-0">
-        <div class="showtime">
+        <div (click)="send(cs.cinema.id, st.id)" class="showtime">
           {{ st.hour | lessThanTen }}:{{ st.minute | lessThanTen }} {{ st.hour | beforeAfterNoon }}
         </div>
       </div>

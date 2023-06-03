@@ -3,7 +3,7 @@
 
   <div class="movie-detail">
     <img [src]="movie.urlImage" alt="poster image" appZoomImage />
-    <div>
+    <div class="details">
       <h4>{{ movie.name }}</h4>
       <div>
         <span class="boldText"> Thể loại: </span>
@@ -21,7 +21,9 @@
         <span class="boldText"> Đánh giá: </span>
         <span class="boldText"> {{ movie.rating }} {{ getRating }} </span>
       </div>
-      <app-button-booking [movie]="movie"></app-button-booking>
+      <div>
+        <app-button-booking [movie]="movie"></app-button-booking>
+      </div>
     </div>
   </div>
 </div>

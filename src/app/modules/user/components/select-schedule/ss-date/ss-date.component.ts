@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./ss-date.component.scss']
 })
 export class SsDateComponent implements OnInit {
-  static selectedItem: number = 0;
+  static selectedItem: number;
 
   @Input() item: any;
   @Input() iter!: number;
@@ -19,6 +19,7 @@ export class SsDateComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    SsDateComponent.selectedItem = 0;
     this.date = new Date(this.date.setDate(this.date.getDate() + this.iter));
   }
 

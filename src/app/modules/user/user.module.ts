@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { UserRoutingModule } from './user-routing.module';
 import { SsDateComponent } from './components/select-schedule/ss-date/ss-date.component';
 import { SsCinemaComponent } from './components/select-schedule/ss-cinema/ss-cinema.component';
-import { ScheduleComponent } from './schedule/schedule.component';
+import { ScheduleComponent } from './components/schedule/schedule.component';
 import { SharedModule } from '../shared/shared.module';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { DisplayMovieDetailsComponent } from './display-movie-details/display-movie-details.component';
@@ -18,6 +18,8 @@ import { ButtonDeleteComponent } from './components/button-delete/button-delete.
 import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
 import { ModalEditComponent } from './employee/modal-edit/modal-edit.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { CinemaSeatComponent } from './components/cinema-seat/cinema-seat.component';
+import { ZoomImageComponent } from './display-movie-details/zoom-image/zoom-image.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     ButtonDeleteComponent,
     ModalDeleteComponent,
     ModalEditComponent,
-    PaginationComponent
+    PaginationComponent,
+    CinemaSeatComponent,
+    ZoomImageComponent
   ],
   imports: [
     CommonModule,

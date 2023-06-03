@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Movie } from '../models/movie.model';
 import { Genre } from '../models/genre.model';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root',
@@ -122,7 +123,7 @@ export class MovieService {
     },
   ];
 
-  constructor() {}
+  constructor() { }
 
   getList(): Movie[] {
     return this.movieList;
@@ -132,5 +133,32 @@ export class MovieService {
     return this.movieList.find((m) => {
       return m.id == id;
     });
+  }
+
+  getListGenre(item: Movie): string {
+    return item.genre.map(genre => genre.name).join(", ");
+  }
+
+  deleteItem(input: Movie) {
+    if (input == null)
+      return;
+    const index = _.findIndex(this.movieList, (item: Movie) => {
+      return item.id == input.id;
+    });
+    if (index == -1)
+      return;
+    this.movieList.splice(index, 1);
+  }
+
+  updateItem(newInput: Movie) {
+    debugger
+    if (newInput == null)
+      return;
+    const index = _.findIndex(this.movieList, (item: Movie) => {
+      return item.id == newInput.id;
+    });
+    if (index == -1)
+      return;
+    this.movieList[index] = newInput;
   }
 }

@@ -7,13 +7,19 @@ import { EmployeeComponent } from './employee/employee.component';
 import { UpdateComponent } from './employee/update/update.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MovieComponent } from './movie/movie.component';
+import { TableMovieComponent } from './movie/table-movie/table-movie.component';
+import { UpdateMovieComponent } from './movie/update-movie/update-movie.component';
 
 
 @NgModule({
   declarations: [
     EmployeeComponent,
     UpdateComponent,
-    AdminLayoutComponent
+    AdminLayoutComponent,
+    MovieComponent,
+    TableMovieComponent,
+    UpdateMovieComponent
   ],
   imports: [
     CommonModule,

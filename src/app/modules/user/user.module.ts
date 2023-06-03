@@ -13,12 +13,6 @@ import { DisplayListPosterComponent } from './display-list-poster/display-list-p
 import { PosterInfomationComponent } from './components/poster-infomation/poster-infomation.component';
 import { UserLayoutComponent } from './user-layout/user-layout.component';
 import { ButtonBookingComponent } from './components/button-booking/button-booking.component';
-import { EmployeeComponent } from './employee/employee.component';
-import { TableComponent } from './components/table/table.component';
-import { ButtonDeleteComponent } from './components/button-delete/button-delete.component';
-import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
-import { ModalEditComponent } from './employee/modal-edit/modal-edit.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
 import { TrailerComponent } from './display-movie-details/trailer/trailer.component';
 import { ZoomImageComponent } from './display-movie-details/zoom-image/zoom-image.component';
 import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
@@ -34,12 +28,6 @@ import { ScheduleManagementComponent } from './schedule-management/schedule-mana
     PosterInfomationComponent,
     UserLayoutComponent,
     ButtonBookingComponent,
-    EmployeeComponent,
-    TableComponent,
-    ButtonDeleteComponent,
-    ModalDeleteComponent,
-    ModalEditComponent,
-    PaginationComponent,
     TrailerComponent,
     ZoomImageComponent,
     ScheduleManagementComponent

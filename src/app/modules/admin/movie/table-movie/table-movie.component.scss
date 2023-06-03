@@ -28,3 +28,11 @@ th {
     height: 30px;
     padding: 0px;
 }
+
+thead tr th:first-child,
+tbody tr td:first-child {
+    width: 8em;
+    min-width: 8em;
+    max-width: 8em;
+    word-break: break-all;
+}

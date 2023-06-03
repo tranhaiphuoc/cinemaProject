@@ -29,9 +29,22 @@ th {
     padding: 0px;
 }
 
-thead tr th:first-child,
-tbody tr td:first-child {
-    width: 8em;
+thead tr th:nth-child(1),
+tbody tr td:nth-child(1) {
+    min-width: 2em;
+    max-width: 2em;
+    word-break: break-all;
+}
+
+thead tr th:nth-child(3),
+tbody tr td:nth-child(3) {
+    min-width: 4.5em;
+    max-width: 4.5em;
+    word-break: break-all;
+}
+
+thead tr th:nth-child(7),
+tbody tr td:nth-child(7) {
     min-width: 8em;
     max-width: 8em;
     word-break: break-all;

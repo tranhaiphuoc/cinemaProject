@@ -21,7 +21,6 @@ import { ModalEditComponent } from './employee/modal-edit/modal-edit.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { TrailerComponent } from './display-movie-details/trailer/trailer.component';
 import { ZoomImageComponent } from './display-movie-details/zoom-image/zoom-image.component';
-import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +41,6 @@ import { ScheduleManagementComponent } from './schedule-management/schedule-mana
     PaginationComponent,
     TrailerComponent,
     ZoomImageComponent,
-    ScheduleManagementComponent
   ],
   imports: [
     CommonModule,

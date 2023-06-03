@@ -6,7 +6,6 @@ import { TableComponent } from '../user/components/table/table.component';
 import { PaginationComponent } from '../user/components/pagination/pagination.component';
 import { ButtonDeleteComponent } from '../user/components/button-delete/button-delete.component';
 import { ModalDeleteComponent } from '../user/components/modal-delete/modal-delete.component';
-import { ModalEditComponent } from '../admin/employee/modal-edit/modal-edit.component';
 
 
 
@@ -18,7 +17,6 @@ import { ModalEditComponent } from '../admin/employee/modal-edit/modal-edit.comp
     PaginationComponent,
     ButtonDeleteComponent,
     ModalDeleteComponent,
-    ModalEditComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +28,6 @@ import { ModalEditComponent } from '../admin/employee/modal-edit/modal-edit.comp
     PaginationComponent,
     ButtonDeleteComponent,
     ModalDeleteComponent,
-    ModalEditComponent
   ]
 })
 export class SharedModule { }

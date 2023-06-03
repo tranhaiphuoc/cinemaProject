@@ -44,6 +44,12 @@ export class EmployeeService {
     return this.employeeList;
   }
 
+  getById(id: string): Employee | undefined {
+    return _.find(this.employeeList, (item: Employee) => {
+      return item.id == id;
+    });
+  }
+
   deleteItem(input: Employee) {
     if (input == null)
       return;
@@ -53,5 +59,17 @@ export class EmployeeService {
     if (index == -1)
       return;
     this.employeeList.splice(index, 1);
+  }
+
+  updateItem(newInput: Employee) {
+    debugger
+    if (newInput == null)
+      return;
+    const index = _.findIndex(this.employeeList, (item: Employee) => {
+      return item.id == newInput.id;
+    });
+    if (index == -1)
+      return;
+    this.employeeList[index] = newInput;
   }
 }

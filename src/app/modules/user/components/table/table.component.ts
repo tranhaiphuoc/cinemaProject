@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class TableComponent {
   @Output('deleteItem') deleteItem = new EventEmitter<any>();
+  @Output('updateItem') updateItem = new EventEmitter<any>();
 
   @Input('dataList') dataList!: any[];
   @Input('fieldList') fieldList!: string[];
@@ -15,5 +16,9 @@ export class TableComponent {
 
   DeleteItem(item: any) {
     this.deleteItem.emit(item);
+  }
+
+  UpdateItem(item: any) {
+    this.updateItem.emit(item);
   }
 }

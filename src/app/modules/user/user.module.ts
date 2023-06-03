@@ -15,6 +15,7 @@ import { UserLayoutComponent } from './user-layout/user-layout.component';
 import { ButtonBookingComponent } from './components/button-booking/button-booking.component';
 import { TrailerComponent } from './display-movie-details/trailer/trailer.component';
 import { ZoomImageComponent } from './display-movie-details/zoom-image/zoom-image.component';
+import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +30,13 @@ import { ZoomImageComponent } from './display-movie-details/zoom-image/zoom-imag
     ButtonBookingComponent,
     TrailerComponent,
     ZoomImageComponent,
+    ScheduleManagementComponent
   ],
   imports: [
     CommonModule,
     UserRoutingModule,
     SharedModule,
-    FormsModule
-  ]
+    FormsModule,
+  ],
 })
 export class UserModule { }

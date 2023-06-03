@@ -10,6 +10,7 @@ export class Movie implements IMovie {
     anecdote!: string
     status!: number
     urlImage!: string
+    urlTrailer!: string
 }
 
 export interface IMovie {
@@ -22,4 +23,5 @@ export interface IMovie {
     anecdote: string
     status: number
     urlImage: string
+    urlTrailer: string
 }

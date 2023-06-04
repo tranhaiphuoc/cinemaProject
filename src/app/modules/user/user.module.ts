@@ -18,6 +18,7 @@ import { ZoomImageComponent } from './display-movie-details/zoom-image/zoom-imag
 import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
 import { CinemaSeatComponent } from './components/cinema-seat/cinema-seat.component';
 
+
 @NgModule({
   declarations: [
     SsDateComponent,
@@ -31,8 +32,10 @@ import { CinemaSeatComponent } from './components/cinema-seat/cinema-seat.compon
     ButtonBookingComponent,
     TrailerComponent,
     ZoomImageComponent,
+
     ScheduleManagementComponent,
     CinemaSeatComponent
+
   ],
   imports: [
     CommonModule,

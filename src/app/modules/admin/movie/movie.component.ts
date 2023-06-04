@@ -17,25 +17,28 @@ export class MovieComponent implements OnInit {
 
   dataList!: Movie[];
   fieldList!: string[];
+  movieName!: string;
+  fillList!: Movie[];
 
   addIconImg = 'assets/Images/others/add-icon.png';
   searchIconImg = 'assets/Images/others/search-icon.png';
 
   ngOnInit(): void {
     this.dataList = this._movieService.getList();
+    this.movieName = '';
+    this.fillList = this.fillDataListByName();
     this.fieldList = ['id', 'name', 'rating', 'releaseDate', 'runtime',
       'genre'];
   }
 
-  addItem() {
-
+  fillDataListByName(): Movie[] {
+    return this.dataList.filter(item => item.name.indexOf(this.movieName) != -1);
   }
 
   updateItem(item: Movie | undefined) {
     debugger
     if (item == undefined)
       return;
-    // navigate
     this._routerService.navigate(['/admin/movie/update', item.id]);
   }
 

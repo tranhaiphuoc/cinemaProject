@@ -8,17 +8,18 @@
         </tr>
     </thead>
     <tbody>
-        <ng-container *ngFor="let data of dataList; let i = index">
+        <ng-container *ngFor="let data of dataList | paginate: {itemsPerPage: 5, currentPage: p }">
             <tr>
                 <td *ngFor="let field of fieldList">{{ data[field] }}</td>
                 <td>
-                    <app-button-delete></app-button-delete>
-                    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editModal">
+                    <app-button-delete (delete)="DeleteItem(data)"></app-button-delete>
+                    <button (click)="UpdateItem(data)" type="button" class="btn btn-warning">
                         <img [src]="editIconImg" alt="Edit" width="70%" height="70%">
                     </button>
-                    <app-modal-edit></app-modal-edit>
+                    <!-- <app-modal-edit></app-modal-edit> -->
                 </td>
             </tr>
         </ng-container>
     </tbody>
 </table>
+<pagination-controls (pageChange)="p = $event"></pagination-controls>

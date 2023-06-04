@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Employee } from '../models/employee.model';
+import * as _ from 'lodash';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +39,37 @@ export class EmployeeService {
     { id: 'NV30', name: 'Hoàng Thế Vũ' },
   ];
   constructor() { }
+
   getList(): Employee[] {
     return this.employeeList;
+  }
+
+  getById(id: string): Employee | undefined {
+    return _.find(this.employeeList, (item: Employee) => {
+      return item.id == id;
+    });
+  }
+
+  deleteItem(input: Employee) {
+    if (input == null)
+      return;
+    const index = _.findIndex(this.employeeList, (item: Employee) => {
+      return item.id == input.id;
+    });
+    if (index == -1)
+      return;
+    this.employeeList.splice(index, 1);
+  }
+
+  updateItem(newInput: Employee) {
+    debugger
+    if (newInput == null)
+      return;
+    const index = _.findIndex(this.employeeList, (item: Employee) => {
+      return item.id == newInput.id;
+    });
+    if (index == -1)
+      return;
+    this.employeeList[index] = newInput;
   }
 }

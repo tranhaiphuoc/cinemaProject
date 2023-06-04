@@ -2,7 +2,7 @@
   <h3>Nội Dung Phim</h3>
 
   <div class="movie-detail">
-    <img [src]="movie.urlImage" alt="poster image" appZoomImage/>
+    <img [src]="movie.urlImage" alt="poster image" appZoomImage />
     <div>
       <h4>{{ movie.name }}</h4>
       <div>
@@ -21,7 +21,9 @@
         <label class="boldContent"> Đánh giá: </label>
         <span class="boldContent"> {{ movie.rating }} {{ getRating }} </span>
       </div>
-      <app-button-booking [movie]="movie"></app-button-booking>
+      <div>
+        <app-button-booking [movie]="movie"></app-button-booking>
+      </div>
     </div>
   </div>
 

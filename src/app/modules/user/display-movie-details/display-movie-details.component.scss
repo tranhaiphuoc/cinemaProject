@@ -30,6 +30,11 @@
   font-weight: bold;
 }
 
+
+.details > :last-child {
+  margin-top: 1em;
+}
+
 .center {
   display: flex;
   justify-content: center;
@@ -58,3 +63,4 @@
   position: absolute;
   opacity: 0;
 }
+

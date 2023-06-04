@@ -6,19 +6,24 @@ import { Movie } from '../models/movie.model';
 import { CinemaScheduleDto } from '../dto/cinema-schedule-dto';
 import { Schedule } from '../models/schedule.model';
 import { DateTimeSchedule } from '../models/date-time-schedule.model';
+import { CinemaCenterService } from './cinema-center.service';
+import { CinemaCenter } from '../models/cinema-center.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CinemaScheduleService {
   private tempDate: Date = new Date();
+  private cinemaCenterList: CinemaCenter[] = this.cinamaCenterService.getList();
   private movieList: Movie[] = this.movieService.getList();
+
   private cinemaScheduleList: CinemaDto[] = [
     {
-      cinemaCenter: 'CGV Hùng Vương Plaza',
+      id: 1,
+      cinemaCenter: this.cinemaCenterList[0],
       cinemaSchedule: [
         {
-          cinema: new Cinema(1, '2D Cinema'),
+          cinema: this.cinemaCenterList[0].cinema[0],
           schedule: [
             {
               id: 1,
@@ -50,7 +55,9 @@ export class CinemaScheduleService {
                 },
                 {
                   id: 2,
-                  date: new Date(new Date().setDate(this.tempDate.getDate() + 1)),
+                  date: new Date(
+                    new Date().setDate(this.tempDate.getDate() + 1)
+                  ),
                   time: [
                     {
                       id: 4,
@@ -92,7 +99,9 @@ export class CinemaScheduleService {
                 },
                 {
                   id: 4,
-                  date: new Date(new Date().setDate(this.tempDate.getDate() + 1)),
+                  date: new Date(
+                    new Date().setDate(this.tempDate.getDate() + 1)
+                  ),
                   time: [
                     {
                       id: 8,
@@ -134,7 +143,9 @@ export class CinemaScheduleService {
                 },
                 {
                   id: 6,
-                  date: new Date(new Date().setDate(this.tempDate.getDate() + 1)),
+                  date: new Date(
+                    new Date().setDate(this.tempDate.getDate() + 1)
+                  ),
                   time: [
                     {
                       id: 12,
@@ -176,7 +187,9 @@ export class CinemaScheduleService {
                 },
                 {
                   id: 8,
-                  date: new Date(new Date().setDate(this.tempDate.getDate() + 1)),
+                  date: new Date(
+                    new Date().setDate(this.tempDate.getDate() + 1)
+                  ),
                   time: [
                     {
                       id: 16,
@@ -205,10 +218,11 @@ export class CinemaScheduleService {
       ],
     },
     {
-      cinemaCenter: 'CGV Thảo Điền Pearl',
+      id: 2,
+      cinemaCenter: this.cinemaCenterList[1],
       cinemaSchedule: [
         {
-          cinema: new Cinema(2, '2D Cinema'),
+          cinema: this.cinemaCenterList[1].cinema[0],
           schedule: [
             {
               id: 5,
@@ -228,7 +242,9 @@ export class CinemaScheduleService {
                 },
                 {
                   id: 10,
-                  date: new Date(new Date().setDate(this.tempDate.getDate() + 1)),
+                  date: new Date(
+                    new Date().setDate(this.tempDate.getDate() + 1)
+                  ),
                   time: [
                     {
                       id: 20,
@@ -258,7 +274,9 @@ export class CinemaScheduleService {
                 },
                 {
                   id: 12,
-                  date: new Date(new Date().setDate(this.tempDate.getDate() + 1)),
+                  date: new Date(
+                    new Date().setDate(this.tempDate.getDate() + 1)
+                  ),
                   time: [
                     {
                       id: 22,
@@ -288,7 +306,9 @@ export class CinemaScheduleService {
                 },
                 {
                   id: 14,
-                  date: new Date(new Date().setDate(this.tempDate.getDate() + 1)),
+                  date: new Date(
+                    new Date().setDate(this.tempDate.getDate() + 1)
+                  ),
                   time: [
                     {
                       id: 24,
@@ -318,7 +338,9 @@ export class CinemaScheduleService {
                 },
                 {
                   id: 16,
-                  date: new Date(new Date().setDate(this.tempDate.getDate() + 1)),
+                  date: new Date(
+                    new Date().setDate(this.tempDate.getDate() + 1)
+                  ),
                   time: [
                     {
                       id: 26,
@@ -336,7 +358,10 @@ export class CinemaScheduleService {
     },
   ];
 
-  constructor(private movieService: MovieService) {}
+  constructor(
+    private movieService: MovieService,
+    private cinamaCenterService: CinemaCenterService
+  ) {}
 
   getList(): CinemaDto[] {
     return this.cinemaScheduleList;
@@ -389,6 +414,7 @@ export class CinemaScheduleService {
           tempCinemaScheduleDto.push(csDto);
 
           let cDto: CinemaDto = {
+            id: cinema.id,
             cinemaCenter: cinema.cinemaCenter,
             cinemaSchedule: tempCinemaScheduleDto,
           };

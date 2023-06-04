@@ -1,0 +1,51 @@
+button {
+    width: 30px;
+    height: 30px;
+
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+img {
+    width: 20px;
+    height: 20px;
+}
+
+td {
+    padding: auto 0px;
+}
+
+th {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    color: #007bff;
+}
+
+.btn-warning {
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+}
+
+thead tr th:nth-child(1),
+tbody tr td:nth-child(1) {
+    min-width: 2em;
+    max-width: 2em;
+    word-break: break-all;
+}
+
+thead tr th:nth-child(3),
+tbody tr td:nth-child(3) {
+    min-width: 4.5em;
+    max-width: 4.5em;
+    word-break: break-all;
+}
+
+thead tr th:nth-child(7),
+tbody tr td:nth-child(7) {
+    min-width: 8em;
+    max-width: 8em;
+    word-break: break-all;
+}

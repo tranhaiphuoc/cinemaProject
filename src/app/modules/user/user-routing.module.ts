@@ -7,11 +7,7 @@ import { DisplayMovieDetailsComponent } from './display-movie-details/display-mo
 import { UserAccountComponent } from 'src/app/components/user-account/user-account.component';
 import { LogInComponent } from 'src/app/components/log-in/log-in.component';
 import { RegisterComponent } from 'src/app/components/register/register.component';
-
 import { isNotLoggedInGuard } from 'src/app/guards/is-not-logged-in.guard';
-
-import { EmployeeComponent } from './employee/employee.component';
-import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
 
 const routes: Routes = [
   {

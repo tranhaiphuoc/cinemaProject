@@ -26,10 +26,41 @@
   }
 }
 
-.boldText {
+.boldContent {
   font-weight: bold;
 }
+
 
 .details > :last-child {
   margin-top: 1em;
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.form-check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-check-label:first-of-type {
+  margin-right: 100px;
+}
+
+.form-check-label {
+  font-size: 20px;
+}
+
+.form-check-input:checked+.form-check-label {
+  color: red;
+}
+
+.form-check-input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+

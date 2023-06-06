@@ -3,27 +3,45 @@
 
   <div class="movie-detail">
     <img [src]="movie.urlImage" alt="poster image" appZoomImage />
-    <div class="details">
+    <div>
       <h4>{{ movie.name }}</h4>
       <div>
-        <span class="boldText"> Thể loại: </span>
+        <label class="boldContent"> Thể loại: </label>
         <span> {{ getListGenre }} </span>
       </div>
       <div>
-        <span class="boldText"> Khởi chiếu: </span>
+        <label class="boldContent"> Khởi chiếu: </label>
         <span> {{ movie.releaseDate | date : "dd/MM/yyyy" }} </span>
       </div>
       <div>
-        <span class="boldText"> Thời lượng: </span>
+        <label class="boldContent"> Thời lượng: </label>
         <span> {{ movie.runtime }} phút </span>
       </div>
       <div>
-        <span class="boldText"> Đánh giá: </span>
-        <span class="boldText"> {{ movie.rating }} {{ getRating }} </span>
+        <label class="boldContent"> Đánh giá: </label>
+        <span class="boldContent"> {{ movie.rating }} {{ getRating }} </span>
       </div>
       <div>
         <app-button-booking [movie]="movie"></app-button-booking>
       </div>
     </div>
+  </div>
+
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" [value]="true"
+      [(ngModel)]="isDetail">
+    <label class="form-check-label" for="exampleRadios1">
+      Chi tiết
+    </label>
+    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2"
+      [value]="false" [(ngModel)]="isDetail">
+    <label class="form-check-label" for="exampleRadios2">
+      Trailer
+    </label>
+  </div>
+  
+  <div class="center" *ngIf="isDetail">{{ movie.anecdote }}</div>
+  <div *ngIf="!isDetail">
+    <app-trailer [urlTrailer]="movie.urlTrailer"></app-trailer>
   </div>
 </div>

@@ -3,7 +3,7 @@
   <div class="wrapper">
     <div class="display-list">
       <ng-container *ngFor="let movie of lstMovie">
-        <div class="item">
+        <div *ngIf="movie.status == 1" class="item">
           <app-poster-infomation [movie]="movie"></app-poster-infomation>
           <app-button-booking [movie]="movie"></app-button-booking>
         </div>

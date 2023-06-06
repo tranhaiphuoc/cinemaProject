@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CinemaDto } from 'src/app/dto/cinema-dto';
+import { Cinema } from 'src/app/models/cinema.model';
 import { Movie } from 'src/app/models/movie.model';
+import { Showtime } from 'src/app/models/showtime.model';
 import { CinemaScheduleService } from 'src/app/services/cinema-schedule.service';
 
 @Component({
@@ -12,11 +14,12 @@ export class ScheduleComponent implements OnInit {
   @Input() movie!: Movie;
   @Output() toggle = new EventEmitter();
 
-  cinemaId!: number;
-  showtimeId!: number;
+  cinema!: Cinema;
+  showtime!: Showtime;
+  selectedDate!: Date;
   
   cinemaScheduleList: CinemaDto[] = [];
-  toggleCinemaSeat: boolean = false;
+  toggleTicketSelector: boolean = false;
 
   constructor(private cinemaScheduleService: CinemaScheduleService) {}
 
@@ -24,10 +27,10 @@ export class ScheduleComponent implements OnInit {
     this.receive(new Date());
   }
 
-  setShowtimeId({ cinemaId, showtimeId }: any): void {
-    this.cinemaId = cinemaId;
-    this.showtimeId = showtimeId;
-    this.toggleCinemaSeat = true;
+  setShowtimeId({ cinema, showtime }: any): void {
+    this.cinema = cinema;
+    this.showtime = showtime;
+    this.toggleTicketSelector = true;
   }
 
   receive(date: Date): void {
@@ -35,13 +38,16 @@ export class ScheduleComponent implements OnInit {
       this.movie,
       date
     );
+    this.selectedDate = date;
   }
 
   toggleSchedule(): void {
-    if (this.toggleCinemaSeat == true) {
-      this.toggleCinemaSeat = !this.toggleCinemaSeat;
-    } else {
+    if (this.toggleTicketSelector == false) {
       this.toggle.emit();
     }
+  }
+
+  toggleSelectTicket(): void {
+    this.toggleTicketSelector = !this.toggleTicketSelector;
   }
 }

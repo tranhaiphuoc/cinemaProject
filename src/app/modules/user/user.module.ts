@@ -20,6 +20,10 @@ import { ModalEditComponent } from './employee/modal-edit/modal-edit.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { CinemaSeatComponent } from './components/cinema-seat/cinema-seat.component';
 import { ZoomImageComponent } from './display-movie-details/zoom-image/zoom-image.component';
+import { SelectTicketComponent } from './components/select-ticket/select-ticket.component';
+import { ButtonBackComponent } from './components/button-back/button-back.component';
+import { ButtonSelectSeatComponent } from './components/button-select-seat/button-select-seat.component';
+import { ButtonConfirmBookingComponent } from './components/button-confirm-booking/button-confirm-booking.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,11 @@ import { ZoomImageComponent } from './display-movie-details/zoom-image/zoom-imag
     ModalEditComponent,
     PaginationComponent,
     CinemaSeatComponent,
-    ZoomImageComponent
+    ZoomImageComponent,
+    SelectTicketComponent,
+    ButtonBackComponent,
+    ButtonSelectSeatComponent,
+    ButtonConfirmBookingComponent
   ],
   imports: [
     CommonModule,

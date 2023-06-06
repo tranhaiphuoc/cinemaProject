@@ -1,14 +1,16 @@
-<ng-container *ngIf="cinemaId && showtimeId">
+<ng-container *ngIf="!toggleSeatSelector">
+  <div class="overlay"></div>
   <div class="booking-seat">
     <div class="wrapper">
       <div class="screen">SCREEN</div>
       <div class="seat-container">
-        <ng-container *ngFor="let seat of seats">
+        <ng-container *ngFor="let seat of seats; let i = index">
           <ng-container [ngSwitch]="seat.type.name">
             <ng-container
               *ngSwitchCase="'single'"
               [ngTemplateOutlet]="seatSingle"
               [ngTemplateOutletContext]="{
+                index: i,
                 status: seat.status,
                 name: seat.name
               }"
@@ -17,22 +19,36 @@
               *ngSwitchCase="'double'"
               [ngTemplateOutlet]="seatDouble"
               [ngTemplateOutletContext]="{
+                index: i,
                 status: seat.status,
                 name: seat.name
               }"
             ></ng-container>
           </ng-container>
+          <ng-container *ngIf="(i + 1) % breakPoint == 0">
+            <br />
+          </ng-container>
         </ng-container>
+      </div>
+      <div class="btn-option">
+        <app-button-back (toggle)="changeToggleCinemaSeat()"></app-button-back>
+        <app-button-confirm-booking [allSelected]="bookingSeat == currentSeat" (toggleConfirm)="confirmBooking()"></app-button-confirm-booking>
       </div>
     </div>
   </div>
 </ng-container>
 
-<ng-template #seatSingle let-status="status" let-name="name">
+<ng-template #seatSingle let-index="index" let-status="status" let-name="name">
   <ng-container [ngSwitch]="status">
+    <ng-container
+      *ngSwitchCase="0"
+      [ngStyle]="{ 'left.em': left }"
+    ></ng-container>
     <div
+      *ngSwitchCase="1"
+      (click)="select(index)"
+      [ngClass]="{ selected: stateOfSeats[index] }"
       class="seat single"
-      [ngClass]="{ busy: status == 2 }"
       [ngStyle]="{
         'top.em': top,
         'left.em': left,
@@ -42,19 +58,32 @@
     >
       {{ name }}
     </div>
-    <ng-container
-      *ngSwitchCase="0"
-      [ngStyle]="{ 'left.em': left }"
-    ></ng-container>
+    <div
+      *ngSwitchCase="2"
+      class="seat single busy"
+      [ngStyle]="{
+        'top.em': top,
+        'left.em': left,
+        'width.em': side,
+        'height.em': side
+      }"
+    >
+      {{ name }}
+    </div>
   </ng-container>
 </ng-template>
 
-<ng-template #seatDouble let-status="status" let-name="name">
+<ng-template #seatDouble let-index="index" let-status="status" let-name="name">
   <ng-container [ngSwitch]="status">
+    <ng-container
+      *ngSwitchCase="0"
+      [ngStyle]="{ 'left.em': leftDouble }"
+    ></ng-container>
     <div
-      *ngSwitchDefault
+      *ngSwitchCase="1"
+      (click)="select(index)"
       class="seat double"
-      [ngClass]="{ busy: status == 2 }"
+      [ngClass]="{ selected: stateOfSeats[index] }"
       [ngStyle]="{
         'top.em': top,
         'left.em': leftDouble,
@@ -64,9 +93,17 @@
     >
       {{ name }}
     </div>
-    <ng-container
-      *ngSwitchCase="0"
-      [ngStyle]="{ 'left.em': leftDouble }"
-    ></ng-container>
+    <div
+      *ngSwitchCase="2"
+      class="seat double busy"
+      [ngStyle]="{
+        'top.em': top,
+        'left.em': leftDouble,
+        'width.em': sideDouble,
+        'height.em': side
+      }"
+    >
+      {{ name }}
+    </div>
   </ng-container>
 </ng-template>

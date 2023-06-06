@@ -29,7 +29,7 @@ export class UserService {
     return this.userList;
   }
 
-  getById(id: number): User | any {
+  getById(id?: number): User | any {
     return this.userList.find((u) => {
       return u.id == id;
     });

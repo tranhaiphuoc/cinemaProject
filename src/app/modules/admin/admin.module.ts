@@ -12,6 +12,7 @@ import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { MovieComponent } from './movie/movie.component';
 import { TableMovieComponent } from './movie/table-movie/table-movie.component';
 import { UpdateMovieComponent } from './movie/update-movie/update-movie.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UpdateMovieComponent } from './movie/update-movie/update-movie.componen
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxPaginationModule
   ],
 })
 export class AdminModule {}

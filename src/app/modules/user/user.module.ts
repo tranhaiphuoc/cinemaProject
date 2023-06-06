@@ -15,16 +15,11 @@ import { UserLayoutComponent } from './user-layout/user-layout.component';
 import { ButtonBookingComponent } from './components/button-booking/button-booking.component';
 import { TrailerComponent } from './display-movie-details/trailer/trailer.component';
 import { ZoomImageComponent } from './display-movie-details/zoom-image/zoom-image.component';
-
 import { SelectTicketComponent } from './components/select-ticket/select-ticket.component';
 import { ButtonBackComponent } from './components/button-back/button-back.component';
 import { ButtonSelectSeatComponent } from './components/button-select-seat/button-select-seat.component';
 import { ButtonConfirmBookingComponent } from './components/button-confirm-booking/button-confirm-booking.component';
-
-import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
 import { CinemaSeatComponent } from './components/cinema-seat/cinema-seat.component';
-
-
 
 @NgModule({
   declarations: [
@@ -36,30 +31,15 @@ import { CinemaSeatComponent } from './components/cinema-seat/cinema-seat.compon
     DisplayListPosterComponent,
     PosterInfomationComponent,
     UserLayoutComponent,
-    ButtonBookingComponent,
-
-
-
+    TrailerComponent,
     ZoomImageComponent,
-
     SelectTicketComponent,
     ButtonBackComponent,
     ButtonSelectSeatComponent,
+    ButtonBookingComponent,
     ButtonConfirmBookingComponent,
-
-    TrailerComponent,
-    ScheduleManagementComponent
-
-
-    ScheduleManagementComponent,
-    CinemaSeatComponent
-
-
+    CinemaSeatComponent,
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    FormsModule,
-  ],
+  imports: [CommonModule, UserRoutingModule, FormsModule, SharedModule],
 })
-export class UserModule { }
+export class UserModule {}

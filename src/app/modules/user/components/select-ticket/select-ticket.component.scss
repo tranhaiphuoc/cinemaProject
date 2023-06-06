@@ -1,0 +1,113 @@
+.ticket-selector {
+  z-index: 100;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  min-width: 600px;
+  max-width: 105rem;
+  height: 86vh;
+  max-height: 57rem;
+  padding: 1em;
+  background-color: #fdfcf0;
+}
+
+.wrapper {
+  max-width: 56.25em;
+  height: fit-content;
+  margin-inline: auto;
+  margin-top: 5em;
+}
+
+table,
+th,
+td {
+  border: 1px solid black;
+}
+
+.display-ticket-type {
+  width: 100%;
+  text-align: center;
+  font-size: 21px;
+}
+
+.display-ticket-type th {
+  padding-block: 0.6em;
+  font-weight: bold;
+  background-color: #f18720;
+  width: 25%;
+}
+
+.display-ticket-type td {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.ticket-quantity {
+  background-color: gray;
+}
+
+.ticket-quantity > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2em;
+}
+
+.select-quantity {
+  width: 3em;
+  margin-inline: 0.3em;
+  background-color: white;
+}
+
+.decrement,
+.increment {
+  color: white;
+  cursor: pointer;
+  user-select: none;
+}
+
+.decrement {
+  padding-bottom: 0.18em;
+  font-size: 35px;
+}
+
+.increment {
+  padding-bottom: 0.25em;
+  font-size: 30px;
+}
+
+.receipt-calc {
+  display: flex;
+  padding-block: 1em;
+  font-size: 25px;
+  font-weight: bold;
+  border: 1px solid black;
+  border-top: none;
+  text-transform: uppercase;
+}
+
+.receipt-calc > * {
+  width: 100%;
+}
+
+.total-quantity {
+  margin-right: 1.5em;
+  text-align: right;
+}
+
+.total-amount {
+  margin-left: 1.5em;
+  text-align: left;
+}
+
+.btn-option {
+  display: flex;
+  justify-content: center;
+  padding-block: 1.5em;
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+}

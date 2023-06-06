@@ -1,0 +1,124 @@
+<h4 class="center color">Danh sách rạp</h4>
+<table class="table table-striped table-hover table-bordered border-dark-subtle">
+    <thead class="color">
+        <tr>
+            <th scope="col" *ngFor="let column of columns">{{ column }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let cinemaSchedule of cinemaScheduleService.getList(); let i = index">
+            <tr>
+                <td>
+                    {{i + 1}}
+                </td>
+                <td>
+                    {{cinemaSchedule.cinemaCenter}}
+                </td>
+                <ng-container *ngFor="let cinemaScheduleChild of cinemaSchedule.cinemaSchedule; let j = index">
+                    <td>
+                        {{cinemaScheduleChild.cinema.name}}
+                    </td>
+
+                    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header bg-success text-white">
+                                    <h5 class="modal-title" id="updateModalLabel">Cập nhật tên rạp</h5>
+                                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <label for="cinemaCenterInput">Rạp trung tâm:</label>
+                                    <input type="text" id="cinemaCenterInput" class="form-control"
+                                        [value]="cinemaCenterInput" placeholder="Rạp trung tâm"
+                                        [(ngModel)]="cinemaCenterInput" (input)="isInValidButtonUpdate()">
+
+                                    <label for="cinemaInput">Rạp:</label>
+                                    <input type="text" id="cinemaInput" class="form-control" placeholder="Rạp"
+                                        [value]="cinemaInput" [(ngModel)]="cinemaInput"
+                                        (input)="isInValidButtonUpdate()">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                        (click)="update()" [disabled]="isDisableButton">
+                                        Cập nhật</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header bg-danger text-white">
+                                    <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa</h5>
+                                    <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <i class="fa fa-warning"></i>
+                                    Bạn có chắc chắn muốn xóa? Tất cả dữ liệu liên quan đến rạp đều sẽ bị xóa theo, bạn
+                                    hãy cân nhắc thật kĩ trước khi xóa.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                        (click)="deleteCinemaCenter()">Xóa</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <td>
+                        <button type="button" class="btn btn-success left" data-bs-toggle="modal"
+                            data-bs-target="#updateModal" (click)="getIndex(i, j)" (click)="isInValidButtonUpdate()">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+
+                        <button type="button" class="btn btn-danger left" data-bs-toggle="modal"
+                            data-bs-target="#deleteModal" (click)="getIndex(i, j)">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </td>
+                </ng-container>
+            </tr>
+        </ng-container>
+    </tbody>
+
+    <th scope="row"></th>
+    <th scope="row"></th>
+    <th scope="row"></th>
+    <button type="button" class="btn btn-primary left custom" data-bs-toggle="modal" data-bs-target="#addModal"
+        (click)="resetValue()">
+        <i class="fa fa-plus"></i>
+    </button>
+</table>
+
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="addModalLabel">Thêm rạp </h5>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label for="cinemaCenterInput">Rạp trung tâm:</label>
+                <input type="text" id="cinemaCenterInput" class="form-control" placeholder="Rạp trung tâm"
+                    [value]="cinemaCenterInput" [(ngModel)]="cinemaCenterInput" (input)="isInValidButtonUpdate()">
+
+                <label for="cinemaInput">Rạp</label>
+                <input type="text" id="cinemaInput" class="form-control" placeholder="Rạp" [value]="cinemaInput"
+                    [(ngModel)]="cinemaInput" (input)="isInValidButtonUpdate()">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" [disabled]="isDisableButton"
+                    (click)="add()">
+                    Thêm mới</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -22,6 +22,8 @@ import { ButtonSelectSeatComponent } from './components/button-select-seat/butto
 import { ButtonConfirmBookingComponent } from './components/button-confirm-booking/button-confirm-booking.component';
 
 import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
+import { CinemaSeatComponent } from './components/cinema-seat/cinema-seat.component';
+
 
 
 @NgModule({
@@ -39,6 +41,7 @@ import { ScheduleManagementComponent } from './schedule-management/schedule-mana
 
 
     ZoomImageComponent,
+
     SelectTicketComponent,
     ButtonBackComponent,
     ButtonSelectSeatComponent,
@@ -46,6 +49,11 @@ import { ScheduleManagementComponent } from './schedule-management/schedule-mana
 
     TrailerComponent,
     ScheduleManagementComponent
+
+
+    ScheduleManagementComponent,
+    CinemaSeatComponent
+
 
   ],
   imports: [

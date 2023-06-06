@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CinemaDto } from 'src/app/dto/cinema-dto';
 import { DateTimeSchedule } from 'src/app/models/date-time-schedule.model';
 import { Showtime } from 'src/app/models/showtime.model';
@@ -126,14 +126,36 @@ export class ScheduleManagementComponent {
     this.minuteInput = '';
   }
 
+  getScheduleId(): number {
+    const cinemaSchedules = this.cinemaScheduleService.getList();
+    const lastSchedule = cinemaSchedules[cinemaSchedules.length - 1].cinemaSchedule[cinemaSchedules[cinemaSchedules.length - 1].cinemaSchedule.length - 1].schedule;
+    const lastDateTime = lastSchedule[lastSchedule.length - 1].dateTime;
+    const lastId = lastDateTime[lastDateTime.length - 1].id;
+
+    return lastId + 1;
+  }
+
+  getShowTimeId(): number {
+    const cinemaSchedules = this.cinemaScheduleService.getList();
+    const lastSchedule = cinemaSchedules[cinemaSchedules.length - 1].cinemaSchedule[cinemaSchedules[cinemaSchedules.length - 1].cinemaSchedule.length - 1].schedule;
+    const lastDateTime = lastSchedule[lastSchedule.length - 1].dateTime;
+    const lastTime = lastDateTime[lastDateTime.length - 1].time;
+    if (lastTime.length == 0)
+      return 1;
+    const lastId = lastTime[lastTime.length - 1].id;
+    return lastId + 1;
+  }
+
   add(cinemaDto: CinemaDto[]) {
     const newDate = new Date(this.dateInput);
 
     let schedule = new DateTimeSchedule();
     schedule.date = newDate;
-    let time = new Showtime(0, 0, parseInt(this.hourInput), parseInt(this.minuteInput));
+    schedule.id = this.getScheduleId();
+
+    let time = new Showtime(this.getShowTimeId(), schedule.id, parseInt(this.hourInput), parseInt(this.minuteInput));
+
     schedule.time.push(time);
-    schedule.id = 0;
     cinemaDto[this.i].cinemaSchedule[this.j].schedule[this.k].dateTime.push(schedule);
   }
 }

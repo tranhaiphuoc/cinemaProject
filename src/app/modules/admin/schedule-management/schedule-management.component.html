@@ -21,7 +21,7 @@
                         </td>
                         <ng-container *ngFor="let dateTime of schedule.dateTime; let iDateTime = index">
                     <tr>
-                        <ng-container *ngIf="dateTime.time.length == 0 && iDateTime === schedule.dateTime.length - 1">
+                        <ng-container *ngIf="dateTime.time.length == 0 && iDateTime + 1 === schedule.dateTime.length - 1">
                             <button type="button" class="btn btn-success" data-bs-toggle="modal"
                                 data-bs-target="#addModal" (click)="setIndex(i, j, k)" (click)="isValidButtonAdd()">
                                 <i class="fa fa-plus"></i>

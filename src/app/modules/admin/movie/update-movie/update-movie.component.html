@@ -1,10 +1,6 @@
 <div class="container">
     <div *ngIf="form" [formGroup]="form">
         <div class="form-group">
-            <label for="id">Id</label>
-            <input class="form-control" formControlName="id" name="id" type="text" readonly>
-        </div>
-        <div class="form-group">
             <label for="name">Name</label>
             <input class="form-control" formControlName="name" name="name" type="text">
         </div>
@@ -25,8 +21,16 @@
             <input class="form-control" formControlName="runtime" name="runtime" type="number">
         </div>
         <div class="form-group">
-            <label for="genre">Genre</label>
-            <input class="form-control" formControlName="genre" name="genre" type="text">
+            <label for="genre">Genres</label> <br>
+            <ng-container formArrayName="genresForm">
+                <ng-container *ngFor="let genre of genresForm.controls; let i = index">
+                    <div class="form-check form-check-inline">
+                        <input type="checkbox" class="form-check-input" [formControlName]="i">
+                        <label class="form-check-label">
+                            {{ genreList[i].name }}</label>
+                    </div>
+                </ng-container>
+            </ng-container>
         </div>
         <div>
             <button class="btn btn-primary" [disabled]="form.invalid" (click)="updateItem()">Save</button>

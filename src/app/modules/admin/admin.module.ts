@@ -18,7 +18,6 @@ import { ScheduleManagementComponent } from './schedule-management/schedule-mana
   declarations: [
     CinemaManagementComponent,
     ScheduleManagementComponent,
-    CinemaManagementComponent,
     EmployeeComponent,
     UpdateComponent,
     AdminLayoutComponent,

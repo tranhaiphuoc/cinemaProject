@@ -1,4 +1,4 @@
-<ng-container *ngIf="movie">
+<ng-container *ngIf="!toggleTicketSelector">
   <div (click)="toggleSchedule()" class="overlay"></div>
   <div class="schedule">
     <div class="position-relative">
@@ -23,6 +23,6 @@
     </div>
   </div>
 </ng-container>
-<div *ngIf="toggleCinemaSeat">
-  <app-cinema-seat [cinemaId]="cinemaId" [showtimeId]="showtimeId"></app-cinema-seat>
-</div>
+<ng-container *ngIf="toggleTicketSelector">
+  <app-select-ticket [movie]="movie" [selectedDate]="selectedDate" [cinema]="cinema" [showtime]="showtime" (toggle)="toggleSelectTicket()"></app-select-ticket>
+</ng-container>

@@ -41,6 +41,14 @@ export class AccountService {
     });
   }
 
+  getAccountByUsername(username: string | null): Account | undefined {
+    if (username == null) return;
+    
+    return this.accountList.find((acc) => {
+      return acc.username == username;
+    });
+  }
+
   add(account: Account): void {
     if (account == undefined || account == null) return;
 

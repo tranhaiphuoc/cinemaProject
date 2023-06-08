@@ -1,1 +1,67 @@
-<router-outlet></router-outlet>
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <div
+      class="side-nav-toggler"
+      role="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#side-nav"
+      aria-expanded="false"
+      aria-controls="side-nav"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div *ngIf="isLoggedIn" class="d-flex account">
+      <a class="acc" [routerLink]="['/']" (click)="logOut()">Log out</a>
+    </div>
+  </div>
+</nav>
+
+<div class="d-flex">
+  <div class="side-nav collapse multi-collapse" id="side-nav">
+    <h5 class="title">Menu</h5>
+    <div>
+      <div
+        class="side-nav-item-toggler dropdown-toggle"
+        role="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#management"
+        aria-expanded="false"
+        aria-controls="management"
+      >
+        Management
+      </div>
+      <div class="side-nav-item collapse multi-collapse" id="management">
+        <a
+          [routerLink]="['/admin/employee']"
+          routerLinkActive="current"
+          class="side-nav-link"
+          >Employee</a
+        >
+        <a
+          [routerLink]="['/admin/movie']"
+          routerLinkActive="current"
+          class="side-nav-link"
+          >Movie</a
+        >
+        <a
+          [routerLink]="['/admin/cinema']"
+          routerLinkActive="current"
+          class="side-nav-link"
+          >Cinema</a
+        >
+        <a
+          [routerLink]="['/admin/schedule']"
+          routerLinkActive="current"
+          class="side-nav-link"
+          >Schedule</a
+        >
+      </div>
+    </div>
+  </div>
+
+  <div style="width: 100%">
+    <router-outlet></router-outlet>
+  </div>
+</div>

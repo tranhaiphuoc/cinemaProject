@@ -24,7 +24,11 @@ export class LogInComponent implements OnInit {
     if (this.logInForm.invalid) return;
 
     this.authService.logIn(this.logInForm.value).subscribe({
-      next: () => this.router.navigate(['/']),
+      next: () => {
+        if (this.authService.getRole() == 'Admin')
+          this.router.navigate(['/admin']);
+        else this.router.navigate(['/']);
+      },
     });
   }
 

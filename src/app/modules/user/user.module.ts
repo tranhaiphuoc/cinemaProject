@@ -33,7 +33,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
     UserLayoutComponent,
     TrailerComponent,
     ZoomImageComponent,
-    CinemaSeatComponent,
     SelectTicketComponent,
     ButtonBackComponent,
     ButtonSelectSeatComponent,

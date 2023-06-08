@@ -21,6 +21,8 @@ import { ScheduleCinemaComponent } from './button-booking/components/schedule-ci
 import { ScheduleDateComponent } from './button-booking/components/schedule-date/schedule-date.component';
 import { SelectSeatComponent } from './button-booking/components/select-seat/select-seat.component';
 
+import { NgxPaginationModule } from 'ngx-pagination';
+
 @NgModule({
   declarations: [
     ScheduleComponent,
@@ -31,6 +33,7 @@ import { SelectSeatComponent } from './button-booking/components/select-seat/sel
     UserLayoutComponent,
     TrailerComponent,
     ZoomImageComponent,
+    CinemaSeatComponent,
     SelectTicketComponent,
     ButtonBackComponent,
     ButtonSelectSeatComponent,
@@ -40,6 +43,12 @@ import { SelectSeatComponent } from './button-booking/components/select-seat/sel
     ScheduleDateComponent,
     SelectSeatComponent,
   ],
-  imports: [CommonModule, UserRoutingModule, FormsModule, SharedModule],
+  imports: [
+    CommonModule,
+    UserRoutingModule,
+    SharedModule,
+    FormsModule,
+    NgxPaginationModule
+  ],
 })
-export class UserModule {}
+export class UserModule { }

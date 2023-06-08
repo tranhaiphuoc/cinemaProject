@@ -1,16 +1,19 @@
-<table class="table table-bordered table-hover">
-    <thead>
+<table class="table table-striped table-hover table-bordered border-dark-subtle">
+    <thead class="color">
         <tr>
             <ng-container *ngFor="let field of fieldList">
-                <th style="text-transform: capitalize;">{{ field }}</th>
+                <th scope="col" style="text-transform: capitalize;">{{ field }}</th>
             </ng-container>
-            <th style="width: 9%;"></th>
+            <th scope="col" style="width: 9%;"></th>
         </tr>
     </thead>
     <tbody>
-        <ng-container *ngFor="let data of dataList | paginate: { itemsPerPage: 2, currentPage: p }">
+        <ng-container *ngFor="let data of dataList | paginate: { itemsPerPage: itemsPerP, currentPage: p }; index as i">
             <tr>
                 <ng-container *ngFor="let field of fieldList">
+                    <td *ngIf="field == 'no.'">
+                        {{ i + 1 }}
+                    </td>
                     <td *ngIf="isCheckDate(field)">
                         {{ data[field] | date : "dd/MM/yyyy" }}
                     </td>
@@ -25,16 +28,16 @@
                 <td>
                     <app-button-delete (delete)="DeleteItem(data)"></app-button-delete>
 
-                    <button (click)="SeeDetails(data['id'])" type="button" class="btn btn-info">
+                    <button type="button" (click)="SeeDetails(data['id'])" class="btn btn-info">
                         <img [src]="seeDetailsIconImg" alt="See details">
                     </button>
 
-                    <button (click)="UpdateItem(data)" type="button" class="btn btn-warning">
-                        <img [src]="editIconImg" alt="Edit">
+                    <button type="button" (click)="UpdateItem(data)" class="btn btn-success left">
+                        <i class="fa fa-pencil"></i>
                     </button>
                 </td>
             </tr>
         </ng-container>
     </tbody>
 </table>
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
+<pagination-controls class="footer" (pageChange)="p = $event"></pagination-controls>

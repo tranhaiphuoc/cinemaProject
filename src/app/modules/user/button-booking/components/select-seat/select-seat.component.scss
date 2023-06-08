@@ -1,0 +1,72 @@
+.booking-seat {
+  z-index: 101;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  // min-width: 650px;
+  max-width: 105rem;
+  height: 86vh;
+  max-height: 57rem;
+  padding: 1em;
+  background-color: #fdfcf0;
+}
+
+.wrapper {
+  max-width: 56.25em;
+  height: 100%;
+  margin-inline: auto;
+}
+
+.screen {
+  margin-bottom: 3em;
+  margin-inline: auto;
+  padding: 0.5em 0;
+  color: black;
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 50px;
+  background-color: gray;
+}
+
+.seat-container {
+  position: relative;
+  // max-width: 1100px;
+  // height: 37.5rem;
+  // min-height: 300px;
+  // max-height: 80rem;
+  height: 35%;
+  margin-inline: 2em;
+  overflow: auto;
+}
+
+.seat {
+  position: absolute;
+  padding-top: 0.4em;
+  font-weight: bold;
+  text-align: center;
+  background-color: #ededed;
+  cursor: pointer;
+  user-select: none;
+}
+
+.selected {
+  background-color: rgb(36, 36, 180);
+}
+
+.busy {
+  background-color: green;
+  pointer-events: none;
+}
+
+.btn-option {
+  display: flex;
+  justify-content: center;
+  padding-block: 2em;
+  font-size: 22px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+}

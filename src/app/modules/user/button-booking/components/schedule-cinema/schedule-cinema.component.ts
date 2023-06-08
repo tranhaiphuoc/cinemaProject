@@ -4,11 +4,11 @@ import { Cinema } from 'src/app/models/cinema.model';
 import { Showtime } from 'src/app/models/showtime.model';
 
 @Component({
-  selector: 'app-ss-cinema',
-  templateUrl: './ss-cinema.component.html',
-  styleUrls: ['./ss-cinema.component.scss'],
+  selector: 'app-schedule-cinema',
+  templateUrl: './schedule-cinema.component.html',
+  styleUrls: ['./schedule-cinema.component.scss']
 })
-export class SsCinemaComponent {
+export class ScheduleCinemaComponent {
   @Input() cinemaSchedule!: CinemaScheduleDto[];
   @Output() sendShowtimeId = new EventEmitter<{
     cinema: Cinema;

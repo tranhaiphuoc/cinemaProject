@@ -6,24 +6,26 @@ import { TableComponent } from './components/table/table.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { ButtonDeleteComponent } from './components/button-delete/button-delete.component';
 import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
     BeforeAfterNoonPipe,
     LessThanTenPipe,
     TableComponent,
-    PaginationComponent,
     ButtonDeleteComponent,
-    ModalDeleteComponent,
+    ModalDeleteComponent
   ],
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    NgxPaginationModule
+  ],
   exports: [
     BeforeAfterNoonPipe,
     LessThanTenPipe,
     TableComponent,
-    PaginationComponent,
     ButtonDeleteComponent,
-    ModalDeleteComponent,
+    ModalDeleteComponent
   ],
 })
-export class SharedModule {}
+export class SharedModule { }

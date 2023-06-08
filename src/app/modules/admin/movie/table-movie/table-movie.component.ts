@@ -19,8 +19,9 @@ export class TableMovieComponent {
   constructor(
     private readonly _movieService: MovieService,
   ) { };
-
   p: number = 1;
+  itemsPerP: number = 5;
+
   editIconImg = 'assets/Images/others/edit-icon.png';
   seeDetailsIconImg = 'assets/Images/others/see-details-icon.png';
 
@@ -49,6 +50,8 @@ export class TableMovieComponent {
   }
 
   isCheckElse(field: string) {
-    return !this.isCheckGenre(field) && !this.isCheckDate(field);
+    return !this.isCheckGenre(field)
+      && !this.isCheckDate(field)
+      && field != 'no.';
   }
 }

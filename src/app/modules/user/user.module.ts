@@ -20,6 +20,7 @@ import { ButtonBackComponent } from './components/button-back/button-back.compon
 import { ButtonSelectSeatComponent } from './components/button-select-seat/button-select-seat.component';
 import { ButtonConfirmBookingComponent } from './components/button-confirm-booking/button-confirm-booking.component';
 import { CinemaSeatComponent } from './components/cinema-seat/cinema-seat.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { CinemaSeatComponent } from './components/cinema-seat/cinema-seat.compon
     UserLayoutComponent,
     TrailerComponent,
     ZoomImageComponent,
+    CinemaSeatComponent,
     SelectTicketComponent,
     ButtonBackComponent,
     ButtonSelectSeatComponent,
@@ -40,6 +42,12 @@ import { CinemaSeatComponent } from './components/cinema-seat/cinema-seat.compon
     ButtonConfirmBookingComponent,
     CinemaSeatComponent,
   ],
-  imports: [CommonModule, UserRoutingModule, FormsModule, SharedModule],
+  imports: [
+    CommonModule,
+    UserRoutingModule,
+    SharedModule,
+    FormsModule,
+    NgxPaginationModule
+  ],
 })
-export class UserModule {}
+export class UserModule { }

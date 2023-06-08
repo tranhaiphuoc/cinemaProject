@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Booking } from 'src/app/models/booking';
 import { BookingDetails } from 'src/app/models/booking-details';
 import { Cinema } from 'src/app/models/cinema.model';
@@ -14,11 +14,11 @@ import { CinemaSeatService } from 'src/app/services/cinema-seat.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-cinema-seat',
-  templateUrl: './cinema-seat.component.html',
-  styleUrls: ['./cinema-seat.component.scss'],
+  selector: 'app-select-seat',
+  templateUrl: './select-seat.component.html',
+  styleUrls: ['./select-seat.component.scss']
 })
-export class CinemaSeatComponent implements OnInit {
+export class SelectSeatComponent {
   @Output() toggle = new EventEmitter();
 
   @Input() movie!: Movie;

@@ -6,7 +6,7 @@
         <div class="row row-cols-auto">
           <ng-container *ngFor="let item of [].constructor(10); let i = index">
             <div class="col px-0">
-              <app-ss-date [iter]="i" (sendDate)="receive($event)"></app-ss-date>
+              <app-schedule-date [iter]="i" (sendDate)="receive($event)"></app-schedule-date>
             </div>
           </ng-container>
         </div>
@@ -14,7 +14,7 @@
       <ng-container *ngIf="cinemaScheduleList.length > 0">
         <div *ngFor="let cs of cinemaScheduleList" class="sub-divider">
           <h3>{{ cs.cinemaCenter.name }}</h3>
-          <app-ss-cinema [cinemaSchedule]="cs.cinemaSchedule" (sendShowtimeId)="setShowtimeId($event)"></app-ss-cinema>
+          <app-schedule-cinema [cinemaSchedule]="cs.cinemaSchedule" (sendShowtimeId)="setShowtimeId($event)"></app-schedule-cinema>
         </div>
       </ng-container>
       <ng-container *ngIf="cinemaScheduleList.length == 0">

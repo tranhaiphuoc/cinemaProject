@@ -1,9 +1,15 @@
 export class Employee implements IEmployee {
-    id!: string
+    IDcard!: number
     name!: string
+    DOB!: Date
+    phone!: number
+    address!: string
 }
 
 export interface IEmployee {
-    id: string
+    IDcard: number
     name: string
+    DOB: Date
+    phone: number
+    address: string
 }

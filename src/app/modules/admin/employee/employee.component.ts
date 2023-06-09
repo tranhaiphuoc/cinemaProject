@@ -14,7 +14,11 @@ export class EmployeeComponent {
     private readonly _routerService: Router) { }
 
   employeeList = this._employeeService.getList();
-  fieldList = ['id', 'name'];
+  fieldList = ['no.', 'ID-card', 'name', 'DOB', 'phone', 'address'];
+
+  addItem() {
+    this._routerService.navigate(['/admin/add']);
+  }
 
   deleteItem(item: Employee | undefined) {
     if (item == undefined)
@@ -25,6 +29,6 @@ export class EmployeeComponent {
   updateItem(item: Employee | undefined) {
     if (item == undefined)
       return;
-    this._routerService.navigate(['/admin/update', item.id]);
+    this._routerService.navigate(['/admin/update', item.IDcard]);
   }
 }

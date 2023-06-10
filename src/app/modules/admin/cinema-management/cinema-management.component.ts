@@ -40,13 +40,13 @@ export class CinemaManagementComponent {
     this.indexCinemaCenter = i;
     this.indexCinema = j;
 
-    this.cinemaCenterInput = this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaCenter;
+    //this.cinemaCenterInput = this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaCenter;
     this.cinemaInput =  this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaSchedule[this.indexCinema].cinema.name;
   }
 
   update() {
     if(this.cinemaCenterInput && this.cinemaInput) {
-      this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaCenter = this.cinemaCenterInput;
+      //this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaCenter = this.cinemaCenterInput;
       this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaSchedule[this.indexCinema].cinema.name = this.cinemaInput;
     }
   }
@@ -68,7 +68,7 @@ export class CinemaManagementComponent {
   add() {
     let cinemaDto = new CinemaDto;
 
-    cinemaDto.cinemaCenter = this.cinemaCenterInput;
+    // cinemaDto.cinemaCenter = this.cinemaCenterInput;
 
     let cinemaScheduleDto = new CinemaScheduleDto;
 

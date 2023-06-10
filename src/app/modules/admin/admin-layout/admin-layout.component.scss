@@ -47,9 +47,18 @@
   font-size: 18px;
 }
 
+// ----- Bootstrap class (override) ----- //
 .dropdown-toggle::after {
   margin-left: 1.7em;
 }
+
+.open.dropdown-toggle::after {
+  border-top: 0;
+  border-right: 0.3em solid transparent;
+  border-bottom: .3em solid;
+  border-left: 0.3em solid transparent;
+}
+// ----------------------------------- //
 
 .side-nav-item > a {
   display: block;

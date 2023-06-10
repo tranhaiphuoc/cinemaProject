@@ -11,6 +11,7 @@ export class ButtonDeleteComponent {
   deleteIconImg = 'assets/Images/others/delete-icon.png';
 
   deleteItem() {
+    debugger
     this.delete.emit();
   }
 }

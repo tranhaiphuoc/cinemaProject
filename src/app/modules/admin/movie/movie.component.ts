@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Movie } from 'src/app/models/movie.model';
 import { MovieService } from 'src/app/services/movie.service';
 
@@ -12,9 +12,11 @@ import { MovieService } from 'src/app/services/movie.service';
 export class MovieComponent implements OnInit {
   constructor(
     private readonly _movieService: MovieService,
-    private readonly _routerService: Router
+    private readonly _routerService: Router,
+    private readonly _activatedRoute: ActivatedRoute
   ) { };
 
+  currentRoute = { relativeTo: this._activatedRoute };
   dataList!: Movie[];
   fieldList!: string[];
   movieName!: string;
@@ -25,10 +27,11 @@ export class MovieComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataList = this._movieService.getList();
-    this.movieName = '';
-    this.fillList = this.fillDataListByName();
     this.fieldList = ['no.', 'name', 'rating', 'releaseDate', 'runtime',
       'genre'];
+
+    this.movieName = '';
+    this.fillList = this.fillDataListByName();
   }
 
   fillDataListByName(): Movie[] {
@@ -36,25 +39,27 @@ export class MovieComponent implements OnInit {
   }
 
   addItem() {
-    this._routerService.navigate(['/admin/movie/add']);
+    debugger
+    this._routerService.navigate(['add'], this.currentRoute);
   }
 
   updateItem(item: Movie | undefined) {
     if (item == undefined)
       return;
-    this._routerService.navigate(['/admin/movie/update', item.id]);
-  }
-
-  deleteItem(item: Movie | undefined) {
-    if (item == undefined)
-      return;
-    this._movieService.deleteItem(item);
+    this._routerService.navigate(['update', item.id], this.currentRoute);
   }
 
   seeDetails(id: number | undefined) {
     if (id == undefined)
       return;
     this._routerService.navigate(['\movie', id]);
+  }
+
+  deleteItem(item: Movie | undefined) {
+    debugger
+    if (item == undefined)
+      return;
+    this._movieService.deleteItem(item);
   }
 
   getListGenre(item: Movie): string {

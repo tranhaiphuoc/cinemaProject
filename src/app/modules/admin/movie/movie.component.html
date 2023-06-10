@@ -1,12 +1,5 @@
 <div class="container-fluid">
-    <div class="top-bar">
-        <div class="input-group">
-            <input [(ngModel)]="movieName" type="search" class="form-control rounded" placeholder="Search"
-                aria-label="Search" aria-describedby="search-addon" />
-            <button (click)="fillList = fillDataListByName()" type="button"
-                class="btn btn-outline-primary">search</button>
-        </div>
-    </div>
     <app-table-movie (seeDetails)="seeDetails($event)" (addItem)="addItem()" (updateItem)="updateItem($event)"
-        (deleteItem)="deleteItem($event)" [dataList]="fillList" [fieldList]="fieldList"></app-table-movie>
+        (deleteItem)="deleteItem($event)" [dataList]="dataList" [fieldList]="fieldList"></app-table-movie>
+    <button class="btn btn-secondary" routerLink="/">Quay về trang chủ</button>
 </div>

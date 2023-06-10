@@ -15,14 +15,12 @@ tbody tr td:last-child {
     word-break: break-all;
 }
 
-#btn-add {
-    position: relative;
-    left: 990px;
-    width: 95px;
-}
-
 .footer {
     position: absolute;
-    left: 100px;
-    top: 450px;
+    left: 450px;
+    top: 800px;
+}
+
+.fa-info-circle {
+    color: white;
 }

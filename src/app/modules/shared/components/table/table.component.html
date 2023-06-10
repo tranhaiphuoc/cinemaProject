@@ -6,7 +6,7 @@
                     {{ field.replace('-', ' ') }}
                 </th>
             </ng-container>
-            <th style="width: 13%;"></th>
+            <th style="width: 9%;"></th>
         </tr>
     </thead>
     <tbody>
@@ -29,13 +29,17 @@
                     <button type="button" (click)="UpdateItem(data)" class="btn btn-success left">
                         <i class="fa fa-pencil"></i>
                     </button>
-
-                    <button type="button" (click)="AddItem()" class="btn btn-primary left">
-                        <i class="fa fa-plus"></i>
-                    </button>
                 </td>
             </tr>
         </ng-container>
     </tbody>
 </table>
-<pagination-controls (pageChange)="p = $event"></pagination-controls>
+
+<!-- Button add -->
+<button id="btn-add" type="button" (click)="AddItem()" class="btn btn-primary left">
+    <i class="fa fa-plus"></i>
+</button>
+
+<div class="footer">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

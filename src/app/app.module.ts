@@ -8,6 +8,7 @@ import { LogInComponent } from './components/log-in/log-in.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserAccountComponent } from './components/user-account/user-account.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UpdateAddComponent } from './modules/movie/update-add/update-add.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     LogInComponent,
     RegisterComponent,
     UserAccountComponent,
+    UpdateAddComponent,
   ],
   imports: [
     BrowserModule,

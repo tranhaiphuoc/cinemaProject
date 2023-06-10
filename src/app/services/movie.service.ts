@@ -147,6 +147,13 @@ export class MovieService {
     return item.genre.map(genre => genre.name).join(", ");
   }
 
+  addItem(newInput: Movie) {
+    debugger
+    if (newInput == null)
+      return;
+    this.movieList.push(newInput);
+  }
+
   deleteItem(input: Movie) {
     if (input == null)
       return;
@@ -159,7 +166,6 @@ export class MovieService {
   }
 
   updateItem(newInput: Movie) {
-    debugger
     if (newInput == null)
       return;
     const index = _.findIndex(this.movieList, (item: Movie) => {

@@ -32,9 +32,34 @@
                 </ng-container>
             </ng-container>
         </div>
+        <div class="form-group">
+            <label for="anecdote">Anecdote</label>
+            <input class="form-control" formControlName="anecdote" name="anecdote" type="text">
+        </div>
+        <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-control" formControlName="status" name="status">
+                <option [value]="1">true</option>
+                <option [value]="0">false</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="urlImage">UrlImage</label>
+            <input class="form-control" formControlName="urlImage" name="urlImage" type="text">
+        </div>
+        <div class="form-group">
+            <label for="urlTrailer">UrlTrailer</label>
+            <input class="form-control" formControlName="urlTrailer" name="urlTrailer" type="text">
+        </div>
         <div>
-            <button class="btn btn-primary" [disabled]="form.invalid" (click)="updateItem()">Save</button>
-            <button class="btn btn-primary" (click)="resetValues()">Reset</button>
+            <ng-container *ngIf="feature.includes('update')">
+                <button class="btn btn-primary" [disabled]="form.invalid" (click)="updateItem()">Save</button>
+            </ng-container>
+            <ng-container *ngIf="feature.includes('add')">
+                <button class="btn btn-primary" [disabled]="form.invalid" (click)="addItem()">Add</button>
+            </ng-container>
+
+            <button class="btn btn-primary" (click)="buildForm(item)">Reset</button>
             <button class="btn btn-primary" [routerLink]="[backUrl]">Cancel</button>
         </div>
     </div>

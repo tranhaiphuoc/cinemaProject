@@ -35,6 +35,10 @@ export class MovieComponent implements OnInit {
     return this.dataList.filter(item => item.name.indexOf(this.movieName) != -1);
   }
 
+  addItem() {
+    this._routerService.navigate(['/admin/movie/add']);
+  }
+
   updateItem(item: Movie | undefined) {
     if (item == undefined)
       return;

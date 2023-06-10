@@ -36,7 +36,7 @@ export class UpdateAddComponent implements OnInit {
       this.item = {
         IDcard: 0,
         name: '',
-        DOB: new Date(),
+        DOB: new Date(1900, 1, 1),
         phone: 0,
         address: ''
       };
@@ -56,6 +56,9 @@ export class UpdateAddComponent implements OnInit {
       phone: new FormControl(item.phone, [Validators.minLength(10), Validators.maxLength(10)]),
       address: new FormControl(item.address)
     });
+    if (this.feature.includes('update')) {
+      this.fc['IDcard'].disable();
+    }
   }
 
   updateItem() {
@@ -66,6 +69,12 @@ export class UpdateAddComponent implements OnInit {
   }
 
   addItem() {
+    debugger
+    const dataCheck = this._employeeService.getById(this.fc['IDcard'].value);
+    if (dataCheck != undefined) {
+      alert('alert');
+      return;
+    }
     if (this.form.invalid)
       return;
     this._employeeService.addItem(this.form.value);

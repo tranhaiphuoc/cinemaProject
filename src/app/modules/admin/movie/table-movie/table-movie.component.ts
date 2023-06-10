@@ -11,6 +11,7 @@ import { MovieService } from 'src/app/services/movie.service';
 export class TableMovieComponent {
   @Output('deleteItem') deleteItem = new EventEmitter<any>();
   @Output('updateItem') updateItem = new EventEmitter<any>();
+  @Output('addItem') addItem = new EventEmitter();
   @Output('seeDetails') seeDetails = new EventEmitter<number>();
 
   @Input('dataList') dataList!: any[];
@@ -31,6 +32,10 @@ export class TableMovieComponent {
 
   UpdateItem(item: any) {
     this.updateItem.emit(item);
+  }
+
+  AddItem() {
+    this.addItem.emit();
   }
 
   SeeDetails(id: number) {

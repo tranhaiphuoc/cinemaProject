@@ -807,6 +807,12 @@ export class CinemaSeatService {
     return this.seatList;
   }
 
+  getSeatById(id?: number): Seat | undefined {
+    return this.seatList.find(s => {
+      return s.id == id
+    })
+  }
+
   getSeatListForBooking(cinemaId: number, showtimeId: number): Seat[] {
     let seats: Seat[] = [];
 

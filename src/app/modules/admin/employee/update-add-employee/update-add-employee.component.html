@@ -1,0 +1,39 @@
+<div class="container">
+    <div *ngIf="form" [formGroup]="form">
+        <div class="form-group">
+            <label for="IDcard">ID card</label>
+            <input class="form-control" formControlName="IDcard" name="IDcard" type="number">
+        </div>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input class="form-control" formControlName="name" name="name" type="text">
+        </div>
+        <div class="form-group">
+            <label for="DOB">DOB</label>
+            <input class="form-control" formControlName="DOB" name="DOB" type="date">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input class="form-control" formControlName="phone" name="phone" type="number">
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input class="form-control" formControlName="address" name="address" type="text">
+        </div>
+        <div>
+            <ng-container *ngIf="feature.includes('add')">
+                <button class="btn btn-primary" [disabled]="form.invalid" (click)="addItem()">
+                    Add
+                </button>
+            </ng-container>
+            <ng-container *ngIf="feature.includes('update')">
+                <button class="btn btn-primary" [disabled]="form.invalid" (click)="updateItem()">
+                    Save
+                </button>
+            </ng-container>
+
+            <button class="btn btn-primary" (click)="buildForm(item)">Reset</button>
+            <button class="btn btn-primary" [routerLink]="[backUrl]">Cancel</button>
+        </div>
+    </div>
+</div>

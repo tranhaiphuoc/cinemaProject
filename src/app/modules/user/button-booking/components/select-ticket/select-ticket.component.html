@@ -1,0 +1,53 @@
+<ng-container *ngIf="!toggleCinemaSeat">
+  <div class="overlay"></div>
+  <div class="ticket-selector">
+    <div class="wrapper">
+      <table class="display-ticket-type">
+        <thead>
+          <tr>
+            <th>Loại vé</th>
+            <th>Số lượng</th>
+            <th>Giá (VNĐ)</th>
+            <th>Tổng tiền (VNĐ)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let st of selectedSeatTypeQuantityArr; let i = index">
+            <td class="ticket-type">{{ st.seatType.name }}</td>
+            <td class="ticket-quantity">
+              <div>
+                <span (click)="decrease(i)" class="decrement">-</span>
+                <span class="select-quantity">{{ st.quantity }}</span>
+                <span (click)="increase(i)" class="increment">+</span>
+              </div>
+            </td>
+            <td class="ticket-price">{{ st.seatType.price }}</td>
+            <td class="total">{{ st.seatType.price * st.quantity }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="receipt-calc">
+        <div class="total-quantity">Số lượng: {{ ticketQuantity }}</div>
+        <div class="total-amount">Tổng tiền: {{ total }}</div>
+      </div>
+      <div class="btn-option">
+        <app-button-back (toggle)="toggleSelectTicket()"></app-button-back>
+        <app-button-select-seat
+          [quantity]="ticketQuantity"
+          (toggle)="changeToggleCinemaSeat()"
+        ></app-button-select-seat>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="toggleCinemaSeat">
+  <app-select-seat
+    [movie]="movie"
+    [selectedDate]="selectedDate"
+    [cinema]="cinema"
+    [showtime]="showtime"
+    [seats]="seats"
+    [selectedSeatTypeQuantityArr]="selectedSeatTypeQuantityArr"
+    (toggle)="changeToggleCinemaSeat()"
+  ></app-select-seat>
+</ng-container>

@@ -1,0 +1,45 @@
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <ng-container *ngFor="let field of fieldList">
+                <th style="text-transform: capitalize;">
+                    {{ field.replace('-', ' ') }}
+                </th>
+            </ng-container>
+            <th style="width: 9%;"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let data of dataList | paginate: {itemsPerPage: 5, currentPage: p }; index as i">
+            <tr>
+                <td *ngFor="let field of fieldDataList">
+                    <ng-container *ngIf="field == 'no.'">
+                        {{ i + 1 }}
+                    </ng-container>
+                    <ng-container *ngIf="isCheckDate(data[field])">
+                        {{ data[field] | date : 'dd/MM/yyyy' }}
+                    </ng-container>
+                    <ng-container *ngIf="isCheckElse(field, data[field])">
+                        {{ data[field] }}
+                    </ng-container>
+                </td>
+                <td>
+                    <app-button-delete (delete)="DeleteItem(data)"></app-button-delete>
+
+                    <button type="button" (click)="UpdateItem(data)" class="btn btn-success left">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                </td>
+            </tr>
+        </ng-container>
+    </tbody>
+</table>
+
+<!-- Button add -->
+<button id="btn-add" type="button" (click)="AddItem()" class="btn btn-primary left">
+    <i class="fa fa-plus"></i>
+</button>
+
+<div class="footer">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

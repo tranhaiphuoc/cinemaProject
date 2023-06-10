@@ -1,0 +1,28 @@
+<ng-container *ngIf="!toggleTicketSelector">
+  <div (click)="toggleSchedule()" class="overlay"></div>
+  <div class="schedule">
+    <div class="position-relative">
+      <div class="divider">
+        <div class="row row-cols-auto">
+          <ng-container *ngFor="let item of [].constructor(10); let i = index">
+            <div class="col px-0">
+              <app-schedule-date [iter]="i" (sendDate)="receive($event)"></app-schedule-date>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <ng-container *ngIf="cinemaScheduleList.length > 0">
+        <div *ngFor="let cs of cinemaScheduleList" class="sub-divider">
+          <h3>{{ cs.cinemaCenter.name }}</h3>
+          <app-schedule-cinema [cinemaSchedule]="cs.cinemaSchedule" (sendShowtimeId)="setShowtimeId($event)"></app-schedule-cinema>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="cinemaScheduleList.length == 0">
+        <p class="sorry">Sorry there is no showtime on this day, please select another day.</p>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="toggleTicketSelector">
+  <app-select-ticket [movie]="movie" [selectedDate]="selectedDate" [cinema]="cinema" [showtime]="showtime" (toggle)="toggleSelectTicket()"></app-select-ticket>
+</ng-container>

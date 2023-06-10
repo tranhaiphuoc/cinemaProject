@@ -27,7 +27,7 @@ export class MovieComponent implements OnInit {
     this.dataList = this._movieService.getList();
     this.movieName = '';
     this.fillList = this.fillDataListByName();
-    this.fieldList = ['id', 'name', 'rating', 'releaseDate', 'runtime',
+    this.fieldList = ['no.', 'name', 'rating', 'releaseDate', 'runtime',
       'genre'];
   }
 
@@ -35,8 +35,11 @@ export class MovieComponent implements OnInit {
     return this.dataList.filter(item => item.name.indexOf(this.movieName) != -1);
   }
 
+  addItem() {
+    this._routerService.navigate(['/admin/movie/add']);
+  }
+
   updateItem(item: Movie | undefined) {
-    debugger
     if (item == undefined)
       return;
     this._routerService.navigate(['/admin/movie/update', item.id]);

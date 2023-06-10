@@ -2,22 +2,19 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BeforeAfterNoonPipe } from 'src/app/pipes/before-after-noon.pipe';
 import { LessThanTenPipe } from 'src/app/pipes/less-than-ten.pipe';
-import { TableComponent } from '../user/components/table/table.component';
-import { PaginationComponent } from '../user/components/pagination/pagination.component';
-import { ButtonDeleteComponent } from '../user/components/button-delete/button-delete.component';
-import { ModalDeleteComponent } from '../user/components/modal-delete/modal-delete.component';
+import { TableComponent } from './components/table/table.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { ButtonDeleteComponent } from './components/button-delete/button-delete.component';
+import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-
-
 
 @NgModule({
   declarations: [
     BeforeAfterNoonPipe,
     LessThanTenPipe,
     TableComponent,
-    PaginationComponent,
     ButtonDeleteComponent,
-    ModalDeleteComponent,
+    ModalDeleteComponent
   ],
   imports: [
     CommonModule,
@@ -27,9 +24,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     BeforeAfterNoonPipe,
     LessThanTenPipe,
     TableComponent,
-    PaginationComponent,
     ButtonDeleteComponent,
-    ModalDeleteComponent,
-  ]
+    ModalDeleteComponent
+  ],
 })
 export class SharedModule { }

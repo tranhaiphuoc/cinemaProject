@@ -11,6 +11,7 @@ import { MovieService } from 'src/app/services/movie.service';
 export class TableMovieComponent {
   @Output('deleteItem') deleteItem = new EventEmitter<any>();
   @Output('updateItem') updateItem = new EventEmitter<any>();
+  @Output('addItem') addItem = new EventEmitter();
   @Output('seeDetails') seeDetails = new EventEmitter<number>();
 
   @Input('dataList') dataList!: any[];
@@ -19,8 +20,9 @@ export class TableMovieComponent {
   constructor(
     private readonly _movieService: MovieService,
   ) { };
-
   p: number = 1;
+  itemsPerP: number = 5;
+
   editIconImg = 'assets/Images/others/edit-icon.png';
   seeDetailsIconImg = 'assets/Images/others/see-details-icon.png';
 
@@ -30,6 +32,10 @@ export class TableMovieComponent {
 
   UpdateItem(item: any) {
     this.updateItem.emit(item);
+  }
+
+  AddItem() {
+    this.addItem.emit();
   }
 
   SeeDetails(id: number) {
@@ -49,6 +55,8 @@ export class TableMovieComponent {
   }
 
   isCheckElse(field: string) {
-    return !this.isCheckGenre(field) && !this.isCheckDate(field);
+    return !this.isCheckGenre(field)
+      && !this.isCheckDate(field)
+      && field != 'no.';
   }
 }

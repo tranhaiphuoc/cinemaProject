@@ -3,6 +3,7 @@ import { CinemaDto } from 'src/app/dto/cinema-dto';
 import { CinemaScheduleService } from 'src/app/services/cinema-schedule.service';
 import { CinemaScheduleDto } from 'src/app/dto/cinema-schedule-dto';
 import { Cinema } from 'src/app/models/cinema.model';
+import { CinemaCenter } from 'src/app/models/cinema-center.model';
 
 @Component({
   selector: 'app-cinema-management',
@@ -22,16 +23,16 @@ export class CinemaManagementComponent {
   indexCinemaCenter = 0;
   indexCinema = 0;
 
-  constructor(public cinemaScheduleService: CinemaScheduleService) {}
+  constructor(public cinemaScheduleService: CinemaScheduleService) { }
 
   resetValue() {
     this.cinemaCenterInput = '';
     this.cinemaInput = '';
   }
-  
+
   isInValidButtonUpdate() {
     if (this.cinemaCenterInput && this.cinemaInput) {
-        this.isDisableButton = false;
+      this.isDisableButton = false;
     } else
       this.isDisableButton = true;
   }
@@ -40,6 +41,7 @@ export class CinemaManagementComponent {
     this.indexCinemaCenter = i;
     this.indexCinema = j;
 
+<<<<<<< HEAD
     //this.cinemaCenterInput = this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaCenter;
     this.cinemaInput =  this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaSchedule[this.indexCinema].cinema.name;
   }
@@ -47,10 +49,19 @@ export class CinemaManagementComponent {
   update() {
     if(this.cinemaCenterInput && this.cinemaInput) {
       //this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaCenter = this.cinemaCenterInput;
+=======
+    this.cinemaCenterInput = '';//this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaCenter;
+    this.cinemaInput = this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaSchedule[this.indexCinema].cinema.name;
+  }
+
+  update() {
+    if (this.cinemaCenterInput && this.cinemaInput) {
+      this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaCenter = new CinemaCenter;
+>>>>>>> e874156a281d869c8563bcadbfb9bed01987c84d
       this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaSchedule[this.indexCinema].cinema.name = this.cinemaInput;
     }
   }
-  
+
   deleteCinemaCenter() {
     this.cinemaScheduleService.getList().splice(this.indexCinemaCenter, 1);
   }
@@ -68,7 +79,11 @@ export class CinemaManagementComponent {
   add() {
     let cinemaDto = new CinemaDto;
 
+<<<<<<< HEAD
     // cinemaDto.cinemaCenter = this.cinemaCenterInput;
+=======
+    cinemaDto.cinemaCenter = new CinemaCenter;
+>>>>>>> e874156a281d869c8563bcadbfb9bed01987c84d
 
     let cinemaScheduleDto = new CinemaScheduleDto;
 

@@ -41,6 +41,15 @@ export class CinemaManagementComponent {
     this.indexCinemaCenter = i;
     this.indexCinema = j;
 
+<<<<<<< HEAD
+    //this.cinemaCenterInput = this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaCenter;
+    this.cinemaInput =  this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaSchedule[this.indexCinema].cinema.name;
+  }
+
+  update() {
+    if(this.cinemaCenterInput && this.cinemaInput) {
+      //this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaCenter = this.cinemaCenterInput;
+=======
     this.cinemaCenterInput = '';//this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaCenter;
     this.cinemaInput = this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaSchedule[this.indexCinema].cinema.name;
   }
@@ -48,6 +57,7 @@ export class CinemaManagementComponent {
   update() {
     if (this.cinemaCenterInput && this.cinemaInput) {
       this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaCenter = new CinemaCenter;
+>>>>>>> e874156a281d869c8563bcadbfb9bed01987c84d
       this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaSchedule[this.indexCinema].cinema.name = this.cinemaInput;
     }
   }
@@ -69,7 +79,11 @@ export class CinemaManagementComponent {
   add() {
     let cinemaDto = new CinemaDto;
 
+<<<<<<< HEAD
+    // cinemaDto.cinemaCenter = this.cinemaCenterInput;
+=======
     cinemaDto.cinemaCenter = new CinemaCenter;
+>>>>>>> e874156a281d869c8563bcadbfb9bed01987c84d
 
     let cinemaScheduleDto = new CinemaScheduleDto;
 

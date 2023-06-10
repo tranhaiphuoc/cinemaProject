@@ -14,6 +14,10 @@ export class CinemaCenterService {
           id: 1,
           name: '2D Cinema',
         },
+        {
+          id: 2,
+          name: '3D Cinema',
+        },
       ],
     },
     {

@@ -1,14 +1,13 @@
-.btn-success {
-    background-color: rgb(0, 119, 255);
-    width: 232px;
-}
-
-.btn-primary {
-    background-color: rgba(0, 128, 75, 0.863);
-}
-
-.btn-danger {
+.btn-info {
     margin-left: 5px;
+}
+
+.margin {
+    margin-left: 0px;
+}
+
+.fa-info-circle {
+    color: white;
 }
 
 .center {
@@ -18,9 +17,37 @@
 }
 
 .color {
-    color: #c92254c4;
+    color: #007bff;
 }
 
 .fa-warning {
     color: red;
+}
+
+select {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #212529;
+    line-height: 1.5;
+    text-align-last: center;
+    vertical-align: middle;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    padding: 0px 20px;
+    height: calc(1.5em + 0.75rem + 2px);
+    width: auto;
+}
+
+option {
+    text-align: center;
+}
+
+.vertical {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 20px;
 }

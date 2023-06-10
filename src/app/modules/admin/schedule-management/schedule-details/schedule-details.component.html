@@ -1,0 +1,123 @@
+<h4 class="center color"> Chi tiết lịch trình </h4>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="cinema-info">
+            Rạp trung tâm:
+            {{cinemaScheduleService.getList()[indexCinemaDto].cinemaCenter.name}}
+            <br>
+            Rạp:
+            {{ cinemaScheduleService.getList()[indexCinemaDto].cinemaSchedule[indexCinemaSchedule].cinema.name }}
+            <br>
+            Tên phim:
+            {{
+            cinemaScheduleService.getList()[indexCinemaDto].cinemaSchedule[indexCinemaSchedule].schedule[indexSchedule].movie.name
+            }}
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <ul class="menu">
+            <li *ngFor="let menuItem of menuItems; let i = index" [class.active]="menuItem.isActive">
+                <ng-container *ngIf="!menuItem.isUpdate">
+                    <a (click)="toggleActive(menuItem)">
+                        {{menuItem.label}}
+                        <span>
+                            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" [disabled]="menuItemTS?.isActive || isUpdate"
+                             (click)="toggleActive(menuItem)">
+                                <i class="fa fa-times"></i>
+                            </button>
+                            <button class="btn btn-success marginleft" [disabled]="menuItemTS?.isActive || isUpdate" (click)="getIndexDate(i)"
+                                (click)="toggleUpdate(menuItem)">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                        </span>
+                    </a>
+                </ng-container>
+
+                <ng-container *ngIf="menuItem.isUpdate">
+                    <a>
+                        <input type="date" [(ngModel)]="date">
+                        <button class="btn btn-primary marginleft" [disabled]="date === '' || isEqualsDate()" (click)="saveDate(menuItem)">
+                            <i class="fa fa-check"></i>
+                        </button>
+                    </a>
+                </ng-container>
+
+
+                <ul class="submenu" *ngIf="menuItem.isActive">
+                    <input type="number" [(ngModel)]="hour" placeholder="Giờ">
+                    <input class="marginleft" type="number" [(ngModel)]="minute" placeholder="Phút">
+                    <button class="btn btn-primary marginleft" [disabled]="isDisableButton()" (click)="getIndexDate(i)" (click)="addTime()">
+                        <i class="fa fa-plus"></i>
+                    </button>
+
+                    <li *ngFor="let subMenuItem of menuItem.subMenuItems; let j = index"
+                        [class.active]="subMenuItem.isActive">
+
+                        <ng-container *ngIf="subMenuItem.isUpdate">
+                            <a>
+                                <input type="number" [(ngModel)]="hourUpdate" placeholder="Giờ">
+                                <input class="marginleft" type="number" [(ngModel)]="minuteUpdate" placeholder="Phút">
+                                <button class="btn btn-primary marginleft" [disabled]="isDisableButtonUpdate()" (click)="getIndexDate(i)" (click)="getIndexTime(j)" (click)="updateTime()">
+                                    <i class="fa fa-check"></i>
+                                </button>
+                            </a>
+                        </ng-container>
+
+                        <ng-container *ngIf="!subMenuItem.isUpdate">
+                            <a (click)="toggleActive(subMenuItem)">
+                                {{subMenuItem.label}}
+                                <span>
+                                    <button class="btn btn-danger marginsub"
+                                    [disabled]="isUpdate"
+                                    (click)="getIndexDate(i)" (click)="getIndexTime(j)"
+                                    (click)="deleteTime(subMenuItem)">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                    <button class="btn btn-success marginleft" [disabled]="isUpdate"
+                                    (click)="getIndexDate(i)" (click)="getIndexTime(j)"
+                                    (click)="toggleUpdate(subMenuItem)">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </span>
+                            </a>
+                        </ng-container>
+                    </li>
+                </ul>
+
+                <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header bg-danger text-white">
+                                <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa</h5>
+                                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <i class="fa fa-warning"></i>
+                                Bạn có chắc chắn muốn xóa?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Hủy </button>
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="getIndexDate(i)" (click)="deleteDate()"> Xóa
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <ng-container class="margintop">
+                <a>
+                    <input type="date" [(ngModel)]="date">
+                    <button class="btn btn-primary marginleft" [disabled]="isEqualsDateAdd()" (click)="addDate()">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </a>
+            </ng-container>
+        </ul>
+    </div>
+</div>
+
+<button class="btn btn-primary vertical" routerLink="../../../../../../">
+    Quay trở về trang chủ
+</button>

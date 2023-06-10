@@ -52,10 +52,10 @@ export class UpdateAddEmployeeComponent implements OnInit {
 
   buildForm(item: Employee) {
     this.form = new FormGroup({
-      IDcard: new FormControl(item.IDcard, [Validators.required, Validators.minLength(12), Validators.maxLength(12)]),
+      IDcard: new FormControl(item.IDcard, [Validators.required, Validators.pattern('^!*([0-9]!*){12,}$')]),
       name: new FormControl(item.name, [Validators.required]),
       DOB: new FormControl(item.DOB),
-      phone: new FormControl(item.phone, [Validators.minLength(10), Validators.maxLength(10)]),
+      phone: new FormControl(item.phone, [Validators.pattern('^!*([0-9]!*){9,}$')]),
       address: new FormControl(item.address)
     });
     if (this.feature.includes('update')) {

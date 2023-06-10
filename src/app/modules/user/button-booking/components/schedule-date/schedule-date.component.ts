@@ -1,11 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-ss-date',
-  templateUrl: './ss-date.component.html',
-  styleUrls: ['./ss-date.component.scss']
+  selector: 'app-schedule-date',
+  templateUrl: './schedule-date.component.html',
+  styleUrls: ['./schedule-date.component.scss']
 })
-export class SsDateComponent implements OnInit {
+export class ScheduleDateComponent {
   static selectedItem: number;
 
   @Input() item: any;
@@ -15,16 +15,16 @@ export class SsDateComponent implements OnInit {
   date: Date = new Date();
 
   get selectedItem() {
-    return SsDateComponent.selectedItem;
+    return ScheduleDateComponent.selectedItem;
   }
 
   ngOnInit(): void {
-    SsDateComponent.selectedItem = 0;
+    ScheduleDateComponent.selectedItem = 0;
     this.date = new Date(this.date.setDate(this.date.getDate() + this.iter));
   }
 
   selected(iter: number, date: Date): void {
-    SsDateComponent.selectedItem = iter;
+    ScheduleDateComponent.selectedItem = iter;
     this.sendDate.emit(date);
   }
 }

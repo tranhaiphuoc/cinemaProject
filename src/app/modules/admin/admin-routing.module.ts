@@ -10,34 +10,58 @@ import { UpdateAddComponent } from './employee/update-add/update-add.component';
 
 const routes: Routes = [
   {
-    path: '', component: AdminLayoutComponent,
+    path: '',
+    component: AdminLayoutComponent,
     children: [
       {
-        path: '', component: EmployeeComponent
+        path: '',
+        redirectTo: 'employee',
+        pathMatch: 'full',
       },
       {
         path: 'add',
         component: UpdateAddComponent
       },
       {
+        path: 'employee',
+        component: EmployeeComponent,
+      },
+      {
         path: 'update/:IDcard',
         component: UpdateAddComponent
       },
       {
-        path: 'movie', component: MovieComponent
+        path: 'employee/update/:id',
+        component: UpdateAddComponent,
       },
       {
         path: 'movie/add', component: UpdateMovieComponent
       },
       {
         path: 'movie/update/:id', component: UpdateMovieComponent
-      }
+      },
+      {
+        path: 'movie',
+        component: MovieComponent,
+      },
+      {
+        path: 'movie/update/:id',
+        component: UpdateMovieComponent,
+      },
+      {
+        path: 'cinema',
+        component: CinemaManagementComponent,
+      },
+      {
+        path: 'schedule',
+        component: ScheduleManagementComponent,
+      },
     ]
   }
-];
+]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AdminRoutingModule { }

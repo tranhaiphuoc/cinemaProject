@@ -41,7 +41,7 @@
   </div>
 </ng-container>
 <ng-container *ngIf="toggleCinemaSeat">
-  <app-cinema-seat
+  <app-select-seat
     [movie]="movie"
     [selectedDate]="selectedDate"
     [cinema]="cinema"
@@ -49,5 +49,5 @@
     [seats]="seats"
     [selectedSeatTypeQuantityArr]="selectedSeatTypeQuantityArr"
     (toggle)="changeToggleCinemaSeat()"
-  ></app-cinema-seat>
+  ></app-select-seat>
 </ng-container>

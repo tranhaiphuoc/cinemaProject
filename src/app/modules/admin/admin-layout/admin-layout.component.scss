@@ -1,0 +1,71 @@
+.navbar {
+  height: 2.7rem;
+}
+
+.account {
+  color: white;
+}
+
+.account a {
+  width: fit-content;
+  color: white;
+  text-decoration: none;
+}
+
+.item {
+  cursor: pointer;
+}
+
+.side-nav-toggler {
+  display: block;
+  cursor: pointer;
+}
+
+.side-nav-toggler span {
+  display: block;
+  width: 1.8rem;
+  height: 0.2rem;
+  margin-bottom: 0.3em;
+  border-radius: 7px;
+  background-color: #fff;
+}
+
+.side-nav-toggler :last-child {
+  margin: 0;
+}
+
+.side-nav {
+  width: 15rem;
+  padding: 0.5em;
+  height: calc(100vh - 2.7rem);
+  border-right: 1px solid black;
+}
+
+.side-nav-item-toggler {
+  padding: 0.5em 0.7em;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.dropdown-toggle::after {
+  margin-left: 1.7em;
+}
+
+.side-nav-item > a {
+  display: block;
+  margin-left: 1em;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  color: black;
+  text-decoration: none;
+}
+
+.current {
+  color: white !important;
+  background-color: var(--bs-blue);
+}
+
+// Bootstrap class (override)
+.collapsing {
+  transition: none;
+}

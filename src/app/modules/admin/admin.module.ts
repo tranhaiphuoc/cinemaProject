@@ -8,11 +8,11 @@ import { SharedModule } from '../shared/shared.module';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { MovieComponent } from './movie/movie.component';
 import { TableMovieComponent } from './movie/table-movie/table-movie.component';
-import { UpdateMovieComponent } from './movie/update-movie/update-movie.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { EmployeeComponent } from './employee/employee.component';
 import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
-import { UpdateAddComponent } from './employee/update-add/update-add.component';
+import { UpdateAddEmployeeComponent } from './employee/update-add-employee/update-add-employee.component';
+import { UpdateAddMovieComponent } from './movie/update-add-movie/update-add-movie.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +22,9 @@ import { UpdateAddComponent } from './employee/update-add/update-add.component';
     AdminLayoutComponent,
     MovieComponent,
     TableMovieComponent,
-    UpdateMovieComponent,
-    UpdateAddComponent,
+    UpdateAddMovieComponent,
+    UpdateAddEmployeeComponent,
+    UpdateAddMovieComponent,
   ],
   imports: [
     CommonModule,

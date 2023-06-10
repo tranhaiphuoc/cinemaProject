@@ -5,11 +5,11 @@ import { Employee } from 'src/app/models/employee.model';
 import { EmployeeService } from 'src/app/services/employee.service';
 
 @Component({
-  selector: 'app-update-add',
-  templateUrl: './update-add.component.html',
-  styleUrls: ['./update-add.component.scss']
+  selector: 'app-update-add-employee',
+  templateUrl: './update-add-employee.component.html',
+  styleUrls: ['./update-add-employee.component.scss']
 })
-export class UpdateAddComponent implements OnInit {
+export class UpdateAddEmployeeComponent implements OnInit {
   backUrl = '/admin';
   form!: FormGroup;
   item!: Employee;

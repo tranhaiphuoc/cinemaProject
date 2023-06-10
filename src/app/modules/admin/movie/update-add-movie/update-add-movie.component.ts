@@ -1,18 +1,17 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Genre } from 'src/app/models/genre.model';
 import { Movie } from 'src/app/models/movie.model';
 import { GenreService } from 'src/app/services/genre.service';
 import { MovieService } from 'src/app/services/movie.service';
 import { RatingService } from 'src/app/services/rating.service';
 
 @Component({
-  selector: 'app-update-movie',
-  templateUrl: './update-movie.component.html',
-  styleUrls: ['./update-movie.component.scss']
+  selector: 'app-update-add-movie',
+  templateUrl: './update-add-movie.component.html',
+  styleUrls: ['./update-add-movie.component.scss']
 })
-export class UpdateMovieComponent implements OnInit {
+export class UpdateAddMovieComponent implements OnInit {
   form!: FormGroup;
   item!: Movie;
   feature!: string;

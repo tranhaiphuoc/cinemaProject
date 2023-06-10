@@ -1,18 +1,3 @@
-button {
-    width: 30px;
-    height: 30px;
-
-    padding-left: 2px;
-    padding-right: 2px;
-    padding-top: 1px;
-    padding-bottom: 1px;
-}
-
-img {
-    width: 20px;
-    height: 20px;
-}
-
 td {
     padding: auto 0px;
 }
@@ -23,12 +8,6 @@ th {
     color: #007bff;
 }
 
-.btn-warning {
-    width: 30px;
-    height: 30px;
-    padding: 0px;
-}
-
 thead tr th:last-child,
 tbody tr td:last-child {
     min-width: 7em;
@@ -36,4 +15,14 @@ tbody tr td:last-child {
     word-break: break-all;
 }
 
-.footer {}
+#btn-add {
+    position: relative;
+    left: 990px;
+    width: 95px;
+}
+
+.footer {
+    position: absolute;
+    left: 100px;
+    top: 450px;
+}

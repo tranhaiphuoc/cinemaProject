@@ -1,20 +1,20 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Genre } from 'src/app/models/genre.model';
 import { Movie } from 'src/app/models/movie.model';
 import { GenreService } from 'src/app/services/genre.service';
 import { MovieService } from 'src/app/services/movie.service';
 import { RatingService } from 'src/app/services/rating.service';
 
 @Component({
-  selector: 'app-update-movie',
-  templateUrl: './update-movie.component.html',
-  styleUrls: ['./update-movie.component.scss']
+  selector: 'app-update-add-movie',
+  templateUrl: './update-add-movie.component.html',
+  styleUrls: ['./update-add-movie.component.scss']
 })
-export class UpdateMovieComponent implements OnInit {
+export class UpdateAddMovieComponent implements OnInit {
   form!: FormGroup;
   item!: Movie;
+  feature!: string;
 
   backUrl = '/admin/movie';
   constructor(
@@ -26,7 +26,33 @@ export class UpdateMovieComponent implements OnInit {
   ) { };
 
   ngOnInit(): void {
-    this.resetValues();
+    debugger
+    this.feature = { relativeTo: this._activatedRoute }.relativeTo.toString();
+
+    if (this.feature.includes('update')) {
+      this._activatedRoute.params.subscribe(params => {
+        const data = this._movieService.getById(params['id']);
+        if (data == undefined)
+          return;
+        this.item = data;
+
+      });
+    }
+    else {
+      this.item = {
+        id: this._movieService.getList().length + 1,
+        name: '',
+        rating: '',
+        releaseDate: new Date(1900, 1, 1),
+        runtime: 0,
+        genre: [],
+        anecdote: '',
+        status: 1,
+        urlImage: '',
+        urlTrailer: '',
+      }
+    }
+    this.buildForm(this.item);
   }
 
   get genreList() {
@@ -93,19 +119,18 @@ export class UpdateMovieComponent implements OnInit {
   updateItem() {
     if (this.form.invalid)
       return;
-    const data = this.getGenreCheckBox();
+    this.getGenreCheckBox();
     this.form.removeControl('genresForm');
     this._movieService.updateItem(this.form.value);
     this._routerService.navigate([this.backUrl]);
   }
-
-  resetValues() {
-    this._activatedRoute.params.subscribe(params => {
-      const data = this._movieService.getById(params['id']);
-      if (data == undefined)
-        return;
-      this.item = data;
-      this.buildForm(data);
-    });
+  addItem() {
+    debugger
+    if (this.form.invalid)
+      return;
+    this.getGenreCheckBox();
+    this.form.removeControl('genresForm');
+    this._movieService.addItem(this.form.value);
+    this._routerService.navigate([this.backUrl]);
   }
 }

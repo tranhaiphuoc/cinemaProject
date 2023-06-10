@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EmployeeComponent } from './employee/employee.component';
-import { UpdateComponent } from './employee/update/update.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { MovieComponent } from './movie/movie.component';
-import { UpdateMovieComponent } from './movie/update-movie/update-movie.component';
 import { CinemaManagementComponent } from './cinema-management/cinema-management.component';
 import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
+import { UpdateAddEmployeeComponent } from './employee/update-add-employee/update-add-employee.component';
+import { UpdateAddMovieComponent } from './movie/update-add-movie/update-add-movie.component';
 
 const routes: Routes = [
   {
@@ -23,16 +23,22 @@ const routes: Routes = [
         component: EmployeeComponent,
       },
       {
-        path: 'employee/update/:id',
-        component: UpdateComponent,
+        path: 'employee/add',
+        component: UpdateAddEmployeeComponent
+      },
+      {
+        path: 'employee/update/:IDcard',
+        component: UpdateAddEmployeeComponent
       },
       {
         path: 'movie',
         component: MovieComponent,
       },
       {
-        path: 'movie/update/:id',
-        component: UpdateMovieComponent,
+        path: 'movie/add', component: UpdateAddMovieComponent
+      },
+      {
+        path: 'movie/update/:id', component: UpdateAddMovieComponent
       },
       {
         path: 'cinema',
@@ -42,12 +48,12 @@ const routes: Routes = [
         path: 'schedule',
         component: ScheduleManagementComponent,
       },
-    ],
-  },
-];
+    ]
+  }
+]
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AdminRoutingModule {}
+export class AdminRoutingModule { }

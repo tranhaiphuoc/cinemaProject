@@ -8,8 +8,14 @@ th {
     color: #007bff;
 }
 
-.btn-warning {
-    width: 30px;
-    height: 30px;
-    padding: 0px;
+#btn-add {
+    position: relative;
+    left: 1025px;
+    width: 75px;
+}
+
+.footer {
+    position: absolute;
+    left: 100px;
+    top: 450px;
 }

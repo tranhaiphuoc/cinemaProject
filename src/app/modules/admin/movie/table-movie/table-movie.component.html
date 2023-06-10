@@ -4,7 +4,7 @@
             <ng-container *ngFor="let field of fieldList">
                 <th scope="col" style="text-transform: capitalize;">{{ field }}</th>
             </ng-container>
-            <th scope="col" style="width: 9%;"></th>
+            <th scope="col" style="width: 13%;"></th>
         </tr>
     </thead>
     <tbody>
@@ -29,7 +29,7 @@
                     <app-button-delete (delete)="DeleteItem(data)"></app-button-delete>
 
                     <button type="button" (click)="SeeDetails(data['id'])" class="btn btn-info">
-                        <img [src]="seeDetailsIconImg" alt="See details">
+                        <i class="fa fa-info-circle"></i>
                     </button>
 
                     <button type="button" (click)="UpdateItem(data)" class="btn btn-success left">
@@ -40,4 +40,12 @@
         </ng-container>
     </tbody>
 </table>
-<pagination-controls class="footer" (pageChange)="p = $event"></pagination-controls>
+
+<!-- Button add -->
+<button id="btn-add" type="button" (click)="AddItem()" class="btn btn-primary left">
+    <i class="fa fa-plus"></i>
+</button>
+
+<div class="footer">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

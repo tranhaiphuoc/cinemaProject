@@ -1,2 +1,4 @@
-<app-table (updateItem)="updateItem($event)" (deleteItem)="deleteItem($event)" [dataList]="employeeList"
-    [fieldList]="fieldList"></app-table>
+<div class="container">
+    <app-table (addItem)="addItem()" (updateItem)="updateItem($event)" (deleteItem)="deleteItem($event)"
+        [dataList]="employeeList" [fieldList]="fieldList"></app-table>
+</div>

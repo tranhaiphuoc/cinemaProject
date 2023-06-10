@@ -1,42 +1,24 @@
+.color {
+    color: #007bff;
+}
+
 .center {
     display: flex;
     justify-content: center;
     padding-top: 15px;
 }
 
-.right {
-    float: right;
-    margin-right: 225px;
-    width: 85px;
-}
-
-.fa-info-circle {
-    color: white;
-}
-
 .marginleft {
     margin-left: 5px;
 }
 
-.marginright {
-    margin-right: 20px;
+.fa-warning {
+    color: red;
 }
 
 .custom {
-    margin-left: 8px;
-    width: 130px;
-}
-
-.color {
-    color: #007bff;
-}
-
-.btn-success {
-    margin-right: 5px;
-}
-
-.fa-warning {
-    color: red;
+    margin-left: 7px;
+    width: 86px;
 }
 
 input[type="text"] {

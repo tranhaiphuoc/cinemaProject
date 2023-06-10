@@ -1,4 +1,5 @@
-<h4 class="center color">Danh sách rạp trung tâm</h4>
+<h4 class="center color">{{cinemaCenterName}}</h4>
+<h5>Danh sách rạp trung tâm</h5>
 
 <table class="table table-striped table-hover table-bordered border-dark-subtle">
     <thead class="color">
@@ -7,58 +8,57 @@
         </tr>
     </thead>
     <tbody>
-        <ng-container *ngFor="let cinemaDto of cinemaScheduleService.getList(); let i = index">
-            <ng-container *ngIf="(isUpdate && i != cinemaCenterIndexUpdate) || !isUpdate">
+        <ng-container *ngFor="let cinema of getListCinema(); let i = index;">
+            <ng-container *ngIf="(isUpdate && i != cinemaIndexUpdate) || !isUpdate">
                 <tr>
                     <td>
-                        {{i+1}}
+                        {{i + 1}}
                     </td>
-
+    
                     <td>
-                        {{cinemaDto.cinemaCenter.name}}
+                        {{cinema.name}}
                     </td>
-
                     <td>
-                        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                            data-bs-target="#deleteModal" (click)="setIndexCinemaCenter(i)">
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                        (click)="setIndexCinema(i)">
                             <i class="fa fa-times"></i>
                         </button>
-                        <button class="btn btn-info marginleft" (click)="setIndexCinemaCenter(i)" (click)="gotoDetailPage()">
-                            <i class="fa fa-info-circle"></i>
-                        </button>
-                        <button class="btn btn-success marginleft" (click)="setIndexCinemaCenterUpdate(i)"
-                            (click)="setUpdate()">
+                        <button class="btn btn-success marginleft" 
+                        (click)="setIndexCinema(i)"
+                        (click)="setIndexCinemaUpdate(i)"
+                        (click)="setUpdate()">
                             <i class="fa fa-pencil"></i>
                         </button>
                     </td>
+                </tr>
             </ng-container>
 
-            <ng-container *ngIf="isUpdate && i == cinemaCenterIndexUpdate">
+            <ng-container *ngIf="isUpdate && i == cinemaIndexUpdate">
                 <tr>
                     <td>
                         {{i+1}}
                     </td>
                     <td>
-                        <input type="text" [(ngModel)]="cinemaCenterNameUpdate">
+                        <input type="text" [(ngModel)]="cinemaNameUpdate">
                     </td>
                     <td>
-                        <button class="btn btn-primary" [disabled]="!isValidCinemaCenterNameUpdate()"
-                            (click)="updateCinemaCenter()">
+                        <button class="btn btn-primary" (click)="updateCinemaName()" [disabled]="!isValid()">
                             <i class="fa fa-check"></i>
                         </button>
                     </td>
                 </tr>
             </ng-container>
+
         </ng-container>
     </tbody>
     <tr>
         <td>
-            {{this.cinemaScheduleService.getList().length + 1}}
+            {{this.cinemaLst.length + 1}}
         </td>
         <td>
-            <input type="text" [(ngModel)]="cinemaCenterName" placeholder="Tên rạp trung tâm">
+            <input type="text" [(ngModel)]="cinemaName" placeholder="Tên rạp">
         </td>
-        <button class="btn btn-primary custom" [disabled]="!isValidCinemaCenterName()" (click)="addCinemaCenter()">
+        <button class="btn btn-primary custom" [disabled]="!isValidAdd()" (click)="addCinema()">
             <i class="fa fa-check"></i>
         </button>
     </tr>
@@ -77,8 +77,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-                    (click)="deleteCinemaCenter()">Xóa</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Xóa</button>
             </div>
         </div>
     </div>

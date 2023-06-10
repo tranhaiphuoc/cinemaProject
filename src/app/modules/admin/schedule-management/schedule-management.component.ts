@@ -39,7 +39,6 @@ export class ScheduleManagementComponent {
 
   get getCinemaArray(): string[] {
     const arrCinema: string[] = [];
-
     this.getFilteredCinemaScheduleList[0].cinemaSchedule.forEach(
       (cinemaScheduleDto) => {
         if (!arrCinema.includes(cinemaScheduleDto.cinema.name)) {
@@ -73,7 +72,7 @@ export class ScheduleManagementComponent {
   }
 
   constructor(
-    public cinemaScheduleService: CinemaScheduleService,
+    private cinemaScheduleService: CinemaScheduleService,
     public movieService: MovieService,
     private router: Router
   ) {
@@ -105,7 +104,7 @@ export class ScheduleManagementComponent {
 
   getMovieAndGotoDetailPage(movie: Movie) {
     this.movieTS = movie;
-    this.router.navigate(['admin/schedule-management/details', this.getIndexCinemaDto(), this.getIndexCinemaSchedule(), this.getIndexSchedule()]);
+    this.router.navigate(['admin/schedule/details', this.getIndexCinemaDto(), this.getIndexCinemaSchedule(), this.getIndexSchedule()]);
   }
 
   deleteSchedule() {
@@ -124,7 +123,6 @@ export class ScheduleManagementComponent {
 
   addRow() {
     if (this.getListMovieNotExistsInCinemaCenter.length != 0) {
-      //
       this.showAddRow = true;
     } else {
       // Toast

@@ -1,6 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Movie } from 'src/app/models/movie.model';
 import { MovieService } from 'src/app/services/movie.service';
 
@@ -13,7 +14,8 @@ export class MovieComponent implements OnInit {
   constructor(
     private readonly _movieService: MovieService,
     private readonly _routerService: Router,
-    private readonly _activatedRoute: ActivatedRoute
+    private readonly _activatedRoute: ActivatedRoute,
+    private readonly _toastrService: ToastrService
   ) { };
 
   currentRoute = { relativeTo: this._activatedRoute };
@@ -39,7 +41,6 @@ export class MovieComponent implements OnInit {
   }
 
   addItem() {
-    debugger
     this._routerService.navigate(['add'], this.currentRoute);
   }
 
@@ -56,10 +57,10 @@ export class MovieComponent implements OnInit {
   }
 
   deleteItem(item: Movie | undefined) {
-    debugger
     if (item == undefined)
       return;
     this._movieService.deleteItem(item);
+    this._toastrService.success('Deleted successfully!');
   }
 
   getListGenre(item: Movie): string {

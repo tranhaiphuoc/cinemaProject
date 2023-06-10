@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Employee } from 'src/app/models/employee.model';
 import { EmployeeService } from 'src/app/services/employee.service';
 
@@ -18,7 +19,8 @@ export class UpdateAddEmployeeComponent implements OnInit {
   constructor(
     private readonly _activatedRoute: ActivatedRoute,
     private readonly _employeeService: EmployeeService,
-    private readonly _routerService: Router
+    private readonly _routerService: Router,
+    private readonly _toastrService: ToastrService
   ) { };
 
   ngOnInit(): void {
@@ -65,6 +67,7 @@ export class UpdateAddEmployeeComponent implements OnInit {
     if (this.form.invalid)
       return;
     this._employeeService.updateItem(this.form.value);
+    this._toastrService.success('Updated successfully!');
     this._routerService.navigate([this.backUrl]);
   }
 
@@ -72,12 +75,13 @@ export class UpdateAddEmployeeComponent implements OnInit {
     debugger
     const dataCheck = this._employeeService.getById(this.fc['IDcard'].value);
     if (dataCheck != undefined) {
-      alert('alert');
+      this._toastrService.error('This ID card already exists!');
       return;
     }
     if (this.form.invalid)
       return;
     this._employeeService.addItem(this.form.value);
+    this._toastrService.success('Added successfully!');
     this._routerService.navigate([this.backUrl]);
   }
 }

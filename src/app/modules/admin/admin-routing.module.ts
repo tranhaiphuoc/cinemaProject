@@ -8,6 +8,7 @@ import { ScheduleDetailsComponent } from './schedule-management/schedule-details
 import { CinemaManagementComponent } from './cinema-management/cinema-management.component';
 import { UpdateAddEmployeeComponent } from './employee/update-add-employee/update-add-employee.component';
 import { UpdateAddMovieComponent } from './movie/update-add-movie/update-add-movie.component';
+import { CinemaDetailsComponent } from './cinema-management/cinema-details/cinema-details.component';
 
 const routes: Routes = [
   {
@@ -50,14 +51,11 @@ const routes: Routes = [
         component: ScheduleManagementComponent,
       },
       {
-        path: 'schedule-management', component: ScheduleManagementComponent
+        path: 'schedule/details/:indexCinemaDto/:indexCinemaSchedule/:indexSchedule', component: ScheduleDetailsComponent
       },
       {
-        path: 'schedule-management/details/:indexCinemaDto/:indexCinemaSchedule/:indexSchedule', component: ScheduleDetailsComponent
+        path: 'cinema/details/:indexCinemaCenter', component: CinemaDetailsComponent
       },
-      {
-        path: 'cinema-management', component: CinemaManagementComponent
-      }
     ]
   }
 ]

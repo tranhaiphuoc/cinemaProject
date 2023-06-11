@@ -25,7 +25,7 @@ export class CinemaCenterService {
       name: 'CGV Thảo Điền Pearl',
       cinema: [
         {
-          id: 2,
+          id: 3,
           name: '2D Cinema',
         },
       ],

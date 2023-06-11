@@ -23,6 +23,7 @@ export class TableComponent {
   }
 
   DeleteItem(item: any) {
+    debugger
     this.deleteItem.emit(item);
   }
 

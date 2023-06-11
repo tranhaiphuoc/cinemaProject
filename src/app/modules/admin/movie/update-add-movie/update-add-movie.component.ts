@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Movie } from 'src/app/models/movie.model';
 import { GenreService } from 'src/app/services/genre.service';
 import { MovieService } from 'src/app/services/movie.service';
@@ -22,7 +23,8 @@ export class UpdateAddMovieComponent implements OnInit {
     private readonly _movieService: MovieService,
     private readonly _ratingService: RatingService,
     private readonly _genreService: GenreService,
-    private readonly _routerService: Router
+    private readonly _routerService: Router,
+    private readonly _toastrService: ToastrService
   ) { };
 
   ngOnInit(): void {
@@ -122,15 +124,16 @@ export class UpdateAddMovieComponent implements OnInit {
     this.getGenreCheckBox();
     this.form.removeControl('genresForm');
     this._movieService.updateItem(this.form.value);
+    this._toastrService.success('Updated successfully!');
     this._routerService.navigate([this.backUrl]);
   }
   addItem() {
-    debugger
     if (this.form.invalid)
       return;
     this.getGenreCheckBox();
     this.form.removeControl('genresForm');
     this._movieService.addItem(this.form.value);
+    this._toastrService.success('Added successfully!');
     this._routerService.navigate([this.backUrl]);
   }
 }

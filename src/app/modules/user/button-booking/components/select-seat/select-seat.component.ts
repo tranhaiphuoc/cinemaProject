@@ -52,25 +52,46 @@ export class SelectSeatComponent {
   leftPosDouble: number = this.leftPosInit - this.side - this.margin;
   //#endregion
 
-  get top(): number {
+  topCalc(): number {
     if (this.countSeat == this.breakPoint) {
       this.countSeat = 0;
       this.topPos += this.side + this.margin;
       this.leftPosSingle = this.leftPosInit;
     }
-    return this.topPos;
+    return this.topPos
   }
 
-  get left(): number {
+  get top(): number {
+    // if (this.countSeat == this.breakPoint) {
+    //   this.countSeat = 0;
+    //   this.topPos += this.side + this.margin;
+    //   this.leftPosSingle = this.leftPosInit;
+    // }
+    return this.topCalc();
+  }
+
+  leftCalc(): number {
     this.countSeat += 1;
     this.leftPosSingle += this.side + this.margin;
     return this.leftPosSingle;
   }
 
-  get leftDouble(): number {
+  get left(): number {
+    // this.countSeat += 1;
+    // this.leftPosSingle += this.side + this.margin;
+    return this.leftCalc();
+  }
+
+  leftDoubleCalc(): number {
     this.countSeat += 2;
     this.leftPosDouble += this.sideDouble + this.margin;
     return this.leftPosDouble;
+  }
+
+  get leftDouble(): number {
+    // this.countSeat += 2;
+    // this.leftPosDouble += this.sideDouble + this.margin;
+    return this.leftDoubleCalc();
   }
 
   constructor(
@@ -78,7 +99,7 @@ export class SelectSeatComponent {
     private accountService: AccountService,
     private authService: AuthService,
     private cinemaSeatService: CinemaSeatService,
-    private cinemaBookingService: CinemaBookingService
+    private cinemaBookingService: CinemaBookingService,
   ) {}
 
   ngOnInit(): void {
@@ -137,7 +158,6 @@ export class SelectSeatComponent {
   }
 
   addBooking(): void {
-    debugger
     let tokenName: string | null = this.authService.getToken();
     let userId: number | undefined = this.accountService.getAccountByUsername(tokenName)?.userId;
     let user: User = this.userService.getById(userId);

@@ -1,161 +1,170 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { CinemaDto } from 'src/app/dto/cinema-dto';
 import { DateTimeSchedule } from 'src/app/models/date-time-schedule.model';
+import { Movie } from 'src/app/models/movie.model';
+import { Schedule } from 'src/app/models/schedule.model';
 import { Showtime } from 'src/app/models/showtime.model';
 import { CinemaScheduleService } from 'src/app/services/cinema-schedule.service';
+import { MovieService } from 'src/app/services/movie.service';
 
 @Component({
   selector: 'app-schedule-management',
   templateUrl: './schedule-management.component.html',
-  styleUrls: ['./schedule-management.component.scss']
+  styleUrls: ['./schedule-management.component.scss'],
 })
 export class ScheduleManagementComponent {
-  columns = [
-    'STT', 'Rạp trung tâm', 'Mã', 'Tên', 'Thời lượng', 'Trạng thái', 'Rạp', 'Lịch trình chiếu'
-  ]
+  columns = ['STT', 'Tên', 'Thời lượng', 'Trạng thái', 'Tác vụ'];
 
-  dateInput!: string;
-  hourInput!: string;
-  minuteInput!: string;
+  movieTS!: Movie;
+  showAddRow = false;
 
-  @ViewChild('dateInput') dateInput1!: ElementRef;
-  @ViewChild('hourInput') hourInput1!: ElementRef;
-  @ViewChild('minuteInput') minuteInput1!: ElementRef;
+  filterCinemaCenter!: string;
+  filterCinema!: string;
 
-  timeTS!: Showtime;
-  dateTimeSchedule!: DateTimeSchedule;
-  i!: number;
-  j!: number;
-  k!: number;
-  dateStr!: string;
-  isDisabledButton = true;
-
-  constructor(public cinemaScheduleService: CinemaScheduleService) { }
-
-  isValidButtonUpdate() {
-    if (this.dateInput1 && this.hourInput1 && this.minuteInput1) {
-      const dateStr = this.dateInput1.nativeElement.value;
-      const hour = this.hourInput1.nativeElement.value;
-      const minute = this.minuteInput1.nativeElement.value;
-
-      if (dateStr.trim() !== '' && hour.trim() !== '' && minute.trim() !== '' &&
-        hour.length <= 2 && minute.length <= 2 && parseInt(hour) <= 23 && parseInt(minute) <= 59)
-        this.isDisabledButton = false;
-      else
-        this.isDisabledButton = true;
-    } else
-      this.isDisabledButton = true;
+  get getFilteredCinemaScheduleList(): CinemaDto[] {
+    return this.cinemaScheduleService
+      .getList()
+      .filter((cinema) => cinema.cinemaCenter.name === this.filterCinemaCenter);
   }
 
-  isValidButtonAdd() {
-    if ((this.dateInput && this.hourInput && this.minuteInput)) {
-      this.isDisabledButton = false;
-      if (parseInt(this.hourInput) > 23 || parseInt(this.minuteInput) > 59
-        || this.hourInput.toString().length > 2 || this.minuteInput.toString().length > 2)
-        this.isDisabledButton = true;
-    } else
-      this.isDisabledButton = true;
+  get getCinemaCenterArray(): string[] {
+    const arrCinemaCenter: string[] = [];
+
+    this.cinemaScheduleService.getList().forEach((cinemaDto) => {
+      arrCinemaCenter.push(cinemaDto.cinemaCenter.name);
+    });
+    return arrCinemaCenter;
+  }
+
+  get getCinemaArray(): string[] {
+    const arrCinema: string[] = [];
+    this.getFilteredCinemaScheduleList[0].cinemaSchedule.forEach(
+      (cinemaScheduleDto) => {
+        if (!arrCinema.includes(cinemaScheduleDto.cinema.name)) {
+          arrCinema.push(cinemaScheduleDto.cinema.name);
+        }
+      }
+    );
+    return arrCinema;
+  }
+
+  get getListMovie(): Movie[] {
+    let movieList = new Array<Movie>();
+    this.getFilteredCinemaScheduleList.forEach((cinemaDto) => {
+      cinemaDto.cinemaSchedule.forEach((cinemaSchedule) => {
+        if (cinemaSchedule.cinema.name === this.filterCinema) {
+          cinemaSchedule.schedule.forEach((schedule) => {
+            movieList.push(schedule.movie);
+          });
+        }
+      });
+    });
+    return movieList;
+  }
+
+  get getListMovieNotExistsInCinemaCenter(): Movie[] {
+    let movieList = new Array<Movie>();
+    movieList = this.movieService
+      .getList()
+      .filter((movie) => !this.getListMovie.find((m) => m.id === movie.id));
+    return movieList;
+  }
+
+  constructor(
+    private cinemaScheduleService: CinemaScheduleService,
+    public movieService: MovieService,
+    private router: Router
+  ) {
+    if (this.getCinemaCenterArray.length > 0)
+      this.filterCinemaCenter = this.getCinemaCenterArray[0];
+    if (this.getCinemaArray.length > 0)
+      this.filterCinema = this.getCinemaArray[0];
+    this.movieTS = this.getListMovieNotExistsInCinemaCenter[0];
   }
 
   getStatus(status: number): string {
-    if (status)
-      return 'Đang hoạt động';
-    return 'Không hoạt động';
+    return status ? 'Đang hoạt động' : 'Không hoạt động';
   }
 
-  deleteTime() {
-    this.cinemaScheduleService.getList().forEach(cinema => {
-      cinema.cinemaSchedule.forEach(schedule => {
-        schedule.schedule.forEach(s => {
-          s.dateTime.forEach(dt => {
-            dt.time = dt.time.filter(t => t !== this.timeTS);
+  getStatusColor(status: number): string {
+    switch (status) {
+      case 1:
+        return 'green';
+      case 0:
+        return 'red';
+      default:
+        return 'black';
+    }
+  }
+
+  getMovie(movie: Movie) {
+    this.movieTS = movie;
+  }
+
+  getMovieAndGotoDetailPage(movie: Movie) {
+    this.movieTS = movie;
+    this.router.navigate(['admin/schedule/details', this.getIndexCinemaDto(), this.getIndexCinemaSchedule(), this.getIndexSchedule()]);
+  }
+
+  deleteSchedule() {
+    this.getFilteredCinemaScheduleList.forEach((cinemaDto) => {
+      cinemaDto.cinemaSchedule.forEach((cinemaSchedule) => {
+        if (cinemaSchedule.cinema.name === this.filterCinema) {
+          cinemaSchedule.schedule.forEach((schedule) => {
+            cinemaSchedule.schedule = cinemaSchedule.schedule.filter(
+              (schedule) => schedule.movie !== this.movieTS
+            );
           });
-        });
+        }
       });
     });
   }
 
-  convertDateToString(date: Date) {
-    const year = date.getFullYear();
-    const month = date.getMonth() + 1;
-    const day = date.getDate();
-
-    return `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`;
-  }
-
-  update() {
-    if (this.hourInput1 && this.minuteInput1 && this.dateInput1) {
-      const hour = this.hourInput1.nativeElement.value;
-      const minute = this.minuteInput1.nativeElement.value;
-      const date = this.dateInput1.nativeElement.value;
-
-      this.timeTS.hour = hour;
-      this.timeTS.minute = minute;
-
-      const newDate = new Date(date);
-      this.dateTimeSchedule.date = newDate;
+  addRow() {
+    if (this.getListMovieNotExistsInCinemaCenter.length != 0) {
+      this.showAddRow = true;
+    } else {
+      // Toast
     }
   }
 
-  isValidButton(dateTimeSchedule: DateTimeSchedule[], showTimeNow: Showtime): boolean {
-    let lastShowTime = showTimeNow;
-    dateTimeSchedule.forEach(dateTime => {
-      dateTime.time.forEach(time => {
-        lastShowTime = time;
-      })
-    });
-
-    if (showTimeNow == lastShowTime)
-      return true;
-    return false;
+  onSelectCinemaCenter() {
+    this.movieTS = this.getListMovieNotExistsInCinemaCenter[0];
   }
 
-  getTimeAndDate(time: Showtime, dateSchedule: DateTimeSchedule) {
-    this.timeTS = time;
-    this.dateInput = this.convertDateToString(dateSchedule.date);
-    this.dateStr = this.convertDateToString(dateSchedule.date);
-    this.dateTimeSchedule = dateSchedule;
+  resetCinema() {
+    this.filterCinema = this.getCinemaArray[0];
+    this.showAddRow = false;
   }
 
-  setIndex(i: number, j: number, k: number) {
-    this.i = i;
-    this.j = j;
-    this.k = k;
-    this.dateInput = '';
-    this.hourInput = '';
-    this.minuteInput = '';
+  addSchedule() {
+    let cinemaDto = this.getFilteredCinemaScheduleList[0];
+    let schedule = new Schedule();
+    let index = cinemaDto.cinemaSchedule.findIndex(
+      (item) => item.cinema.name === this.filterCinema
+    );
+
+    schedule.id = cinemaDto.cinemaSchedule[index].schedule.length + 1;
+    schedule.movie = this.movieTS;
+    schedule.dateTime = new Array<DateTimeSchedule>();
+
+    cinemaDto.cinemaSchedule[index].schedule.push(schedule);
+
+    this.onSelectCinemaCenter();
+
+    this.showAddRow = false;
   }
 
-  getScheduleId(): number {
-    const cinemaSchedules = this.cinemaScheduleService.getList();
-    const lastSchedule = cinemaSchedules[cinemaSchedules.length - 1].cinemaSchedule[cinemaSchedules[cinemaSchedules.length - 1].cinemaSchedule.length - 1].schedule;
-    const lastDateTime = lastSchedule[lastSchedule.length - 1].dateTime;
-    const lastId = lastDateTime[lastDateTime.length - 1].id;
-
-    return lastId + 1;
+  getIndexCinemaDto(): number {
+    return this.cinemaScheduleService.getList().findIndex(item => item.cinemaCenter.name === this.filterCinemaCenter);
   }
 
-  getShowTimeId(): number {
-    const cinemaSchedules = this.cinemaScheduleService.getList();
-    const lastSchedule = cinemaSchedules[cinemaSchedules.length - 1].cinemaSchedule[cinemaSchedules[cinemaSchedules.length - 1].cinemaSchedule.length - 1].schedule;
-    const lastDateTime = lastSchedule[lastSchedule.length - 1].dateTime;
-    const lastTime = lastDateTime[lastDateTime.length - 1].time;
-    if (lastTime.length == 0)
-      return 1;
-    const lastId = lastTime[lastTime.length - 1].id;
-    return lastId + 1;
+  getIndexCinemaSchedule(): number {
+    return this.cinemaScheduleService.getList()[this.getIndexCinemaDto()].cinemaSchedule.findIndex(item => item.cinema.name === this.filterCinema);
   }
 
-  add(cinemaDto: CinemaDto[]) {
-    const newDate = new Date(this.dateInput);
-
-    let schedule = new DateTimeSchedule();
-    schedule.date = newDate;
-    schedule.id = this.getScheduleId();
-
-    let time = new Showtime(this.getShowTimeId(), schedule.id, parseInt(this.hourInput), parseInt(this.minuteInput));
-
-    schedule.time.push(time);
-    cinemaDto[this.i].cinemaSchedule[this.j].schedule[this.k].dateTime.push(schedule);
+  getIndexSchedule(): number {
+    return this.cinemaScheduleService.getList()[this.getIndexCinemaDto()].cinemaSchedule[this.getIndexCinemaSchedule()].schedule.findIndex(item => item.movie === this.movieTS);
   }
 }

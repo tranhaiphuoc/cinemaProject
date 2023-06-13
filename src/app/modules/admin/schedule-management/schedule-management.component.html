@@ -1,157 +1,107 @@
 <h4 class="center color">Danh sách lịch trình</h4>
+
+<span> Rạp trung tâm </span>
+
+<select [(ngModel)]="filterCinemaCenter" (change)="onSelectCinemaCenter()" (click)="resetCinema()">
+    <option *ngFor="let option of getCinemaCenterArray" [value]="option">{{ option }}</option>
+</select>
+
+<span> Rạp </span>
+
+<select [(ngModel)]="filterCinema" (change)="onSelectCinemaCenter()">
+    <option *ngFor="let option of getCinemaArray" [value]="option">{{ option }}</option>
+</select>
+
 <table class="table table-striped table-hover table-bordered border-dark-subtle">
     <thead class="color">
         <tr>
-            <th scope="col" *ngFor="let column of columns">{{ column }}</th>
+            <th scope="col" *ngFor="let column of columns">
+                {{ column }}
+            </th>
         </tr>
     </thead>
+
+    <ng-container *ngIf="getListMovie.length == 0">
+        <p>
+            Không tìm thấy lịch trình!
+        </p>
+    </ng-container>
     <tbody>
-        <ng-container *ngFor="let cinemaSchedule of cinemaScheduleService.getList(); let i = index">
-            <ng-container *ngFor="let cinemaSchedule of cinemaSchedule.cinemaSchedule; let j = index">
-                <ng-container *ngFor="let schedule of cinemaSchedule.schedule; let k = index">
-                    <tr>
-                        <td> {{ i }} </td>
-                        <td> {{ cinemaScheduleService.getList()[i].cinemaCenter }} </td>
-                        <td> {{schedule.movie.id}} </td>
-                        <td> {{schedule.movie.name}} </td>
-                        <td> {{ schedule.movie.runtime }} Phút </td>
-                        <td> {{ getStatus(schedule.movie.status) }} </td>
-                        <td>
-                            {{ cinemaSchedule.cinema.name }}
-                        </td>
-                        <ng-container *ngFor="let dateTime of schedule.dateTime; let iDateTime = index">
-                    <tr>
-                        <ng-container *ngIf="dateTime.time.length == 0 && iDateTime + 1 === schedule.dateTime.length - 1">
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                data-bs-target="#addModal" (click)="setIndex(i, j, k)" (click)="isValidButtonAdd()">
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        </ng-container>
-                    </tr>
-                    <ng-container *ngFor="let time1 of dateTime.time; let iTime = index">
-                        <tr style="display: flex; align-items: center;">
-                            <td>
-                                {{ dateTime.date | date:'dd/MM/yyyy'}}
-                                {{ time1.hour | number:'2.0'}} : {{time1.minute | number: '2.0'}}
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#updateModal" (click)="getTimeAndDate(time1, dateTime)"
-                                    (click)="isValidButtonUpdate()">
-                                    <i class="fa fa-pencil"></i>
-                                </button>
+        <ng-container *ngFor="let movie of getListMovie; let i = index">
+            <tr>
+                <td>
+                    {{ i + 1 }}
+                </td>
+                <td>
+                    {{ movie.name }}
+                </td>
+                <td>
+                    {{ movie.runtime }} Phút
+                </td>
+                <td [style.color]="getStatusColor(movie.status)">
+                    {{ getStatus(movie.status) }}
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal"
+                        (click)="getMovie(movie)">
+                        <i class="fa fa-times"></i>
+                    </button>
 
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal" (click)="getTimeAndDate(time1, dateTime)">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <ng-container *ngIf="isValidButton(schedule.dateTime, time1)">
-                                <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                    data-bs-target="#addModal" (click)="setIndex(i, j, k)" (click)="isValidButtonAdd()">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </ng-container>
-                        </tr>
-
-                        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-danger text-white">
-                                        <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa</h5>
-                                        <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <i class="fa fa-warning"></i>
-                                        Bạn có chắc chắn muốn xóa?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-                                            (click)="deleteTime()">Xóa</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-success text-white">
-                                        <h5 class="modal-title" id="updateModalLabel">Cập Nhật Ngày Chiếu</h5>
-                                        <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <ng-container *ngIf="timeTS != null">
-                                            <label for="dateInput">Ngày:</label>
-                                            <input #dateInput type="date" id="dateInput" class="form-control"
-                                                [value]="dateStr" (input)="isValidButtonUpdate()">
-
-                                            <label for="hourInput">Giờ:</label>
-                                            <input #hourInput type="number" id="hourInput" class="form-control"
-                                                placeholder="Giờ" [value]="timeTS.hour" (input)="isValidButtonUpdate()">
-
-                                            <label for="minuteInput">Phút:</label>
-                                            <input #minuteInput type="number" id="minuteInput" class="form-control"
-                                                placeholder="Phút" [value]="timeTS.minute"
-                                                (input)="isValidButtonUpdate()">
-                                        </ng-container>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                            (click)="update()" [disabled]="isDisabledButton">
-                                            Cập nhật</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                                <div class="modal-content">
-                                    <div class="modal-header bg-primary text-white">
-                                        <h5 class="modal-title" id="addModalLabel">Thêm Lịch Chiếu </h5>
-                                        <button type="button" class="btn-close text-white" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <label for="dateInput">Ngày:</label>
-                                        <input type="date" id="dateInput1" class="form-control" [(ngModel)]="dateInput"
-                                            (ngModelChange)="isValidButtonAdd()">
-
-                                        <label for="hourInput">Giờ:</label>
-                                        <input type="number" id="hourInput1" class="form-control" placeholder="Giờ"
-                                            [(ngModel)]="hourInput" (ngModelChange)="isValidButtonAdd()">
-
-                                        <label for="minuteInput">Phút:</label>
-                                        <input type="number" id="minuteInput1" class="form-control" placeholder="Phút"
-                                            [(ngModel)]="minuteInput" (ngModelChange)="isValidButtonAdd()">
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Hủy</button>
-                                        <button type="button" class="btn btn-success" data-bs-dismiss="modal"
-                                            (click)="add(cinemaScheduleService.getList())"
-                                            [disabled]="isDisabledButton">
-                                            Thêm mới</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </ng-container>
-                </ng-container>
-                </tr>
-            </ng-container>
+                    <button class="btn btn-info" (click)="getMovieAndGotoDetailPage(movie)">
+                        <i class="fa fa-info-circle"></i>
+                    </button>
+                </td>
+            </tr>
         </ng-container>
+
+        <ng-container *ngIf="showAddRow">
+            <tr>
+                <td> {{ getListMovie.length + 1 }} </td>
+                <td>
+                    <select [(ngModel)]="movieTS">
+                        <option *ngFor="let option of getListMovieNotExistsInCinemaCenter" [ngValue]="option">
+                            {{ option.name }}
+                        </option>
+                    </select>
+                </td>
+
+                <td> {{ movieTS.runtime }} Phút </td>
+
+                <td [style.color]="getStatusColor(movieTS.status)">
+                    {{ getStatus(movieTS.status) }}
+                </td>
+
+                <td>
+                    <button class="btn btn-primary margin" (click)="addSchedule()">
+                        <i class="fa fa-check"></i>
+                    </button>
+                </td>
+            </tr>
         </ng-container>
+
     </tbody>
 </table>
+
+<button class="btn btn-success" (click)="addRow()" (click)="onSelectCinemaCenter()">
+    <i class="fa fa-plus"></i>
+</button>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="deleteModalLabel">Xác nhận xóa</h5>
+                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <i class="fa fa-warning"></i>
+                Bạn có chắc chắn muốn xóa?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Hủy </button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteSchedule()"> Xóa
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

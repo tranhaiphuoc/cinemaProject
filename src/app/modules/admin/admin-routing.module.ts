@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmployeeComponent } from './employee/employee.component';
 import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
 import { MovieComponent } from './movie/movie.component';
-import { CinemaManagementComponent } from './cinema-management/cinema-management.component';
 import { ScheduleManagementComponent } from './schedule-management/schedule-management.component';
+import { ScheduleDetailsComponent } from './schedule-management/schedule-details/schedule-details.component';
+import { CinemaManagementComponent } from './cinema-management/cinema-management.component';
 import { UpdateAddEmployeeComponent } from './employee/update-add-employee/update-add-employee.component';
 import { UpdateAddMovieComponent } from './movie/update-add-movie/update-add-movie.component';
+import { CinemaDetailsComponent } from './cinema-management/cinema-details/cinema-details.component';
 
 const routes: Routes = [
   {
@@ -47,6 +49,12 @@ const routes: Routes = [
       {
         path: 'schedule',
         component: ScheduleManagementComponent,
+      },
+      {
+        path: 'schedule/details/:indexCinemaDto/:indexCinemaSchedule/:indexSchedule', component: ScheduleDetailsComponent
+      },
+      {
+        path: 'cinema/details/:indexCinemaCenter', component: CinemaDetailsComponent
       },
     ]
   }

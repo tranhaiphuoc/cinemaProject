@@ -4,79 +4,89 @@ import { CinemaScheduleService } from 'src/app/services/cinema-schedule.service'
 import { CinemaScheduleDto } from 'src/app/dto/cinema-schedule-dto';
 import { Cinema } from 'src/app/models/cinema.model';
 import { CinemaCenter } from 'src/app/models/cinema-center.model';
+import { CinemaCenterService } from 'src/app/services/cinema-center.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cinema-management',
   templateUrl: './cinema-management.component.html',
-  styleUrls: ['./cinema-management.component.scss']
+  styleUrls: ['./cinema-management.component.scss'],
 })
 export class CinemaManagementComponent {
-  columns = [
-    'STT', 'Rạp trung tâm', 'Rạp', ''
-  ]
+  columns = ['STT', 'Rạp trung tâm', 'Tác vụ'];
 
-  isDisableButton = false;
+  cinemaCenterIndex!: number;
+  cinemaCenterIndexUpdate!: number;
 
-  cinemaCenterInput!: string;
-  cinemaInput!: string;
+  isUpdate = false;
 
-  indexCinemaCenter = 0;
-  indexCinema = 0;
+  cinemaCenterNameUpdate = '';
+  cinemaCenterName = '';
 
-  constructor(public cinemaScheduleService: CinemaScheduleService) { }
+  constructor(
+    public cinemaScheduleService: CinemaScheduleService,
+    private cinemaCenterService: CinemaCenterService,
+    private router: Router
+  ) {}
 
-  resetValue() {
-    this.cinemaCenterInput = '';
-    this.cinemaInput = '';
+  gotoDetailPage() {
+    this.router.navigate(['admin/cinema/details', this.cinemaCenterIndex]);
   }
 
-  isInValidButtonUpdate() {
-    if (this.cinemaCenterInput && this.cinemaInput) {
-      this.isDisableButton = false;
-    } else
-      this.isDisableButton = true;
+  setIndexCinemaCenter(index: number) {
+    this.cinemaCenterIndex = index;
   }
 
-  getIndex(i: number, j: number) {
-    this.indexCinemaCenter = i;
-    this.indexCinema = j;
-
-    this.cinemaCenterInput = '';//this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaCenter;
-    this.cinemaInput = this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaSchedule[this.indexCinema].cinema.name;
+  setIndexCinemaCenterUpdate(index: number) {
+    if (this.isUpdate == false) this.cinemaCenterIndexUpdate = index;
   }
 
-  update() {
-    if (this.cinemaCenterInput && this.cinemaInput) {
-      this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaCenter = new CinemaCenter;
-      this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaSchedule[this.indexCinema].cinema.name = this.cinemaInput;
-    }
+  setUpdate() {
+    this.isUpdate = true;
+    this.cinemaCenterNameUpdate =
+      this.cinemaScheduleService.getList()[
+        this.cinemaCenterIndexUpdate
+      ].cinemaCenter.name;
   }
 
   deleteCinemaCenter() {
-    this.cinemaScheduleService.getList().splice(this.indexCinemaCenter, 1);
+    if (!this.isUpdate)
+      this.cinemaScheduleService.getList().splice(this.cinemaCenterIndex, 1);
   }
 
-  getIdCinema(): number {
-    let id = 0;
-    this.cinemaScheduleService.getList().forEach(cinemaSchedule => {
-      cinemaSchedule.cinemaSchedule.forEach(cinemaScheduleChild => {
-        id = cinemaScheduleChild.cinema.id;
-      })
-    });
-    return id + 1;
+  isValidCinemaCenterNameUpdate(): boolean {
+    if (this.cinemaCenterNameUpdate == '') return false;
+    return true;
   }
 
-  add() {
-    let cinemaDto = new CinemaDto;
+  isValidCinemaCenterName(): boolean {
+    if (this.cinemaCenterName == '') return false;
+    return true;
+  }
 
-    cinemaDto.cinemaCenter = new CinemaCenter;
+  addCinemaCenter() {
+    let cinemaDto = new CinemaDto();
 
-    let cinemaScheduleDto = new CinemaScheduleDto;
+    cinemaDto.id = this.cinemaScheduleService.getList().length + 1;
 
-    cinemaScheduleDto.cinema = new Cinema(this.getIdCinema(), this.cinemaInput);
+    cinemaDto.cinemaCenter = new CinemaCenter();
 
-    cinemaDto.cinemaSchedule.push(cinemaScheduleDto);
+    cinemaDto.cinemaCenter.id = this.cinemaCenterService.getList().length + 1;
+    cinemaDto.cinemaCenter.name = this.cinemaCenterName;
+
+    cinemaDto.cinemaCenter.cinema = [];
+
+    this.cinemaCenterService.getList().push(cinemaDto.cinemaCenter);
 
     this.cinemaScheduleService.getList().push(cinemaDto);
+
+    this.cinemaCenterName = '';
+  }
+
+  updateCinemaCenter() {
+    this.cinemaScheduleService.getList()[
+      this.cinemaCenterIndexUpdate
+    ].cinemaCenter.name = this.cinemaCenterNameUpdate;
+    this.isUpdate = false;
   }
 }

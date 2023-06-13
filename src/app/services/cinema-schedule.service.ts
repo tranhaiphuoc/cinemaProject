@@ -215,6 +215,201 @@ export class CinemaScheduleService {
             },
           ],
         },
+        
+        {
+          cinema: this.cinemaCenterList[0].cinema[1],
+          schedule: [
+            {
+              id: 1,
+              movie: this.movieList[4],
+              dateTime: [
+                {
+                  id: 1,
+                  date: this.tempDate,
+                  time: [
+                    {
+                      id: 1,
+                      scheduleId: 1,
+                      hour: 21,
+                      minute: 50,
+                    },
+                    {
+                      id: 2,
+                      scheduleId: 1,
+                      hour: 22,
+                      minute: 15,
+                    },
+                    {
+                      id: 3,
+                      scheduleId: 1,
+                      hour: 23,
+                      minute: 10,
+                    },
+                  ],
+                },
+                {
+                  id: 2,
+                  date: new Date(
+                    new Date().setDate(this.tempDate.getDate() + 1)
+                  ),
+                  time: [
+                    {
+                      id: 4,
+                      scheduleId: 1,
+                      hour: 8,
+                      minute: 0,
+                    },
+                    {
+                      id: 5,
+                      scheduleId: 1,
+                      hour: 9,
+                      minute: 0,
+                    },
+                    {
+                      id: 6,
+                      scheduleId: 1,
+                      hour: 9,
+                      minute: 30,
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 2,
+              movie: this.movieList[5],
+              dateTime: [
+                {
+                  id: 3,
+                  date: this.tempDate,
+                  time: [
+                    {
+                      id: 7,
+                      scheduleId: 2,
+                      hour: 23,
+                      minute: 15,
+                    },
+                  ],
+                },
+                {
+                  id: 4,
+                  date: new Date(
+                    new Date().setDate(this.tempDate.getDate() + 1)
+                  ),
+                  time: [
+                    {
+                      id: 8,
+                      scheduleId: 2,
+                      hour: 8,
+                      minute: 45,
+                    },
+                    {
+                      id: 9,
+                      scheduleId: 2,
+                      hour: 12,
+                      minute: 30,
+                    },
+                    {
+                      id: 10,
+                      scheduleId: 2,
+                      hour: 15,
+                      minute: 10,
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 3,
+              movie: this.movieList[6],
+              dateTime: [
+                {
+                  id: 5,
+                  date: this.tempDate,
+                  time: [
+                    {
+                      id: 11,
+                      scheduleId: 3,
+                      hour: 22,
+                      minute: 45,
+                    },
+                  ],
+                },
+                {
+                  id: 6,
+                  date: new Date(
+                    new Date().setDate(this.tempDate.getDate() + 1)
+                  ),
+                  time: [
+                    {
+                      id: 12,
+                      scheduleId: 3,
+                      hour: 9,
+                      minute: 30,
+                    },
+                    {
+                      id: 13,
+                      scheduleId: 3,
+                      hour: 11,
+                      minute: 25,
+                    },
+                    {
+                      id: 14,
+                      scheduleId: 3,
+                      hour: 14,
+                      minute: 20,
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              id: 4,
+              movie: this.movieList[7],
+              dateTime: [
+                {
+                  id: 7,
+                  date: this.tempDate,
+                  time: [
+                    {
+                      id: 15,
+                      scheduleId: 4,
+                      hour: 22,
+                      minute: 45,
+                    },
+                  ],
+                },
+                {
+                  id: 8,
+                  date: new Date(
+                    new Date().setDate(this.tempDate.getDate() + 1)
+                  ),
+                  time: [
+                    {
+                      id: 16,
+                      scheduleId: 4,
+                      hour: 9,
+                      minute: 30,
+                    },
+                    {
+                      id: 17,
+                      scheduleId: 4,
+                      hour: 12,
+                      minute: 20,
+                    },
+                    {
+                      id: 18,
+                      scheduleId: 4,
+                      hour: 13,
+                      minute: 40,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+
       ],
     },
     {

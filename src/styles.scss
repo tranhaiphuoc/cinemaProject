@@ -19,5 +19,9 @@ input {
   }
 }
 
+body {
+  background-color: #FDFCF0;
+}
+
 // regular style toast
 @import 'ngx-toastr/toastr';

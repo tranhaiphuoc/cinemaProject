@@ -17,21 +17,5 @@ export class UserHomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.movieList = this._movieService.getList();
-
-    let items: NodeListOf<Element> = document.querySelectorAll('.carousel .carousel-item')
-
-    items.forEach((el: Element) => {
-      const minPerSlide: number = 4
-      let next: Element | null = el.nextElementSibling
-      for (let i = 1; i < minPerSlide; i++) {
-        if (!next) {
-          // wrap carousel by using first child
-          next = items[0]
-        }
-        let cloneChild: Node = next.cloneNode(true)
-        el.appendChild(cloneChild.childNodes[0])
-        next = next.nextElementSibling
-      }
-    })
   }
 }

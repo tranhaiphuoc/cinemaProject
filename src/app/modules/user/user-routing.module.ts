@@ -8,6 +8,7 @@ import { UserAccountComponent } from 'src/app/components/user-account/user-accou
 import { LogInComponent } from 'src/app/components/log-in/log-in.component';
 import { RegisterComponent } from 'src/app/components/register/register.component';
 import { isNotLoggedInGuard } from 'src/app/guards/is-not-logged-in.guard';
+import { UserHomeComponent } from './user-home/user-home.component';
 
 const routes: Routes = [
   {
@@ -16,7 +17,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: DisplayListPosterComponent,
+        component: UserHomeComponent,
       },
       {
         path: 'movie/:id',
@@ -45,4 +46,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class UserRoutingModule {}
+export class UserRoutingModule { }

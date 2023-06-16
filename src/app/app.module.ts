@@ -10,6 +10,7 @@ import { UserAccountComponent } from './components/user-account/user-account.com
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NotDevelopedComponent } from './components/not-developed/not-developed.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LogInComponent,
     RegisterComponent,
     UserAccountComponent,
+    NotDevelopedComponent,
   ],
   imports: [
     BrowserModule,

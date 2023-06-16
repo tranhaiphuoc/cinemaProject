@@ -1,6 +1,12 @@
 .account-nav {
   padding-block: 0.3em;
-  background-color: black;
+  background-color: #fdfcf0;
+}
+
+.item-nav {
+  display: inline;
+  padding: 0px 10px;
+  text-transform: uppercase;
 }
 
 .account {
@@ -9,15 +15,19 @@
 }
 
 .account div {
-  color: white;
+  color: #8B8B88;
 }
 
 .account a {
   width: fit-content;
-  color: white;
+  color: #8B8B88;
   text-decoration: none;
 }
 
 .item {
   cursor: pointer;
+}
+
+i {
+  margin-right: 3px;
 }

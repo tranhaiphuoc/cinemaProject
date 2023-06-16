@@ -9,11 +9,12 @@
       >
       <ng-container [ngSwitch]="field.controlType">
         <ng-container *ngSwitchCase="'input'">
-          <input 
+          <input
             *ngIf="field.inputType != 'hidden'"
             [formControlName]="field.controlName"
             [type]="field.inputType"
             [id]="field.controlName"
+            [ngClass]="{ error: !success ? true : false }"
             class="form-control"
           />
         </ng-container>
@@ -22,10 +23,7 @@
       </ng-container>
       <ng-container *ngIf="field.invalidMessage">
         <small
-          *ngIf="
-            registerForm.get(field.controlName)?.invalid &&
-            registerForm.get(field.controlName)?.touched
-          "
+          *ngIf="registerForm.get(field.controlName)?.invalid && !success"
           class="text-danger"
           >{{ field.invalidMessage }}</small
         >
@@ -33,7 +31,7 @@
     </div>
   </ng-container>
 
-  <div (click)="submit()" class="button mt-4" style="cursor: pointer;">
+  <div (click)="submit()" class="button mt-4" style="cursor: pointer">
     <p>Register</p>
   </div>
 </form>

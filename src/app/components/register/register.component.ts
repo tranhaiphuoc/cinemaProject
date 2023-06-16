@@ -16,6 +16,7 @@ import { UserService } from 'src/app/services/user.service';
 export class RegisterComponent implements OnInit {
   registerForm!: FormGroup;
   dynamicFormFields!: DynamicFormField[];
+  success: boolean = true;
 
   constructor(
     private fb: FormBuilder,
@@ -89,7 +90,11 @@ export class RegisterComponent implements OnInit {
   }
 
   submit(): void {
-    if (this.registerForm.invalid) return;
+    if (this.registerForm.invalid) {
+      this.success = false;
+      return;
+    }
+    this.success = true;
 
     const user: User = {
       id: 0,

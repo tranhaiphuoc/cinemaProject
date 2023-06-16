@@ -9,8 +9,13 @@ p {
 }
 
 .button {
+  display: block;
+  width: 100%;
   padding-block: 0.5em;
+  color: white;
   text-align: center;
   background-color: red;
   border-radius: 5px;
+  border-color: red;
+  outline: none;
 }

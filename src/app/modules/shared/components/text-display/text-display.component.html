@@ -1,0 +1,8 @@
+<div class="text">
+    <ul>
+        <li *ngFor="let item of items; index as i">
+            <span><a [routerLink]="routes[i]">{{ item }}</a></span>
+            <ng-container *ngIf="i < items.length - 1"> | </ng-container>
+        </li>
+    </ul>
+</div>

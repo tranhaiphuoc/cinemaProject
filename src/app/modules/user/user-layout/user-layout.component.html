@@ -1,10 +1,20 @@
 <div class="account-nav">
   <div class="account">
-    <div *ngIf="!isLoggedIn">
+    <div class="item-nav">
+      <i class="fa fa-exclamation fa-lg"></i>
+      <a class="item" (click)="notDeveloped()">Tin mới & ưu đãi</a>
+    </div>
+    <div class="item-nav">
+      <i class="fa fa-ticket fa-lg"></i>
+      <a class="item" (click)="notDeveloped()">Vé của tôi</a>
+    </div>
+    <div class="item-nav" *ngIf="!isLoggedIn">
+      <i class="fa fa-regular fa-user fa-lg"></i>
       <a class="item" [routerLink]="['/user/logIn']">Log In</a> |
       <a class="item" [routerLink]="['/user/register']">Register</a>
     </div>
-    <div *ngIf="isLoggedIn">
+    <div class="item-nav" *ngIf="isLoggedIn">
+      <i class="fa fa-regular fa-user fa-lg"></i>
       <a class="item" [routerLink]="">Hello {{ username }}</a> |
       <a class="item" [routerLink]="" (click)="logOut()">Log out</a>
     </div>

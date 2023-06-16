@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-
 @Component({
   selector: 'app-user-layout',
   templateUrl: './user-layout.component.html',
@@ -16,10 +15,17 @@ export class UserLayoutComponent {
     return this.authService.getToken();
   }
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router) { }
 
   logOut(): void {
     this.authService.logOut();
     this.router.navigate(['/']);
+  }
+
+  notDeveloped(): void {
+    localStorage.setItem('backUrl', this.router.url);
+    this.router.navigate(['not-developed']);
   }
 }

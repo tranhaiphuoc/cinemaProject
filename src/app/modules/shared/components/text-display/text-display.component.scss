@@ -1,0 +1,30 @@
+* {
+    color: aliceblue;
+}
+
+.text {
+    display: inline-block;
+    padding: 10px;
+    background-color: #E71A0F;
+    border: 2px solid #E71A0F;
+    border-radius: 12px;
+}
+
+ul {
+    list-style-type: none;
+    margin-bottom: 0px;
+    padding-left: 0px;
+}
+
+li {
+    display: inline;
+}
+
+a {
+    text-decoration: none;
+
+    &:hover {
+        font-weight: bold;
+        color: aliceblue;
+    }
+}

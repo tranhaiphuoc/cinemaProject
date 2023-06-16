@@ -7,6 +7,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { ButtonDeleteComponent } from './components/button-delete/button-delete.component';
 import { ModalDeleteComponent } from './components/modal-delete/modal-delete.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { TitleDisplayComponent } from './components/title-display/title-display.component';
+import { TextDisplayComponent } from './components/text-display/text-display.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -14,18 +17,23 @@ import { NgxPaginationModule } from 'ngx-pagination';
     LessThanTenPipe,
     TableComponent,
     ButtonDeleteComponent,
-    ModalDeleteComponent
+    ModalDeleteComponent,
+    TitleDisplayComponent,
+    TextDisplayComponent
   ],
   imports: [
     CommonModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    RouterModule
   ],
   exports: [
     BeforeAfterNoonPipe,
     LessThanTenPipe,
     TableComponent,
     ButtonDeleteComponent,
-    ModalDeleteComponent
+    ModalDeleteComponent,
+    TitleDisplayComponent,
+    TextDisplayComponent
   ],
 })
 export class SharedModule { }

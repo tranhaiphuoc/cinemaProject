@@ -21,6 +21,7 @@ export class MovieComponent implements OnInit {
   currentRoute = { relativeTo: this._activatedRoute };
   dataList!: Movie[];
   fieldList!: string[];
+  headerList!: string[];
   movieName!: string;
   fillList!: Movie[];
 
@@ -31,6 +32,8 @@ export class MovieComponent implements OnInit {
     this.dataList = this._movieService.getList();
     this.fieldList = ['no.', 'name', 'rating', 'releaseDate', 'runtime',
       'genre'];
+    this.headerList = ['STT', 'Tên phim', 'Độ tuổi', 'Ngày khởi chiếu', 'Thời lượng',
+      'Thể loại'];
 
     this.movieName = '';
     this.fillList = this.fillDataListByName();

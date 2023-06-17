@@ -12,6 +12,7 @@ export class TableComponent {
 
   @Input('dataList') dataList!: any[];
   @Input('fieldList') fieldList!: string[];
+  @Input('headerList') headerList!: string[];
 
   editIconImg = 'assets/Images/others/edit-icon.png';
   p: number = 1;

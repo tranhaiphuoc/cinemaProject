@@ -12,6 +12,7 @@ import { EmployeeService } from 'src/app/services/employee.service';
 export class EmployeeComponent implements OnInit {
   employeeList!: Employee[];
   fieldList!: string[];
+  headerList!: string[];
   currentRoute = { relativeTo: this._activatedRoute };
 
   constructor(
@@ -23,6 +24,7 @@ export class EmployeeComponent implements OnInit {
   ngOnInit(): void {
     this.employeeList = this._employeeService.getList();
     this.fieldList = ['no.', 'ID-card', 'name', 'DOB', 'phone', 'address'];
+    this.headerList = ['STT', 'CCCD', 'Tên nhân viên', 'Ngày sinh', 'Điện thoại', 'Địa chỉ'];
   }
 
   deleteItem(item: Employee | undefined) {

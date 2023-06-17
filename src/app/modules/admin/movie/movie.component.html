@@ -1,5 +1,6 @@
 <div class="container-fluid">
     <app-table-movie (seeDetails)="seeDetails($event)" (addItem)="addItem()" (updateItem)="updateItem($event)"
-        (deleteItem)="deleteItem($event)" [dataList]="dataList" [fieldList]="fieldList"></app-table-movie>
+        (deleteItem)="deleteItem($event)" [headerList]="headerList" [dataList]="dataList"
+        [fieldList]="fieldList"></app-table-movie>
     <button class="btn btn-secondary" routerLink="/">Quay về trang chủ</button>
 </div>

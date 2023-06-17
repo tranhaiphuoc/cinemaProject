@@ -16,7 +16,7 @@ export class TableMovieComponent {
 
   @Input('dataList') dataList!: any[];
   @Input('fieldList') fieldList!: string[];
-
+  @Input('headerList') headerList!: string[];
   constructor(
     private readonly _movieService: MovieService,
   ) { };

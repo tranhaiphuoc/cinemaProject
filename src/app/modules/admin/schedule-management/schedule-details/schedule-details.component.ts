@@ -330,14 +330,7 @@ export class ScheduleDetailsComponent implements OnInit {
     }
   }
 
-  getScheduleId(): number {
-    const cinemaSchedules = this.cinemaScheduleService.getList();
-    const lastSchedule = cinemaSchedules[cinemaSchedules.length - 1].cinemaSchedule[cinemaSchedules[cinemaSchedules.length - 1].cinemaSchedule.length - 1].schedule;
-    const lastDateTime = lastSchedule[lastSchedule.length - 1].dateTime;
-    const lastId = lastDateTime[lastDateTime.length - 1].id;
-
-    return lastId + 1;
-  }
+ 
 
   addDate() {
     const newDate = new Date(this.date as string);
@@ -345,7 +338,7 @@ export class ScheduleDetailsComponent implements OnInit {
     let dateTimeSchedule = new DateTimeSchedule();
 
     dateTimeSchedule.time = [];
-    dateTimeSchedule.id = this.getScheduleId();
+   // dateTimeSchedule.id = this.getScheduleId();
     dateTimeSchedule.date = newDate;
 
     this.cinemaScheduleService.getList()[this.indexCinemaDto].cinemaSchedule[this.indexCinemaSchedule].schedule[this.indexSchedule].dateTime.push(dateTimeSchedule);

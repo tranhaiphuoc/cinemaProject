@@ -11,6 +11,7 @@ import { MovieService } from 'src/app/services/movie.service';
 export class DisplayMovieDetailsComponent implements OnInit {
   movie!: Movie;
   isDetail = true;
+  public isImageClicked = false;
 
   get getRating(): string {
     if(this.movie.rating === "T16" || this.movie.rating === "T13" || this.movie.rating === "T18")
@@ -30,5 +31,9 @@ export class DisplayMovieDetailsComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.movie = this.movieService.getById(params['id']);
     });
+  }
+
+  onClickImage(): void {
+    this.isImageClicked = true;
   }
 }

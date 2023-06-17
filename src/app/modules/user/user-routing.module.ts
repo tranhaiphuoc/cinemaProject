@@ -17,7 +17,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: UserHomeComponent,
+        component: DisplayListPosterComponent,
       },
       {
         path: 'movie/:id',

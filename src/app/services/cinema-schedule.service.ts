@@ -17,63 +17,69 @@ export class CinemaScheduleService {
   private cinemaCenterList: CinemaCenter[] = this.cinamaCenterService.getList();
   private movieList: Movie[] = this.movieService.getList();
 
+  private countCinemaDto = 1;
+  private countSchedule = 1;
+  private countDatetime = 1;
+  private countShowtime = 1;
+
+
   private cinemaScheduleList: CinemaDto[] = [
     {
-      id: 1,
+      id: this.countCinemaDto++,
       cinemaCenter: this.cinemaCenterList[0],
       cinemaSchedule: [
         {
           cinema: this.cinemaCenterList[0].cinema[0],
           schedule: [
             {
-              id: 1,
+              id: this.countSchedule++,
               movie: this.movieList[0],
               dateTime: [
                 {
-                  id: 1,
+                  id: this.countDatetime++,
                   date: this.tempDate,
                   time: [
                     {
-                      id: 1,
-                      scheduleId: 1,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 21,
                       minute: 50,
                     },
                     {
-                      id: 2,
-                      scheduleId: 1,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 22,
                       minute: 15,
                     },
                     {
-                      id: 3,
-                      scheduleId: 1,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 23,
                       minute: 10,
                     },
                   ],
                 },
                 {
-                  id: 2,
+                  id: this.countDatetime++,
                   date: new Date(
                     new Date().setDate(this.tempDate.getDate() + 1)
                   ),
                   time: [
                     {
-                      id: 4,
-                      scheduleId: 1,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 8,
                       minute: 0,
                     },
                     {
-                      id: 5,
-                      scheduleId: 1,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 9,
                       minute: 0,
                     },
                     {
-                      id: 6,
-                      scheduleId: 1,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 9,
                       minute: 30,
                     },
@@ -82,42 +88,42 @@ export class CinemaScheduleService {
               ],
             },
             {
-              id: 2,
+              id: this.countSchedule++,
               movie: this.movieList[1],
               dateTime: [
                 {
-                  id: 3,
+                  id: this.countDatetime++,
                   date: this.tempDate,
                   time: [
                     {
-                      id: 7,
-                      scheduleId: 2,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 23,
                       minute: 15,
                     },
                   ],
                 },
                 {
-                  id: 4,
+                  id: this.countDatetime++,
                   date: new Date(
                     new Date().setDate(this.tempDate.getDate() + 1)
                   ),
                   time: [
                     {
-                      id: 8,
-                      scheduleId: 2,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 8,
                       minute: 45,
                     },
                     {
-                      id: 9,
-                      scheduleId: 2,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 12,
                       minute: 30,
                     },
                     {
-                      id: 10,
-                      scheduleId: 2,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 15,
                       minute: 10,
                     },
@@ -126,42 +132,42 @@ export class CinemaScheduleService {
               ],
             },
             {
-              id: 3,
+              id: this.countSchedule++,
               movie: this.movieList[2],
               dateTime: [
                 {
-                  id: 5,
+                  id: this.countDatetime++,
                   date: this.tempDate,
                   time: [
                     {
-                      id: 11,
-                      scheduleId: 3,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 22,
                       minute: 45,
                     },
                   ],
                 },
                 {
-                  id: 6,
+                  id: this.countDatetime++,
                   date: new Date(
                     new Date().setDate(this.tempDate.getDate() + 1)
                   ),
                   time: [
                     {
-                      id: 12,
-                      scheduleId: 3,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 9,
                       minute: 30,
                     },
                     {
-                      id: 13,
-                      scheduleId: 3,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 11,
                       minute: 25,
                     },
                     {
-                      id: 14,
-                      scheduleId: 3,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 14,
                       minute: 20,
                     },
@@ -170,42 +176,42 @@ export class CinemaScheduleService {
               ],
             },
             {
-              id: 4,
+              id: this.countSchedule++,
               movie: this.movieList[3],
               dateTime: [
                 {
-                  id: 7,
+                  id: this.countDatetime++,
                   date: this.tempDate,
                   time: [
                     {
-                      id: 15,
-                      scheduleId: 4,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 22,
                       minute: 45,
                     },
                   ],
                 },
                 {
-                  id: 8,
+                  id: this.countDatetime++,
                   date: new Date(
                     new Date().setDate(this.tempDate.getDate() + 1)
                   ),
                   time: [
                     {
-                      id: 16,
-                      scheduleId: 4,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 9,
                       minute: 30,
                     },
                     {
-                      id: 17,
-                      scheduleId: 4,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 12,
                       minute: 20,
                     },
                     {
-                      id: 18,
-                      scheduleId: 4,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 13,
                       minute: 40,
                     },
@@ -220,54 +226,54 @@ export class CinemaScheduleService {
           cinema: this.cinemaCenterList[0].cinema[1],
           schedule: [
             {
-              id: 1,
+              id: this.countSchedule++,
               movie: this.movieList[4],
               dateTime: [
                 {
-                  id: 1,
+                  id: this.countDatetime++,
                   date: this.tempDate,
                   time: [
                     {
-                      id: 1,
-                      scheduleId: 1,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 21,
                       minute: 50,
                     },
                     {
-                      id: 2,
-                      scheduleId: 1,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 22,
                       minute: 15,
                     },
                     {
-                      id: 3,
-                      scheduleId: 1,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 23,
                       minute: 10,
                     },
                   ],
                 },
                 {
-                  id: 2,
+                  id: this.countDatetime++,
                   date: new Date(
                     new Date().setDate(this.tempDate.getDate() + 1)
                   ),
                   time: [
                     {
-                      id: 4,
-                      scheduleId: 1,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 8,
                       minute: 0,
                     },
                     {
-                      id: 5,
-                      scheduleId: 1,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 9,
                       minute: 0,
                     },
                     {
-                      id: 6,
-                      scheduleId: 1,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 9,
                       minute: 30,
                     },
@@ -276,42 +282,42 @@ export class CinemaScheduleService {
               ],
             },
             {
-              id: 2,
+              id: this.countSchedule++,
               movie: this.movieList[5],
               dateTime: [
                 {
-                  id: 3,
+                  id: this.countDatetime++,
                   date: this.tempDate,
                   time: [
                     {
-                      id: 7,
-                      scheduleId: 2,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 23,
                       minute: 15,
                     },
                   ],
                 },
                 {
-                  id: 4,
+                  id: this.countDatetime++,
                   date: new Date(
                     new Date().setDate(this.tempDate.getDate() + 1)
                   ),
                   time: [
                     {
-                      id: 8,
-                      scheduleId: 2,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 8,
                       minute: 45,
                     },
                     {
-                      id: 9,
-                      scheduleId: 2,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 12,
                       minute: 30,
                     },
                     {
-                      id: 10,
-                      scheduleId: 2,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 15,
                       minute: 10,
                     },
@@ -320,42 +326,42 @@ export class CinemaScheduleService {
               ],
             },
             {
-              id: 3,
+              id: this.countSchedule++,
               movie: this.movieList[6],
               dateTime: [
                 {
-                  id: 5,
+                  id: this.countDatetime++,
                   date: this.tempDate,
                   time: [
                     {
-                      id: 11,
-                      scheduleId: 3,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 22,
                       minute: 45,
                     },
                   ],
                 },
                 {
-                  id: 6,
+                  id: this.countDatetime++,
                   date: new Date(
                     new Date().setDate(this.tempDate.getDate() + 1)
                   ),
                   time: [
                     {
-                      id: 12,
-                      scheduleId: 3,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 9,
                       minute: 30,
                     },
                     {
-                      id: 13,
-                      scheduleId: 3,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 11,
                       minute: 25,
                     },
                     {
-                      id: 14,
-                      scheduleId: 3,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 14,
                       minute: 20,
                     },
@@ -364,42 +370,42 @@ export class CinemaScheduleService {
               ],
             },
             {
-              id: 4,
+              id: this.countSchedule++,
               movie: this.movieList[7],
               dateTime: [
                 {
-                  id: 7,
+                  id: this.countDatetime++,
                   date: this.tempDate,
                   time: [
                     {
-                      id: 15,
-                      scheduleId: 4,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 22,
                       minute: 45,
                     },
                   ],
                 },
                 {
-                  id: 8,
+                  id: this.countDatetime++,
                   date: new Date(
                     new Date().setDate(this.tempDate.getDate() + 1)
                   ),
                   time: [
                     {
-                      id: 16,
-                      scheduleId: 4,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 9,
                       minute: 30,
                     },
                     {
-                      id: 17,
-                      scheduleId: 4,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 12,
                       minute: 20,
                     },
                     {
-                      id: 18,
-                      scheduleId: 4,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 13,
                       minute: 40,
                     },
@@ -413,37 +419,37 @@ export class CinemaScheduleService {
       ],
     },
     {
-      id: 2,
+      id: this.countCinemaDto++,
       cinemaCenter: this.cinemaCenterList[1],
       cinemaSchedule: [
         {
           cinema: this.cinemaCenterList[1].cinema[0],
           schedule: [
             {
-              id: 5,
+              id: this.countSchedule++,
               movie: this.movieList[4],
               dateTime: [
                 {
-                  id: 9,
+                  id: this.countDatetime++,
                   date: this.tempDate,
                   time: [
                     {
-                      id: 19,
-                      scheduleId: 5,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 22,
                       minute: 45,
                     },
                   ],
                 },
                 {
-                  id: 10,
+                  id: this.countDatetime++,
                   date: new Date(
                     new Date().setDate(this.tempDate.getDate() + 1)
                   ),
                   time: [
                     {
-                      id: 20,
-                      scheduleId: 5,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 9,
                       minute: 30,
                     },
@@ -452,30 +458,30 @@ export class CinemaScheduleService {
               ],
             },
             {
-              id: 6,
+              id: this.countSchedule++,
               movie: this.movieList[5],
               dateTime: [
                 {
-                  id: 11,
+                  id: this.countDatetime++,
                   date: this.tempDate,
                   time: [
                     {
-                      id: 21,
-                      scheduleId: 6,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 22,
                       minute: 45,
                     },
                   ],
                 },
                 {
-                  id: 12,
+                  id: this.countDatetime++,
                   date: new Date(
                     new Date().setDate(this.tempDate.getDate() + 1)
                   ),
                   time: [
                     {
-                      id: 22,
-                      scheduleId: 6,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 9,
                       minute: 30,
                     },
@@ -484,30 +490,30 @@ export class CinemaScheduleService {
               ],
             },
             {
-              id: 7,
+              id: this.countSchedule++,
               movie: this.movieList[6],
               dateTime: [
                 {
-                  id: 13,
+                  id: this.countDatetime++,
                   date: this.tempDate,
                   time: [
                     {
-                      id: 23,
-                      scheduleId: 7,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 22,
                       minute: 45,
                     },
                   ],
                 },
                 {
-                  id: 14,
+                  id: this.countDatetime++,
                   date: new Date(
                     new Date().setDate(this.tempDate.getDate() + 1)
                   ),
                   time: [
                     {
-                      id: 24,
-                      scheduleId: 7,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 9,
                       minute: 30,
                     },
@@ -516,30 +522,30 @@ export class CinemaScheduleService {
               ],
             },
             {
-              id: 8,
+              id: this.countSchedule++,
               movie: this.movieList[7],
               dateTime: [
                 {
-                  id: 15,
+                  id: this.countDatetime++,
                   date: this.tempDate,
                   time: [
                     {
-                      id: 25,
-                      scheduleId: 8,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 22,
                       minute: 45,
                     },
                   ],
                 },
                 {
-                  id: 16,
+                  id: this.countDatetime++,
                   date: new Date(
                     new Date().setDate(this.tempDate.getDate() + 1)
                   ),
                   time: [
                     {
-                      id: 26,
-                      scheduleId: 8,
+                      id: this.countShowtime++,
+                      scheduleId: this.countSchedule - 1,
                       hour: 9,
                       minute: 30,
                     },
@@ -558,7 +564,38 @@ export class CinemaScheduleService {
     private cinamaCenterService: CinemaCenterService
   ) {}
 
+  private setId() {
+    this.countCinemaDto = 1;
+    this.countDatetime = 1;
+    this.countSchedule = 1;
+    this.countShowtime = 1;
+
+    let count = 1;
+    this.cinemaScheduleList.forEach(cinemaDTO => {
+      cinemaDTO.cinemaCenter.id = count++;
+    });
+
+    for (const cinema of this.cinemaScheduleList) {
+      cinema.id = this.countCinemaDto++;
+      for (const cinemaSchedule of cinema.cinemaSchedule) {
+        for (const schedule of cinemaSchedule.schedule) {
+          schedule.id = this.countSchedule++;
+    
+          for (const dateTime of schedule.dateTime) {
+            dateTime.id = this.countDatetime++;
+    
+            for (const time of dateTime.time) {
+              time.id = this.countShowtime++;
+              time.scheduleId = this.countSchedule - 1;
+            }
+          }
+        }
+      }
+    }
+  }
+
   getList(): CinemaDto[] {
+    this.setId();
     return this.cinemaScheduleList;
   }
 

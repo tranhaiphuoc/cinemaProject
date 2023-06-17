@@ -2,7 +2,7 @@
   <h3>Nội Dung Phim</h3>
 
   <div class="movie-detail">
-    <img [src]="movie.urlImage" alt="poster image" appZoomImage />
+    <img [src]="movie.urlImage" alt="poster image" (click)="onClickImage()"/>
     <div>
       <h4>{{ movie.name }}</h4>
       <div>
@@ -39,9 +39,14 @@
       Trailer
     </label>
   </div>
+
+  <div class="overlay" *ngIf="isImageClicked" (click)="isImageClicked = false">
+    <img [src]="movie.urlImage" alt="poster image" class="movie-image-large" (click)="$event.stopPropagation()">
+  </div>
   
   <div class="center" *ngIf="isDetail">{{ movie.anecdote }}</div>
   <div *ngIf="!isDetail">
     <app-trailer [urlTrailer]="movie.urlTrailer"></app-trailer>
   </div>
+  <div class="height"></div>
 </div>

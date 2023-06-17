@@ -12,7 +12,6 @@ import { PosterInfomationComponent } from './poster-infomation/poster-infomation
 import { UserLayoutComponent } from './user-layout/user-layout.component';
 import { ButtonBookingComponent } from './button-booking/button-booking.component';
 import { TrailerComponent } from './display-movie-details/trailer/trailer.component';
-import { ZoomImageComponent } from './display-movie-details/zoom-image/zoom-image.component';
 import { SelectTicketComponent } from './button-booking/components/select-ticket/select-ticket.component';
 import { ButtonBackComponent } from './button-booking/components/button-back/button-back.component';
 import { ButtonSelectSeatComponent } from './button-booking/components/button-select-seat/button-select-seat.component';
@@ -35,8 +34,6 @@ import { MovieCarouselComponent } from './movie-carousel/movie-carousel.componen
     PosterInfomationComponent,
     UserLayoutComponent,
     TrailerComponent,
-    ZoomImageComponent,
-
     SelectTicketComponent,
     ButtonBackComponent,
     ButtonSelectSeatComponent,

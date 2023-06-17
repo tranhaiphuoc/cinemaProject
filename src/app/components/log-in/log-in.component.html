@@ -1,4 +1,4 @@
-<form [formGroup]="logInForm" (ngSubmit)="logIn()" >
+<form [formGroup]="logInForm" (ngSubmit)="logIn()">
   <div class="form-group mb-2">
     <label class="form-label bold">Username</label>
     <input
@@ -10,7 +10,9 @@
     />
     <small
       *ngIf="
-        logInForm.get('username')?.invalid && !success
+        (logInForm.get('username')?.invalid &&
+          logInForm.get('username')?.touched) ||
+        (logInForm.get('username')?.invalid && !success)
       "
       class="text-danger"
       >Username field is required</small
@@ -27,7 +29,9 @@
     />
     <small
       *ngIf="
-        logInForm.get('password')?.invalid && !success
+        (logInForm.get('password')?.invalid &&
+          logInForm.get('password')?.touched) ||
+        (logInForm.get('password')?.invalid && !success)
       "
       class="text-danger"
       >Password field is required</small

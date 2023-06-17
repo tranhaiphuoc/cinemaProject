@@ -1,4 +1,4 @@
-<form [formGroup]="registerForm">
+<form [formGroup]="registerForm" (ngSubmit)="submit()">
   <ng-container *ngFor="let field of dynamicFormFields">
     <div class="form-group mb-2">
       <label
@@ -23,7 +23,11 @@
       </ng-container>
       <ng-container *ngIf="field.invalidMessage">
         <small
-          *ngIf="registerForm.get(field.controlName)?.invalid && !success"
+          *ngIf="
+            (registerForm.get(field.controlName)?.invalid &&
+              registerForm.get(field.controlName)?.touched) ||
+            (registerForm.get(field.controlName)?.invalid && !success)
+          "
           class="text-danger"
           >{{ field.invalidMessage }}</small
         >

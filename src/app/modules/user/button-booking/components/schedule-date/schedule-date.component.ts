@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./schedule-date.component.scss']
 })
 export class ScheduleDateComponent {
-  static selectedItem: number;
+  static selectedItem: number = 0;
 
   @Input() item: any;
   @Input() iter!: number;
@@ -19,7 +19,6 @@ export class ScheduleDateComponent {
   }
 
   ngOnInit(): void {
-    ScheduleDateComponent.selectedItem = 0;
     this.date = new Date(this.date.setDate(this.date.getDate() + this.iter));
   }
 

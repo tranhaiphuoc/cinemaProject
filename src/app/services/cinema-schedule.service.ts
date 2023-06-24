@@ -410,10 +410,11 @@ export class CinemaScheduleService {
 
   getAvailableSchedule(movie: Movie, date: Date): CinemaDto[] {
     let tempCinemaDto: CinemaDto[] = [];
-    let tempCinemaScheduleDto: CinemaScheduleDto[] = [];
-
+    
     for (let cinema of this.cinemaScheduleList) {
-      cinema.cinemaSchedule.forEach((cs) => {
+      let tempCinemaScheduleDto: CinemaScheduleDto[] = [];
+
+      for (let cs of cinema.cinemaSchedule) {
         let csDto: CinemaScheduleDto | undefined = undefined;
 
         for (let s of cs.schedule) {
@@ -433,13 +434,13 @@ export class CinemaScheduleService {
             }
 
             if (dateTime != undefined) {
-              let scheduleArr: Schedule[] = [
-                {
-                  id: s.id,
-                  movie: s.movie,
-                  dateTime: [dateTime],
-                },
-              ];
+              let scheduleArr: Schedule[] = [];
+              
+              scheduleArr.push({
+                id: s.id,
+                movie: s.movie,
+                dateTime: [dateTime],
+              })
 
               csDto = {
                 cinema: cs.cinema,
@@ -462,7 +463,7 @@ export class CinemaScheduleService {
 
           tempCinemaDto.push(cDto);
         }
-      });
+      }
     }
 
     return tempCinemaDto;

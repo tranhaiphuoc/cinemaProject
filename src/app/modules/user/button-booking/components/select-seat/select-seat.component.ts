@@ -165,8 +165,9 @@ export class SelectSeatComponent {
     let booking: Booking = new Booking(user, this.cinema, this.movie, this.showtime, this.selectedDate, 0, 0, []);
 
     for (let i = 0; i < this.stateOfSeats.length; i++) {
+      debugger
       if (this.stateOfSeats[i] == true) {
-        let seat: Seat | any = this.cinemaSeatService.getSeatById(i);
+        let seat: Seat | any = this.cinemaSeatService.getSeatById(i + 1);
         let details: BookingDetails = new BookingDetails(booking.id, seat, seat.type.price)
 
         booking.quantity++;

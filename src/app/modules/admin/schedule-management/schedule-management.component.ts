@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CinemaDto } from 'src/app/dto/cinema-dto';
 import { DateTimeSchedule } from 'src/app/models/date-time-schedule.model';
 import { Movie } from 'src/app/models/movie.model';
@@ -74,7 +75,8 @@ export class ScheduleManagementComponent {
   constructor(
     private cinemaScheduleService: CinemaScheduleService,
     public movieService: MovieService,
-    private router: Router
+    private router: Router,
+    private readonly _toastrService: ToastrService
   ) {
     if (this.getCinemaCenterArray.length > 0)
       this.filterCinemaCenter = this.getCinemaCenterArray[0];
@@ -119,13 +121,14 @@ export class ScheduleManagementComponent {
         }
       });
     });
+    this._toastrService.success('Xóa thành công!');
   }
 
   addRow() {
     if (this.getListMovieNotExistsInCinemaCenter.length != 0) {
       this.showAddRow = true;
     } else {
-      // Toast
+      this._toastrService.success("Không còn phim để thêm!");
     }
   }
 
@@ -147,14 +150,20 @@ export class ScheduleManagementComponent {
 
     schedule.id = cinemaDto.cinemaSchedule[index].schedule.length + 1;
     schedule.movie = this.movieTS;
-    schedule.dateTime = new Array<DateTimeSchedule>();
+    schedule.dateTime = [];
 
-    cinemaDto.cinemaSchedule[index].schedule.push(schedule);
+    cinemaDto.cinemaSchedule[index].schedule.push({
+      dateTime: schedule.dateTime,
+      id: schedule.id,
+      movie: schedule.movie
+    });
 
     this.onSelectCinemaCenter();
 
     this.showAddRow = false;
-  }
+
+    this._toastrService.success("Thêm thành công!");
+}
 
   getIndexCinemaDto(): number {
     return this.cinemaScheduleService.getList().findIndex(item => item.cinemaCenter.name === this.filterCinemaCenter);

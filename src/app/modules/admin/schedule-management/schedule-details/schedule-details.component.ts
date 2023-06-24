@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { DateTimeSchedule } from 'src/app/models/date-time-schedule.model';
 import { Showtime } from 'src/app/models/showtime.model';
 import { CinemaScheduleService } from 'src/app/services/cinema-schedule.service';
@@ -36,10 +37,12 @@ export class ScheduleDetailsComponent implements OnInit {
   indexTime!: number;
 
   isDeleteDate = false;
+  subMenu = new MenuItem();
 
   constructor(
     private route: ActivatedRoute,
-    public cinemaScheduleService: CinemaScheduleService
+    public cinemaScheduleService: CinemaScheduleService,
+    private readonly _toastrService: ToastrService
   ) {}
 
   ngOnInit() {
@@ -72,7 +75,13 @@ export class ScheduleDetailsComponent implements OnInit {
 
         dateTime.time.forEach((time) => {
           let subMenuItem = new MenuItem();
-          subMenuItem.label = this.getHourAndMinute(time.hour, time.minute);
+          
+          const end = new Date();
+          end.setHours(time.hour);
+          end.setMinutes(time.minute + this.cinemaScheduleService.getList()[this.indexCinemaDto].cinemaSchedule[this.indexCinemaSchedule].schedule[this.indexSchedule].movie.runtime + 45);
+
+          subMenuItem.label = this.getHourAndMinute(time.hour, time.minute) + ' - ' + this.getHourAndMinute(end.getHours(), end.getMinutes());
+
           subMenuItem.isActive = false;
           subMenuItem.isUpdate = false;
 
@@ -203,6 +212,7 @@ export class ScheduleDetailsComponent implements OnInit {
     this.isUpdate = false;
     menuItem.isUpdate = false;
 
+    this._toastrService.success('Cập nhật thành công!');
     this.reloadMenuItems();
   }
 
@@ -218,11 +228,12 @@ export class ScheduleDetailsComponent implements OnInit {
       ].dateTime.filter((item) => item.date.getDate() !== newDate.getDate());
 
     this.reloadMenuItems();
+    this._toastrService.success('Xóa thành công!');
   }
 
-  deleteTime(menuItem: MenuItem) {
-    const hour = menuItem.label.split(':')[0].replace(/^0+/, '');
-    let minute = menuItem.label.split(':')[1];
+  deleteTime() {
+    const hour = this.subMenu.label.split(':')[0].replace(/^0+/, '');
+    let minute = this.subMenu.label.split(':')[1];
 
     if (minute.length == 2 && minute[1] == '0') {
       minute = minute.slice(0, -1);
@@ -249,9 +260,19 @@ export class ScheduleDetailsComponent implements OnInit {
     this.reloadMenuItems();
 
     this.menuItemTS = undefined;
+
+    this._toastrService.success('Xóa thành công!');
   }
 
   updateTime() {
+    this.hour = this.hourUpdate;
+    this.minute = this.minuteUpdate;
+
+    if(this.isExistShowtime()) {
+      this._toastrService.warning('Thời gian này rạp đang chiếu phim!');
+      return;
+    }
+
     this.cinemaScheduleService.getList()[this.indexCinemaDto].cinemaSchedule[
       this.indexCinemaSchedule
     ].schedule[this.indexSchedule].dateTime[this.indexDate].time[
@@ -267,6 +288,8 @@ export class ScheduleDetailsComponent implements OnInit {
 
     this.isUpdate = false;
     this.menuItemTS = undefined;
+
+    this._toastrService.success('Cập nhật thành công!');
   }
 
   setIsDeleteDate(status: boolean) {
@@ -317,10 +340,60 @@ export class ScheduleDetailsComponent implements OnInit {
     return lastId + 1;
   }
 
+  isExistShowtime(): boolean {
+    let isExist = false;
+    this.cinemaScheduleService.getList().forEach(cinemaDTO => {
+      if(cinemaDTO.cinemaCenter.name === this.cinemaScheduleService.getList()[this.indexCinemaDto as number].cinemaCenter.name) {
+        cinemaDTO.cinemaSchedule.forEach(scheduleDTO => {
+          if(scheduleDTO.cinema.name === this.cinemaScheduleService.getList()[this.indexCinemaDto].cinemaSchedule[this.indexCinemaSchedule].cinema.name) {
+            scheduleDTO.schedule.forEach(schedule => {
+              schedule.dateTime.forEach(dateTime => {
+                if(dateTime.date.getDate() === new Date(this.date as string).getDate()) {
+                  dateTime.time.forEach((showtime) => {
+                    const start = new Date();
+                    start.setHours(showtime.hour);
+                    start.setMinutes(showtime.minute);
+
+                    const end = new Date();
+                    end.setHours(showtime.hour);
+                    end.setMinutes(
+                      showtime.minute + schedule.movie.runtime + 45
+                    );
+
+                    const check = new Date();
+                    check.setHours(this.hour as number);
+                    check.setMinutes(this.minute as number);
+
+                    if (check.getTime() >= start.getTime() && check.getTime() <= end.getTime()) {
+                      isExist = true;
+                    }
+                  });
+                }
+              })
+            })
+          }
+        });
+      }
+    });
+    return isExist;
+  }
+
   addTime() {
     if(this.hour !== undefined && this.minute !== undefined) {
+      if(this.isExistShowtime()) {
+        this._toastrService.warning('Thời gian này rạp đang chiếu phim!');
+        return;
+      }
+
       let showTime = new Showtime(this.getShowTimeId(), this.indexSchedule + 1, this.hour, this.minute);
-      this.cinemaScheduleService.getList()[this.indexCinemaDto].cinemaSchedule[this.indexCinemaSchedule].schedule[this.indexSchedule].dateTime[this.indexDate].time.push(showTime);
+
+      this.cinemaScheduleService.getList()[this.indexCinemaDto].cinemaSchedule[this.indexCinemaSchedule].schedule[this.indexSchedule].dateTime[this.indexDate].time
+      .push({
+        hour: showTime.hour,
+        id: showTime.id,
+        minute: showTime.minute,
+        scheduleId: showTime.scheduleId
+      });
       
       this.reloadMenuItems();
 
@@ -330,18 +403,20 @@ export class ScheduleDetailsComponent implements OnInit {
     }
   }
 
- 
-
   addDate() {
     const newDate = new Date(this.date as string);
     
     let dateTimeSchedule = new DateTimeSchedule();
 
     dateTimeSchedule.time = [];
-   // dateTimeSchedule.id = this.getScheduleId();
     dateTimeSchedule.date = newDate;
 
-    this.cinemaScheduleService.getList()[this.indexCinemaDto].cinemaSchedule[this.indexCinemaSchedule].schedule[this.indexSchedule].dateTime.push(dateTimeSchedule);
+    this.cinemaScheduleService.getList()[this.indexCinemaDto].cinemaSchedule[this.indexCinemaSchedule].schedule[this.indexSchedule].dateTime
+    .push({
+      date: dateTimeSchedule.date,
+      id: dateTimeSchedule.id,
+      time: dateTimeSchedule.time
+    });
 
     this.reloadMenuItems();
 
@@ -349,5 +424,9 @@ export class ScheduleDetailsComponent implements OnInit {
     this.hour = undefined;
     this.minute = undefined;
     this.date = undefined;
+  }
+
+  setSubMenu(subMenu: MenuItem) {
+    this.subMenu = subMenu;
   }
 }

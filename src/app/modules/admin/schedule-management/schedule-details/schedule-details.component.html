@@ -24,7 +24,8 @@
                         {{menuItem.label}}
                         <span>
                             <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" [disabled]="menuItemTS?.isActive || isUpdate"
-                             (click)="toggleActive(menuItem)">
+                             (click)="toggleActive(menuItem)"
+                             (click)="isDeleteDate = true">
                                 <i class="fa fa-times"></i>
                             </button>
                             <button class="btn btn-success marginleft" [disabled]="menuItemTS?.isActive || isUpdate" (click)="getIndexDate(i)"
@@ -70,9 +71,11 @@
                                 {{subMenuItem.label}}
                                 <span>
                                     <button class="btn btn-danger marginsub"
+                                    data-bs-toggle="modal" data-bs-target="#deleteModal"
                                     [disabled]="isUpdate"
                                     (click)="getIndexDate(i)" (click)="getIndexTime(j)"
-                                    (click)="deleteTime(subMenuItem)">
+                                    (click)="setSubMenu(subMenuItem)"
+                                    (click)="isDeleteDate = false">
                                         <i class="fa fa-times"></i>
                                     </button>
                                     <button class="btn btn-success marginleft" [disabled]="isUpdate"
@@ -99,8 +102,14 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Hủy </button>
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="getIndexDate(i)" (click)="deleteDate()"> Xóa
-                                </button>
+                                <ng-container *ngIf="isDeleteDate">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="getIndexDate(i)" (click)="deleteDate()"> Xóa
+                                    </button>
+                                </ng-container>
+                                <ng-container *ngIf="!isDeleteDate">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteTime()"> Xóa
+                                    </button>
+                                </ng-container>
                             </div>
                         </div>
                     </div>

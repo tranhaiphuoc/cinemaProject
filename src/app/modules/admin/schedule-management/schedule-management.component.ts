@@ -121,6 +121,7 @@ export class ScheduleManagementComponent {
         }
       });
     });
+    this._toastrService.success('Xóa thành công!');
   }
 
   addRow() {
@@ -149,9 +150,13 @@ export class ScheduleManagementComponent {
 
     schedule.id = cinemaDto.cinemaSchedule[index].schedule.length + 1;
     schedule.movie = this.movieTS;
-    schedule.dateTime = new Array<DateTimeSchedule>();
+    schedule.dateTime = [];
 
-    cinemaDto.cinemaSchedule[index].schedule.push(schedule);
+    cinemaDto.cinemaSchedule[index].schedule.push({
+      dateTime: schedule.dateTime,
+      id: schedule.id,
+      movie: schedule.movie
+    });
 
     this.onSelectCinemaCenter();
 

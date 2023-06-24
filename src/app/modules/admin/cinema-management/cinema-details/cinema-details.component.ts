@@ -4,8 +4,12 @@ import { ToastrService } from 'ngx-toastr';
 import { CinemaScheduleDto } from 'src/app/dto/cinema-schedule-dto';
 import { CinemaCenter } from 'src/app/models/cinema-center.model';
 import { Cinema } from 'src/app/models/cinema.model';
+import { SeatType } from 'src/app/models/seat-type';
+import { Seat } from 'src/app/models/seat.model';
 import { CinemaCenterService } from 'src/app/services/cinema-center.service';
 import { CinemaScheduleService } from 'src/app/services/cinema-schedule.service';
+import { CinemaSeatService } from 'src/app/services/cinema-seat.service';
+import { SeatTypeService } from 'src/app/services/seat-type.service';
 
 @Component({
   selector: 'app-cinema-details',
@@ -27,8 +31,13 @@ export class CinemaDetailsComponent implements OnInit {
   isUpdate = false;
   cinemaIndexUpdate!: number;
 
-  constructor(private cinemaService: CinemaCenterService, 
+  seatTypeList: SeatType[] = this.seatTypeService.getList();
+
+  constructor(
+    private cinemaService: CinemaCenterService, 
     private cinemaScheduleService: CinemaScheduleService, 
+    private cinemaSeatService: CinemaSeatService,
+    private seatTypeService: SeatTypeService,
     private route: ActivatedRoute,
     private readonly _toastrService: ToastrService
     ) {}
@@ -49,14 +58,41 @@ export class CinemaDetailsComponent implements OnInit {
     this.cinemaIndex = index;
   }
 
+  resetIdSeat() {
+    let cinemaSeat = this.cinemaSeatService.getList();
+    
+    let count = 1;
+
+    let id = 1;
+    cinemaSeat.forEach(seat => {
+      seat.id = count++;
+      seat.cinameId = id;
+      if(seat.name == 'M08')
+        id++;
+    });
+  }
+
+  deleteCinemaSeats(cinemaId: number) {
+    let cinemaSeat = this.cinemaSeatService.getList();
+    
+    for (let i = cinemaSeat.length - 1; i >= 0; i--) {
+      if (cinemaSeat[i].cinameId === cinemaId)
+        cinemaSeat.splice(i, 1);
+    }
+    this.resetIdSeat();
+  }
+
   deleteCinema() {
+    this.deleteCinemaSeats(this.cinemaService.getList()[this.indexCinemaCenter].cinema[this.cinemaIndex as number].id);
+
     this.cinemaService.getList()[this.indexCinemaCenter].cinema.splice(this.cinemaIndex as number, 1);
     this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaSchedule.splice(this.cinemaIndex as number, 1);
     this._toastrService.success("Xóa thành công!");
   }
 
   setIndexCinemaUpdate(index: number) {
-    if (this.isUpdate == false) this.cinemaIndexUpdate = index;
+    if (this.isUpdate == false) 
+      this.cinemaIndexUpdate = index;
   }
 
   isValid() : boolean {
@@ -112,6 +148,37 @@ export class CinemaDetailsComponent implements OnInit {
     return index;
   }
 
+  AddSeats(cinemaId: number): void {
+    const rows = ['A', 'B', 'C', 'M'];
+    const cols = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16'];
+    
+    let index = this.cinemaSeatService.getList().length;
+  
+    for (let row of rows) {
+      for (let col of cols) {
+        let type = this.seatTypeList[0];
+  
+        if (row === 'M') {
+          type = this.seatTypeList[2];
+        }
+
+        if(row === 'M' && parseInt(col) > 8)
+          continue;
+
+        const seat = new Seat;
+        seat.id = index + 1;
+        seat.cinameId = cinemaId;
+        seat.name = `${row}${col}`;
+        seat.type = type;
+        seat.status = 1;
+
+        this.cinemaSeatService.getList().push(seat);
+  
+        index++;
+      }
+    }
+  }
+
   addCinema() {
     this.cinemaIndex = -1;
     this.cinemaNameUpdate = this.cinemaName;
@@ -119,15 +186,27 @@ export class CinemaDetailsComponent implements OnInit {
       this._toastrService.error('Tên rạp đã tồn tại trong hệ thống!');
       return;
     }
-
     let cinema = new Cinema(this.getIdCinema(), this.cinemaName);
-    this.cinemaService.getList()[this.indexCinemaCenter].cinema.push(cinema);
+    
+    this.AddSeats(cinema.id);
+
+    this.cinemaService.getList()[this.indexCinemaCenter].cinema.push({
+      id: cinema.id,
+      name: cinema.name
+    });
 
     let cinemaScheduleDTO = new CinemaScheduleDto();
-    cinemaScheduleDTO.cinema = cinema;
+    cinemaScheduleDTO.cinema = {
+      id: cinema.id,
+      name: cinema.name
+    };
     cinemaScheduleDTO.schedule = [];
 
-    this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaSchedule.push(cinemaScheduleDTO);
+    this.cinemaScheduleService.getList()[this.indexCinemaCenter].cinemaSchedule.push({
+      cinema: cinemaScheduleDTO.cinema,
+      schedule: cinemaScheduleDTO.schedule
+    });
+
     this.cinemaName = '';
     this._toastrService.success("Thêm thành công!");
   }

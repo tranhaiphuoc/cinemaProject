@@ -426,6 +426,8 @@ export class ScheduleDetailsComponent implements OnInit {
     this.hour = undefined;
     this.minute = undefined;
     this.date = undefined;
+
+    this._toastrService.success('Thêm thành công!');
   }
 
   setSubMenu(subMenu: MenuItem) {

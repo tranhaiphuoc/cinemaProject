@@ -1,4 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  Renderer2,
+} from '@angular/core';
 import { Booking } from 'src/app/models/booking';
 import { BookingDetails } from 'src/app/models/booking-details';
 import { Cinema } from 'src/app/models/cinema.model';
@@ -16,7 +22,7 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-select-seat',
   templateUrl: './select-seat.component.html',
-  styleUrls: ['./select-seat.component.scss']
+  styleUrls: ['./select-seat.component.scss'],
 })
 export class SelectSeatComponent {
   @Output() toggle = new EventEmitter();
@@ -42,7 +48,7 @@ export class SelectSeatComponent {
   countSeat: number = 0;
   breakPoint: number = 16;
   leftPosInit: number = 4;
-  
+
   margin: number = 0.3;
   side: number = 2.2;
   sideDouble: number = this.side * 2 + this.margin;
@@ -52,13 +58,13 @@ export class SelectSeatComponent {
   leftPosDouble: number = this.leftPosInit - this.side - this.margin;
   //#endregion
 
-  topCalc(): number {
+  get topCalc(): number {
     if (this.countSeat == this.breakPoint) {
       this.countSeat = 0;
       this.topPos += this.side + this.margin;
       this.leftPosSingle = this.leftPosInit;
     }
-    return this.topPos
+    return this.topPos;
   }
 
   get top(): number {
@@ -67,10 +73,10 @@ export class SelectSeatComponent {
     //   this.topPos += this.side + this.margin;
     //   this.leftPosSingle = this.leftPosInit;
     // }
-    return this.topCalc();
+    return this.topCalc;
   }
 
-  leftCalc(): number {
+  get leftCalc(): number {
     this.countSeat += 1;
     this.leftPosSingle += this.side + this.margin;
     return this.leftPosSingle;
@@ -79,10 +85,10 @@ export class SelectSeatComponent {
   get left(): number {
     // this.countSeat += 1;
     // this.leftPosSingle += this.side + this.margin;
-    return this.leftCalc();
+    return this.leftCalc;
   }
 
-  leftDoubleCalc(): number {
+  get leftDoubleCalc(): number {
     this.countSeat += 2;
     this.leftPosDouble += this.sideDouble + this.margin;
     return this.leftPosDouble;
@@ -91,7 +97,7 @@ export class SelectSeatComponent {
   get leftDouble(): number {
     // this.countSeat += 2;
     // this.leftPosDouble += this.sideDouble + this.margin;
-    return this.leftDoubleCalc();
+    return this.leftDoubleCalc;
   }
 
   constructor(
@@ -100,10 +106,12 @@ export class SelectSeatComponent {
     private authService: AuthService,
     private cinemaSeatService: CinemaSeatService,
     private cinemaBookingService: CinemaBookingService,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit(): void {
     this.stateOfSeats = Array(this.seats.length).fill(false);
+
     for (let i of this.selectedSeatTypeQuantityArr) {
       this.bookingSeat += i.quantity;
     }
@@ -116,7 +124,7 @@ export class SelectSeatComponent {
     this.leftPosDouble = this.leftPosInit - this.side - this.margin;
   }
 
-  select(index: number): void {
+  select($event: any, index: number): void {
     for (let i = 0; i < this.selectedSeatTypeQuantityArr.length; i++) {
       if (
         this.selectedSeatTypeQuantityArr[i].seatType.name ==
@@ -131,6 +139,8 @@ export class SelectSeatComponent {
           this.stateOfSeats[index] = !this.stateOfSeats[index];
           this.selectedSeatTypeQuantityArr[i].selected--;
           this.currentSeat--;
+
+          this.renderer.removeClass($event.target, 'selected');
           break;
         }
 
@@ -142,10 +152,12 @@ export class SelectSeatComponent {
           this.stateOfSeats[index] = !this.stateOfSeats[index];
           this.selectedSeatTypeQuantityArr[i].selected++;
           this.currentSeat++;
+
+          this.renderer.addClass($event.target, 'selected');
         } else {
           alert('Already choose all the ticket this type');
         }
-
+        
         break;
       }
     }
@@ -159,16 +171,29 @@ export class SelectSeatComponent {
 
   addBooking(): void {
     let tokenName: string | null = this.authService.getToken();
-    let userId: number | undefined = this.accountService.getAccountByUsername(tokenName)?.userId;
+    let userId: number | undefined =
+      this.accountService.getAccountByUsername(tokenName)?.userId;
     let user: User = this.userService.getById(userId);
 
-    let booking: Booking = new Booking(user, this.cinema, this.movie, this.showtime, this.selectedDate, 0, 0, []);
+    let booking: Booking = new Booking(
+      user,
+      this.cinema,
+      this.movie,
+      this.showtime,
+      this.selectedDate,
+      0,
+      0,
+      []
+    );
 
     for (let i = 0; i < this.stateOfSeats.length; i++) {
-      debugger
       if (this.stateOfSeats[i] == true) {
-        let seat: Seat | any = this.cinemaSeatService.getSeatById(i + 1);
-        let details: BookingDetails = new BookingDetails(booking.id, seat, seat.type.price)
+        let seat: Seat | any = this.seats[i];
+        let details: BookingDetails = new BookingDetails(
+          booking.id,
+          seat,
+          seat.type.price
+        );
 
         booking.quantity++;
         booking.total += seat.type.price;

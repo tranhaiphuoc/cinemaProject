@@ -6,7 +6,78 @@
         <div class="seat-container">
           <ng-container *ngFor="let seat of seats; let i = index">
             <ng-container [ngSwitch]="seat.type.name">
-              <ng-container
+
+
+              <ng-container *ngSwitchCase="'single'">
+                <ng-container [ngSwitch]="seat.status">
+                  <ng-container
+                    *ngSwitchCase="0"
+                    [ngStyle]="{ 'left.em': left }"
+                  ></ng-container>
+                  <div
+                    *ngSwitchCase="1"
+                    (click)="select($event, i)"
+                    class="seat single"
+                    [ngStyle]="{
+                      'top.em': top,
+                      'left.em': left,
+                      'width.em': side,
+                      'height.em': side
+                    }"
+                  >
+                    {{ seat.name }}
+                  </div>
+                  <div
+                    *ngSwitchCase="2"
+                    class="seat single busy"
+                    [ngStyle]="{
+                      'top.em': top,
+                      'left.em': left,
+                      'width.em': side,
+                      'height.em': side
+                    }"
+                  >
+                    {{ seat.name }}
+                  </div>
+                </ng-container>
+              </ng-container>
+
+              
+              <ng-container *ngSwitchCase="'double'">
+                <ng-container [ngSwitch]="seat.status">
+                  <ng-container
+                    *ngSwitchCase="0"
+                    [ngStyle]="{ 'left.em': leftDouble }"
+                  ></ng-container>
+                  <div
+                    *ngSwitchCase="1"
+                    (click)="select($event, i)"
+                    class="seat double"
+                    [ngStyle]="{
+                      'top.em': top,
+                      'left.em': leftDouble,
+                      'width.em': sideDouble,
+                      'height.em': side
+                    }"
+                  >
+                    {{ seat.name }}
+                  </div>
+                  <div
+                    *ngSwitchCase="2"
+                    class="seat double busy"
+                    [ngStyle]="{
+                      'top.em': top,
+                      'left.em': leftDouble,
+                      'width.em': sideDouble,
+                      'height.em': side
+                    }"
+                  >
+                    {{ seat.name }}
+                  </div>
+                </ng-container>
+              </ng-container>
+
+              <!-- <ng-container
                 *ngSwitchCase="'single'"
                 [ngTemplateOutlet]="seatSingle"
                 [ngTemplateOutletContext]="{
@@ -23,7 +94,9 @@
                   status: seat.status,
                   name: seat.name
                 }"
-              ></ng-container>
+              ></ng-container> -->
+
+
             </ng-container>
             <ng-container *ngIf="(i + 1) % breakPoint == 0">
               <br />
@@ -38,7 +111,7 @@
     </div>
   </ng-container>
   
-  <ng-template #seatSingle let-index="index" let-status="status" let-name="name">
+  <!-- <ng-template #seatSingle let-index="index" let-status="status" let-name="name">
     <ng-container [ngSwitch]="status">
       <ng-container
         *ngSwitchCase="0"
@@ -106,5 +179,5 @@
         {{ name }}
       </div>
     </ng-container>
-  </ng-template>
+  </ng-template> -->
   
